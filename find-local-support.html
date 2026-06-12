@@ -574,7 +574,6 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
       <h1>Find local support near you</h1>
       <p class="lede">Search by postcode or area to find Headway groups and branches, approved care providers, brain injury solicitors and charity shops.</p>
 
-      <!-- postcode search — SRCH-006 / INT-003 -->
       <div class="filterbar">
         <div class="filterrow">
           <div class="field" style="flex:1;min-width:200px">
@@ -590,8 +589,7 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
         </div>
       </div>
 
-      <!-- tabs — DIR-001 (Groups/Branches, Solicitors, Care providers, Charity shops) -->
-      <div class="anno"><b>DIR-001 → DIR-005 · INT-001 (Salesforce)</b><span>Tabbed finder: groups &amp; branches, solicitors (with case-type filters), approved care providers, charity shops. Map pins update live with the filters.</span></div>
+      <div class="anno"><b>DIR-001 → DIR-005 · INT-001 (Salesforce)</b><span>Tabbed finder: groups &amp; branches, solicitors (simple listing), approved care providers (filter by level of care, speciality, admission criteria &amp; accommodation), charity shops. Map pins update live.</span></div>
       <div class="tabs" role="tablist" aria-label="Type of support">
         <button role="tab" aria-selected="true"  data-type="groupbranch">Groups &amp; branches</button>
         <button role="tab" aria-selected="false" data-type="solicitor">Solicitors</button>
@@ -599,10 +597,10 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
         <button role="tab" aria-selected="false" data-type="shop">Charity shops</button>
       </div>
 
-      <!-- solicitor-only advanced filters — DIR-003 -->
-      <div class="filterbar" id="solfilters" hidden>
-        <strong style="display:block;margin-bottom:8px">Filter solicitors</strong>
-        <div class="checkset" id="solcases" style="flex-direction:row;flex-wrap:wrap;gap:14px"></div>
+      <!-- approved care provider facet filters (multi-select) -->
+      <div class="filterbar" id="carefilters" hidden>
+        <strong style="display:block;margin-bottom:10px">Filter approved care providers</strong>
+        <div id="carefacets" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px"></div>
       </div>
 
       <div class="note-box" style="margin:0 0 18px"><strong>No local group near you?</strong> Headway UK support is available everywhere — the <a href="helpline.html">helpline</a>, <a href="id-card.html">brain injury ID card</a>, <a href="topic.html">emergency fund</a> and <a href="information-library.html">information library</a> are here for you wherever you live.</div>
@@ -611,7 +609,7 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
         <div style="padding:16px;min-width:0">
           <p class="result-meta" id="meta"></p>
           <div id="results"></div>
-          <div class="empty" id="empty" hidden>No results in that area. Try a wider search or <button class="btn sm" type="button" onclick="document.getElementById('clear').click()">clear filters</button>.</div>
+          <div class="empty" id="empty" hidden>No results match. Try a wider search or <button class="btn sm" type="button" onclick="document.getElementById('clear').click()">clear filters</button>.</div>
         </div>
         <div class="rail" style="padding:0">
           <div class="maparea" id="map">
@@ -727,11 +725,29 @@ window.HData = {
       services:["Work accident","Home visits"], meta:"Accident claims", postcodes:["g","eh"] },
 
     { name:"Bridgeview Care", type:"care", region:"London", x:64, y:58,
-      services:["Residential","Neuro rehab"], meta:"Approved provider", postcodes:["n","e"] },
+      services:["Residential","Neuro rehab"], meta:"Approved provider", postcodes:["n","e"],
+      level:["Residential care","Nursing care","Rehabilitation"], speciality:["Acquired brain injury","Complex needs"],
+      admission:["Aged 18–65","Self-funding","Local authority funded"], accom:["Single ensuite rooms","Wheelchair accessible"] },
     { name:"Meadow House", type:"care", region:"Yorkshire", x:56, y:32,
-      services:["Supported living","Respite"], meta:"Approved provider", postcodes:["yo"] },
+      services:["Supported living","Respite"], meta:"Approved provider", postcodes:["yo"],
+      level:["Supported living","Respite care"], speciality:["Acquired brain injury","Young adults"],
+      admission:["Aged 18–65","Local authority funded"], accom:["Self-contained flats","Ground floor"] },
     { name:"Ashworth Neuro Centre", type:"care", region:"West Midlands", x:48, y:54,
-      services:["Residential","Day rehab"], meta:"Approved provider", postcodes:["b","cv"] },
+      services:["Residential","Day rehab"], meta:"Approved provider", postcodes:["b","cv"],
+      level:["Residential care","Rehabilitation","Day services"], speciality:["Neurological conditions","Behavioural support","Complex needs"],
+      admission:["Aged 18–65","Aged 65+","NHS funded","Detained under Mental Health Act"], accom:["Single ensuite rooms","Shared facilities"] },
+    { name:"Rosewood Lodge", type:"care", region:"Scotland", x:43, y:17,
+      services:["Nursing care","Respite"], meta:"Approved provider", postcodes:["g","eh"],
+      level:["Nursing care","Respite care"], speciality:["Acquired brain injury","Physical disability","Huntington's disease"],
+      admission:["Aged 65+","NHS funded","Self-funding"], accom:["Single ensuite rooms","Wheelchair accessible","Ground floor"] },
+    { name:"Hillside Rehabilitation", type:"care", region:"Wales", x:38, y:56,
+      services:["Neuro rehab","Outreach"], meta:"Approved provider", postcodes:["cf","sa"],
+      level:["Rehabilitation","Outreach / community"], speciality:["Acquired brain injury","Mental health","Young adults"],
+      admission:["Aged 18–65","Mixed","Local authority funded"], accom:["Self-contained flats","Bungalows","Wheelchair accessible"] },
+    { name:"Beechcroft Care Home", type:"care", region:"London", x:60, y:64,
+      services:["Residential","Supported living"], meta:"Approved provider", postcodes:["se","sw"],
+      level:["Residential care","Supported living","Day services"], speciality:["Neurological conditions","Physical disability","Complex needs"],
+      admission:["Aged 18–65","Aged 65+","Self-funding","Local authority funded"], accom:["Shared facilities","Ground floor"] },
 
     { name:"Headway Charity Shop — Leeds", type:"shop", region:"Yorkshire", x:55, y:35,
       services:["Donations welcome"], meta:"Open Mon–Sat", postcodes:["ls"] },
@@ -1200,44 +1216,63 @@ window.HData = {
 </script>
 <script>
   const O = HData.orgs;
-  // map detailed types to tabs (group + branch share a tab)
   const TABMATCH = {
     groupbranch: o => o.type==="group" || o.type==="branch",
     solicitor:   o => o.type==="solicitor",
     care:        o => o.type==="care",
     shop:        o => o.type==="shop",
   };
-  const state = { tab:"groupbranch", region:"", pc:"", cases:new Set() };
+
+  // care provider facets (multi-select)
+  const FACETS=[
+    {key:"level",      label:"Level of care",         field:"level"},
+    {key:"speciality", label:"Unit speciality",       field:"speciality"},
+    {key:"admission",  label:"Admission criteria",    field:"admission"},
+    {key:"accom",      label:"Type of accommodation", field:"accom"},
+  ];
+  const state = { tab:"groupbranch", region:"", pc:"", care:{} };
+  FACETS.forEach(f=>state.care[f.key]=new Set());
 
   // region select
   const rsel=document.getElementById("region");
   [...new Set(O.map(o=>o.region))].sort().forEach(r=>{const op=document.createElement("option");op.value=r;op.textContent=r;rsel.appendChild(op);});
 
-  // solicitor case-type checkboxes (built from data)
-  const caseTypes=[...new Set(O.filter(o=>o.type==="solicitor").flatMap(o=>o.services))].sort();
-  document.getElementById("solcases").innerHTML = caseTypes.map(c=>
-    `<label><input type="checkbox" value="${c}"> ${c}</label>`).join("");
-  document.querySelectorAll("#solcases input").forEach(cb=>cb.addEventListener("change",()=>{
-    cb.checked?state.cases.add(cb.value):state.cases.delete(cb.value); render();
-  }));
+  // build care facet checkboxes from the data
+  const careProviders=O.filter(o=>o.type==="care");
+  document.getElementById("carefacets").innerHTML = FACETS.map(f=>{
+    const opts=[...new Set(careProviders.flatMap(o=>o[f.field]||[]))].sort();
+    return `<div><strong style="display:block;font-size:.82rem;margin-bottom:6px">${f.label}</strong>
+      <div class="checkset" data-facet="${f.key}">${opts.map(v=>`<label><input type="checkbox" value="${v.replace(/"/g,'&quot;')}"> ${v}</label>`).join("")}</div></div>`;
+  }).join("");
+  document.querySelectorAll('#carefacets .checkset').forEach(group=>{
+    const key=group.dataset.facet;
+    group.querySelectorAll('input').forEach(cb=>cb.addEventListener("change",()=>{
+      cb.checked?state.care[key].add(cb.value):state.care[key].delete(cb.value); render();
+    }));
+  });
 
-  // crude postcode/area matcher: matches region name OR postcode prefix
   function pcMatch(o){
     if(!state.pc) return true;
     const q=state.pc.trim().toLowerCase();
     if(o.region.toLowerCase().includes(q)) return true;
     return o.postcodes.some(p=> q.startsWith(p) || p.startsWith(q.replace(/[0-9].*$/,"")));
   }
-
+  function careMatch(o){
+    if(state.tab!=="care") return true;
+    return FACETS.every(f=>{
+      const sel=state.care[f.key];
+      return sel.size===0 || (o[f.field]||[]).some(v=>sel.has(v));
+    });
+  }
   function current(){
-    return O.filter(o=>
-      TABMATCH[state.tab](o) &&
-      (!state.region || o.region===state.region) &&
-      pcMatch(o) &&
-      (state.cases.size===0 || [...state.cases].every(c=>o.services.includes(c)))
-    );
+    return O.filter(o=> TABMATCH[state.tab](o) && (!state.region || o.region===state.region) && pcMatch(o) && careMatch(o));
   }
 
+  function tagsFor(o){
+    let t=[...o.services];
+    if(o.type==="care"){ t=[...new Set([...(o.level||[]),...(o.speciality||[])])]; }
+    return t.map(s=>`<span class="tag">${s}</span>`).join("");
+  }
   function render(){
     const list=current();
     document.getElementById("meta").textContent = list.length + " result" + (list.length===1?"":"s") + (state.pc?` near “${state.pc}”`:"");
@@ -1248,12 +1283,11 @@ window.HData = {
         <div>
           <h3 style="margin:.1em 0"><a href="topic.html?org=${encodeURIComponent(o.name)}">${o.name}</a></h3>
           <div class="meta">${o.region} · ${o.meta}</div>
-          <div style="margin-top:6px">${o.services.map(s=>`<span class="tag">${s}</span>`).join("")}</div>
+          <div style="margin-top:6px">${tagsFor(o)}</div>
         </div>
         <div class="dist">${state.pc?(2+Math.round(Math.random()*22))+" mi":""}<br><a href="topic.html?org=${encodeURIComponent(o.name)}">View →</a></div>
       </div>`).join("");
 
-    // map pins
     const map=document.getElementById("map");
     map.querySelectorAll(".mappin").forEach(p=>p.remove());
     list.forEach(o=>{
@@ -1266,13 +1300,17 @@ window.HData = {
     });
   }
 
-  // tab switching
+  function clearCare(){
+    FACETS.forEach(f=>state.care[f.key].clear());
+    document.querySelectorAll('#carefacets input').forEach(cb=>cb.checked=false);
+  }
+
   document.querySelectorAll('[role=tab]').forEach(t=>t.addEventListener("click",()=>{
     document.querySelectorAll('[role=tab]').forEach(x=>x.setAttribute("aria-selected","false"));
     t.setAttribute("aria-selected","true");
     state.tab=t.dataset.type;
-    document.getElementById("solfilters").hidden = state.tab!=="solicitor";
-    if(state.tab!=="solicitor"){ state.cases.clear(); document.querySelectorAll("#solcases input").forEach(cb=>cb.checked=false); }
+    document.getElementById("carefilters").hidden = state.tab!=="care";
+    if(state.tab!=="care") clearCare();
     render();
   }));
 
@@ -1280,20 +1318,15 @@ window.HData = {
   document.getElementById("go").addEventListener("click",()=>{state.pc=document.getElementById("pc").value;render();});
   document.getElementById("pc").addEventListener("keydown",e=>{if(e.key==="Enter"){state.pc=e.target.value;render();}});
   document.getElementById("clear").addEventListener("click",()=>{
-    state.region="";state.pc="";state.cases.clear();
+    state.region="";state.pc=""; clearCare();
     document.getElementById("region").value=""; document.getElementById("pc").value="";
-    document.querySelectorAll("#solcases input").forEach(cb=>cb.checked=false);
     render();
   });
 
-  // prefill postcode from query (homepage finder)
   const pre=Headway.param("pc");
   if(pre){ document.getElementById("pc").value=pre; state.pc=pre; }
-
-  // open a specific tab from ?tab= (e.g. "Find a solicitor" -> solicitors)
   const wantTab=Headway.param("tab");
-  const validTabs=["groupbranch","solicitor","care","shop"];
-  if(validTabs.includes(wantTab)){
+  if(["groupbranch","solicitor","care","shop"].includes(wantTab)){
     const btn=document.querySelector('[role=tab][data-type="'+wantTab+'"]');
     if(btn) btn.click();
   }
