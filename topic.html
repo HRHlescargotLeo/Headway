@@ -1,0 +1,1074 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coping with fatigue — Headway (wireframe)</title>
+<style>
+/* ==========================================================================
+   Headway rebuild — MID-FIDELITY WIREFRAMES
+   Monochrome on purpose: layout, hierarchy and every component are fully
+   represented, but all colour / type / brand decisions are left to the
+   design layer that sits on top. Greyscale tonal system only.
+   ========================================================================== */
+
+:root{
+  /* tonal greyscale ramp */
+  --ink:#1d1d1f;
+  --ink-2:#3a3a3c;
+  --muted:#6b6b70;
+  --faint:#9a9aa0;
+  --line:#d7d7db;
+  --line-2:#c2c2c8;
+  --line-strong:#a8a8af;
+  --fill:#efeff1;
+  --fill-2:#f6f6f7;
+  --fill-3:#fbfbfc;
+  --paper:#ffffff;
+  --desk:#e7e7ea;
+  --img:#e4e4e7;        /* image placeholder fill */
+  --img-line:#cfcfd4;
+
+  --r:6px;              /* radius */
+  --r-sm:4px;
+  --maxw:1240px;
+
+  --s1:4px;  --s2:8px;  --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px;
+
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+*{box-sizing:border-box}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;font-family:var(--font);color:var(--ink);background:var(--desk);
+  line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+
+.page{max-width:var(--maxw);margin:0 auto;background:var(--paper);min-height:100vh;
+  box-shadow:0 0 0 1px var(--line), 0 18px 50px rgba(0,0,0,.10)}
+
+img{max-width:100%;display:block}
+
+a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-strong);
+  text-underline-offset:2px;cursor:pointer}
+a:hover{text-decoration-color:var(--ink)}
+
+:focus-visible{outline:none;box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ink);border-radius:3px}
+
+h1,h2,h3,h4{line-height:1.18;margin:0 0 .5em;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+h1{font-size:2.1rem}
+h2{font-size:1.45rem}
+h3{font-size:1.08rem}
+h4{font-size:.95rem}
+p{margin:0 0 1em}
+small{color:var(--muted);font-size:.82rem}
+hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
+
+/* ---------- primitives ---------- */
+.wf-note{font-size:.72rem;color:var(--faint);text-transform:uppercase;letter-spacing:.07em;font-weight:600}
+
+/* clean image placeholder: tonal block + image glyph + caption */
+.ph{
+  background:var(--img);border:1px solid var(--img-line);border-radius:var(--r-sm);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  color:var(--faint);font-size:.78rem;letter-spacing:.01em;min-height:160px;text-align:center;padding:12px;
+}
+.ph::before{
+  content:"";width:30px;height:30px;flex:0 0 auto;opacity:.85;
+  background:no-repeat center/contain url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%239a9aa0" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-5-5L5 20"/></svg>');
+}
+.ph.sm{min-height:96px}
+.ph.sm::before{width:22px;height:22px}
+.ph.tall{min-height:280px}
+.ph.media::before{
+  width:46px;height:46px;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%239a9aa0" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z" fill="%239a9aa0" stroke="none"/></svg>');
+}
+.ratio-16x9{aspect-ratio:16/9;min-height:0}
+.ratio-4x3{aspect-ratio:4/3;min-height:0}
+.ratio-1x1{aspect-ratio:1/1;min-height:0}
+
+.avatar{width:52px;height:52px;border-radius:50%;flex:0 0 auto;min-height:0;background:var(--img);border:1px solid var(--img-line)}
+.avatar.ph::before{width:20px;height:20px}
+
+/* buttons — monochrome */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);
+  padding:.6em 1.15em;border-radius:var(--r-sm);font:inherit;font-size:.92rem;font-weight:500;
+  cursor:pointer;text-decoration:none;line-height:1.1;transition:background .12s,border-color .12s}
+.btn:hover{background:var(--fill);border-color:var(--ink-2);text-decoration:none}
+.btn.primary,.btn.accent{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.primary:hover,.btn.accent:hover{background:#000}
+.btn.block{display:flex;width:100%}
+.btn.sm{padding:.4em .75em;font-size:.82rem}
+
+.tag{display:inline-block;border:1px solid var(--line-2);background:var(--fill-2);
+  color:var(--muted);font-size:.72rem;font-weight:600;letter-spacing:.02em;
+  padding:.18em .6em;border-radius:4px;margin:0 .3em .3em 0}
+
+.card{border:1px solid var(--line);border-radius:var(--r);background:var(--paper);overflow:hidden;
+  display:flex;flex-direction:column}
+.card .pad{padding:var(--s4)}
+.card.link{text-decoration:none;color:inherit;transition:box-shadow .12s,transform .12s}
+.card.link:hover{box-shadow:0 6px 18px rgba(0,0,0,.08);transform:translateY(-1px)}
+
+.crumb{padding:12px 28px;font-size:.82rem;color:var(--muted);border-bottom:1px solid var(--line);background:var(--fill-3)}
+.crumb a{color:var(--muted)}
+.crumb a:hover{color:var(--ink)}
+
+.section{padding:var(--s7) 28px}
+.section + .section{border-top:1px solid var(--line)}
+.section > h2:first-child,.section > h1:first-child{margin-top:0}
+.lede{font-size:1.15rem;line-height:1.5;color:var(--muted);max-width:64ch;margin-top:-.2em}
+.eyebrow{font-size:.74rem;text-transform:uppercase;letter-spacing:.09em;font-weight:700;color:var(--muted);margin:0 0 .4em}
+
+.grid{display:grid;gap:var(--s4)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 var(--s5);flex-wrap:wrap}
+.section-head h2{margin:0}
+.section-head a{font-size:.9rem;color:var(--muted);font-weight:600}
+
+/* ============================ ACCESSIBILITY TOOLBAR ============================ */
+.a11ybar{background:var(--ink);color:#fff;font-size:.82rem}
+.a11ybar .inner{display:flex;gap:10px;align-items:center;padding:7px 28px;flex-wrap:wrap;max-width:100%}
+.a11ybar strong{font-weight:700;letter-spacing:.02em}
+.a11ybar button{background:transparent;color:#fff;border:1px solid #555;border-radius:var(--r-sm);
+  padding:.32em .7em;cursor:pointer;font:inherit;font-size:.8rem}
+.a11ybar button:hover{background:#2c2c2e}
+.a11ybar button[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
+.a11ybar .spacer{flex:1}
+.a11ybar .hint{color:#9a9aa0;font-size:.72rem}
+
+/* ============================ HEADER ============================ */
+.utility{background:var(--fill-2);border-bottom:1px solid var(--line);font-size:.82rem}
+.utility .inner{display:flex;align-items:center;gap:18px;padding:8px 28px;flex-wrap:wrap}
+.utility .tagline{color:var(--muted)}
+.utility .spacer{flex:1}
+.utility .helpline{color:var(--ink)}
+.utility .helpline a{font-weight:700}
+.utility .social{display:flex;gap:6px}
+.utility .social span{width:24px;height:24px;border:1px solid var(--line-strong);border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.62rem;color:var(--muted);background:#fff}
+
+.masthead{display:flex;align-items:center;gap:22px;padding:18px 28px;border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:1.4rem;letter-spacing:-.02em;text-decoration:none;color:var(--ink);
+  border:2px solid var(--ink);padding:6px 12px;border-radius:var(--r-sm);white-space:nowrap;line-height:1}
+.logo small{display:block;font-size:.52rem;font-weight:600;letter-spacing:.16em;color:var(--muted);text-align:center;margin-top:2px}
+.masthead .spacer{flex:1}
+.searchbox{display:flex;border:1px solid var(--line-strong);border-radius:var(--r-sm);overflow:hidden;
+  min-width:300px;background:#fff}
+.searchbox input{border:0;padding:.62em .8em;font:inherit;flex:1;min-width:0;background:transparent}
+.searchbox input:focus{outline:none}
+.searchbox button{border:0;border-left:1px solid var(--line);background:var(--fill);padding:0 .9em;cursor:pointer;color:var(--muted)}
+.masthead .actions{display:flex;gap:8px}
+.menu-toggle{display:none}
+
+.mainnav{border-bottom:1px solid var(--line-2);position:relative;z-index:30;background:#fff}
+.mainnav > ul{list-style:none;margin:0;padding:0 16px;display:flex;flex-wrap:wrap}
+.mainnav > ul > li{position:relative}
+.mainnav > ul > li > a{display:block;padding:14px 16px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.96rem}
+.mainnav > ul > li > a::after{content:"";display:inline-block;width:7px;height:7px;margin-left:7px;
+  border-right:1.5px solid var(--faint);border-bottom:1.5px solid var(--faint);transform:translateY(-2px) rotate(45deg)}
+.mainnav > ul > li:hover > a,.mainnav > ul > li:focus-within > a{background:var(--fill-2)}
+.mainnav > ul > li[aria-current] > a{box-shadow:inset 0 -3px 0 var(--ink)}
+.dropdown{position:absolute;left:0;top:100%;background:#fff;border:1px solid var(--line-2);
+  border-top:0;min-width:600px;padding:22px;display:none;
+  grid-template-columns:1.1fr .9fr;gap:24px;box-shadow:0 16px 34px rgba(0,0,0,.14)}
+.mainnav li:hover > .dropdown,.mainnav li:focus-within > .dropdown{display:grid}
+.dropdown ul{list-style:none;margin:0;padding:0}
+.dropdown ul li a{display:block;padding:7px 6px;text-decoration:none;color:var(--ink-2);border-radius:var(--r-sm);font-size:.92rem}
+.dropdown ul li a:hover{background:var(--fill-2);color:var(--ink)}
+.dropdown h4.wf-note{margin:0 0 6px;color:var(--faint)}
+.dropdown .promo{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--fill-3)}
+.dropdown .promo .ph{min-height:110px;border:0;border-bottom:1px solid var(--img-line);border-radius:0}
+.dropdown .promo .pad{padding:12px}
+.dropdown .promo h4{margin:0 0 .25em;font-size:.95rem}
+.dropdown .promo p{margin:0 0 .5em;font-size:.82rem;color:var(--muted)}
+.dropdown .promo a{font-size:.85rem;font-weight:600}
+
+/* ============================ FOOTER ============================ */
+.footer{border-top:1px solid var(--line-2);background:var(--fill-2)}
+.footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;padding:var(--s7) 28px var(--s5)}
+.footer h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.footer ul{list-style:none;margin:0;padding:0}
+.footer ul li{margin:.45em 0}
+.footer a{color:var(--ink-2);font-size:.9rem;text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.footer p{font-size:.9rem;color:var(--muted)}
+.footer .helpblock{border:1px solid var(--line);background:#fff;padding:16px;border-radius:var(--r);margin-top:12px}
+.footer .social-stats{display:flex;gap:28px;flex-wrap:wrap;padding:0 28px var(--s5);border-top:1px solid var(--line);padding-top:var(--s5)}
+.footer .social-stats div{font-size:.82rem;color:var(--muted)}
+.footer .social-stats strong{display:block;font-size:1.25rem;color:var(--ink);font-weight:700}
+.legal{border-top:1px solid var(--line);padding:16px 28px;display:flex;gap:18px;flex-wrap:wrap;
+  align-items:center;font-size:.78rem;color:var(--muted)}
+.legal a{color:var(--muted);text-decoration:none}
+.legal a:hover{text-decoration:underline}
+.legal .spacer{flex:1}
+.legal .badge{border:1px solid var(--line-strong);padding:5px 10px;border-radius:var(--r-sm);background:#fff;font-weight:600;color:var(--ink-2)}
+
+/* ============================ LEFT-NAV LAYOUT ============================ */
+.with-aside{display:grid;grid-template-columns:264px 1fr}
+.leftnav{border-right:1px solid var(--line);background:var(--fill-3);padding:24px 20px}
+.leftnav h3{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 8px}
+.leftnav h3 + ul{margin-top:0}
+.leftnav ul{list-style:none;margin:0 0 18px;padding:0}
+.leftnav ul li > a{display:block;padding:9px 12px;text-decoration:none;color:var(--ink-2);border-radius:var(--r-sm);font-size:.94rem}
+.leftnav ul li > a:hover{background:var(--fill)}
+.leftnav ul li[aria-current] > a{background:var(--ink);color:#fff;font-weight:600}
+.leftnav .sub{margin:2px 0 6px 12px;border-left:1px solid var(--line-2);padding-left:4px}
+.leftnav .sub li a{font-size:.88rem;color:var(--muted);padding:6px 10px}
+.maincol{padding:var(--s6) 36px;min-width:0}
+.rail{border-left:1px solid var(--line);padding:24px 22px;background:var(--fill-3)}
+.rail h3{font-size:.95rem;margin-bottom:10px}
+.with-rail{display:grid;grid-template-columns:1fr 300px}
+
+.accordion details{border:1px solid var(--line);border-radius:var(--r-sm);margin:0 0 8px;background:#fff}
+.accordion summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.accordion summary::-webkit-details-marker{display:none}
+.accordion summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s}
+.accordion details[open] summary::after{transform:rotate(-135deg)}
+.accordion .body{padding:0 16px 16px;color:var(--muted)}
+
+/* ============================ FILTER BARS ============================ */
+.filterbar{border:1px solid var(--line);background:var(--fill-2);border-radius:var(--r);padding:18px;margin:0 0 24px}
+.filterbar.sticky{position:sticky;top:0;z-index:10;background:var(--fill-2)}
+.filterrow{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.78rem;color:var(--muted);font-weight:600}
+.field select,.field input{padding:.6em .7em;border:1px solid var(--line-strong);border-radius:var(--r-sm);font:inherit;background:#fff;min-height:42px}
+.chipset{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line-strong);background:#fff;border-radius:30px;padding:.45em .95em;font:inherit;
+  font-size:.86rem;cursor:pointer;color:var(--ink-2);font-weight:500}
+.chip:hover{border-color:var(--ink-2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.checkset{display:flex;flex-direction:column;gap:6px}
+.checkset label{font-size:.9rem;display:flex;gap:8px;align-items:center;color:var(--ink-2);font-weight:400}
+.result-meta{font-size:.88rem;color:var(--muted);margin:0 0 16px}
+.empty{border:1px dashed var(--line-strong);padding:36px;text-align:center;color:var(--muted);border-radius:var(--r);background:var(--fill-3)}
+
+.segmented{display:inline-flex;border:1px solid var(--line-strong);border-radius:var(--r-sm);overflow:hidden;background:#fff}
+.segmented button{border:0;background:transparent;padding:.55em 1em;cursor:pointer;font:inherit;font-size:.86rem;border-left:1px solid var(--line);color:var(--ink-2)}
+.segmented button:first-child{border-left:0}
+.segmented button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* ============================ HERO / HOMEPAGE ============================ */
+.hero{position:relative;border-bottom:1px solid var(--line);background:var(--fill-2);display:grid}
+.hero .slide{grid-area:1/1;display:grid;grid-template-columns:1.08fr .92fr;min-height:400px;
+  visibility:hidden;opacity:0;transition:opacity .25s ease}
+.hero .slide.active{visibility:visible;opacity:1}
+.hero .copy{padding:56px 44px;align-self:center;max-width:62ch}
+.hero .copy h1{font-size:2.4rem;margin-bottom:.4em}
+.hero .copy .lede{margin-bottom:1.4em}
+.hero .media{position:relative;border-left:1px solid var(--line)}
+.hero .media .ph{position:absolute;inset:0;border:0;border-radius:0;min-height:0}
+.hero .dots{position:absolute;bottom:18px;left:44px;display:flex;gap:8px;z-index:2}
+.hero .dots button{width:30px;height:6px;border-radius:4px;border:0;background:var(--line-strong);cursor:pointer;padding:0}
+.hero .dots button[aria-pressed="true"]{background:var(--ink)}
+.hero .arrows button{position:absolute;top:50%;transform:translateY(-50%);border:1px solid var(--line-strong);
+  background:#fff;width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:1.1rem;z-index:2;color:var(--ink)}
+.hero .arrows button:hover{background:var(--fill)}
+.hero .arrows .prev{left:16px}.hero .arrows .next{right:16px}
+
+.intent{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.intent a{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line-2);border-radius:var(--r);padding:24px;
+  text-decoration:none;color:var(--ink);background:#fff;transition:box-shadow .12s,transform .12s}
+.intent a:hover{box-shadow:0 8px 22px rgba(0,0,0,.08);transform:translateY(-2px)}
+.intent .ic{width:44px;height:44px;border:1px solid var(--line-strong);border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1.2rem;background:var(--fill-2)}
+.intent .k{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.intent h3{margin:.1em 0}
+.intent p{margin:0;color:var(--muted);font-size:.92rem}
+.intent .more{margin-top:auto;font-weight:600;font-size:.9rem}
+
+.selfselect{background:var(--ink);color:#fff;border-radius:var(--r);padding:32px}
+.selfselect h2{color:#fff}
+.selfselect p{color:#c9c9cf}
+.selfselect .opts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
+.selfselect .opts a{background:#fff;color:var(--ink);text-decoration:none;border-radius:var(--r-sm);
+  padding:18px;display:flex;align-items:center;font-weight:600;font-size:.95rem;min-height:80px}
+.selfselect .opts a:hover{background:var(--fill)}
+
+.carousel{display:grid;grid-auto-flow:column;grid-auto-columns:300px;gap:18px;overflow-x:auto;
+  padding-bottom:10px;scroll-snap-type:x mandatory}
+.carousel > *{scroll-snap-align:start}
+
+.helpline-band{background:var(--fill);border:1px solid var(--line-2);border-radius:var(--r);
+  padding:24px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.helpline-band .num{font-size:1.8rem;font-weight:800;letter-spacing:-.01em}
+
+.finder{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden}
+.finder .form{padding:28px}
+.finder .map{min-height:260px;border-left:1px solid var(--line)}
+.postcode{display:flex;gap:10px;margin-top:14px}
+.postcode input{flex:1;padding:.7em .8em;border:1px solid var(--line-strong);border-radius:var(--r-sm);font:inherit;min-height:46px}
+
+/* ============================ MAP ============================ */
+.maparea{position:relative;border:1px solid var(--line-2);border-radius:var(--r);
+  background:var(--fill);min-height:420px;overflow:hidden}
+.maparea .scrim{position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:44px 44px;opacity:.7}
+.maparea .lbl{position:absolute;top:10px;left:12px;font-size:.7rem;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;font-weight:600;z-index:2;background:rgba(255,255,255,.7);padding:2px 6px;border-radius:3px}
+.mappin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;text-align:center;z-index:3}
+.mappin .dot{width:20px;height:20px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+  background:var(--ink);border:2px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,.35);margin:0 auto}
+.mappin .cap{font-size:.66rem;background:#fff;border:1px solid var(--line-2);padding:2px 5px;border-radius:4px;
+  white-space:nowrap;margin-top:4px;display:inline-block;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+
+/* directory rows */
+.org{display:grid;grid-template-columns:54px 1fr auto;gap:18px;border:1px solid var(--line);
+  border-radius:var(--r);padding:18px;background:#fff;margin:0 0 12px;align-items:start}
+.org h3{margin:.1em 0;font-size:1.05rem}
+.org .meta{font-size:.85rem;color:var(--muted)}
+.org .dist{font-size:.82rem;color:var(--muted);text-align:right;white-space:nowrap}
+
+/* tabs */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line-2);margin:0 0 24px;flex-wrap:wrap}
+.tabs button{border:1px solid transparent;border-bottom:0;background:transparent;padding:.7em 1.2em;
+  cursor:pointer;font:inherit;font-weight:600;font-size:.92rem;border-radius:var(--r-sm) var(--r-sm) 0 0;
+  color:var(--muted);margin-bottom:-1px}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{background:#fff;color:var(--ink);border-color:var(--line-2);
+  box-shadow:inset 0 -3px 0 var(--ink)}
+
+/* tiles */
+.tile{border:1px solid var(--line);border-radius:var(--r);background:#fff;overflow:hidden;display:flex;flex-direction:column}
+.tile .ph{border:0;border-bottom:1px solid var(--img-line);border-radius:0;min-height:170px}
+.tile .pad{padding:16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.tile h3{font-size:1.02rem;margin:.15em 0 .25em}
+.tile h3 a{color:var(--ink);text-decoration:none}
+.tile h3 a:hover{text-decoration:underline}
+.tile .date{font-size:.76rem;color:var(--faint)}
+.tile.wide{grid-column:span 2}
+.tile.wide .ph{min-height:240px}
+
+/* glossary */
+.azbar{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px}
+.azbar button{min-width:38px;height:38px;border:1px solid var(--line-strong);background:#fff;cursor:pointer;
+  font:inherit;font-weight:600;border-radius:var(--r-sm);color:var(--ink-2);padding:0 8px}
+.azbar button:hover:not(:disabled){border-color:var(--ink)}
+.azbar button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.azbar button:disabled{opacity:.35;cursor:default}
+.autoc{position:relative}
+.autoc .sugg{position:absolute;left:0;right:0;top:100%;border:1px solid var(--line-strong);border-top:0;
+  background:#fff;z-index:5;max-height:260px;overflow:auto;border-radius:0 0 var(--r-sm) var(--r-sm);box-shadow:0 12px 24px rgba(0,0,0,.12)}
+.autoc .sugg button{display:block;width:100%;text-align:left;border:0;border-top:1px solid var(--line);
+  background:#fff;padding:.6em .8em;cursor:pointer;font:inherit;font-size:.9rem}
+.autoc .sugg button:hover{background:var(--fill-2)}
+.termlist{list-style:none;margin:0;padding:0}
+.termlist li{border-bottom:1px solid var(--line);padding:16px 4px}
+.termlist h3{margin:0 0 .25em;font-size:1.1rem}
+
+/* donate stepper */
+.stepper{display:flex;gap:10px;margin:0 0 26px;font-size:.85rem}
+.stepper .s{flex:1;text-align:center;border:1px solid var(--line-2);border-radius:var(--r-sm);padding:12px 8px;color:var(--muted);background:var(--fill-2);font-weight:600}
+.stepper .s[aria-current]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0}
+.amounts button{border:1px solid var(--line-strong);background:#fff;padding:1em;font:inherit;font-size:1.15rem;font-weight:700;
+  cursor:pointer;border-radius:var(--r-sm);color:var(--ink)}
+.amounts button small{font-weight:500;font-size:.7rem;color:var(--muted)}
+.amounts button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.amounts button[aria-pressed="true"] small{color:#c9c9cf}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.formgrid .full{grid-column:1/-1}
+.fld{display:flex;flex-direction:column;gap:6px;margin:0 0 14px}
+.fld label{font-size:.85rem;font-weight:600}
+.fld input,.fld select,.fld textarea{padding:.65em .75em;border:1px solid var(--line-strong);border-radius:var(--r-sm);font:inherit;background:#fff;min-height:44px}
+.fld textarea{min-height:96px}
+.note-box{border:1px solid var(--line);background:var(--fill-2);border-radius:var(--r-sm);padding:14px 16px;font-size:.9rem;color:var(--muted)}
+.note-box strong{color:var(--ink)}
+
+/* stats */
+.stat{border:1px solid var(--line);border-radius:var(--r);background:#fff;padding:20px}
+.stat strong{display:block;font-size:1.9rem;font-weight:800;letter-spacing:-.02em;line-height:1}
+.stat span{display:block;color:var(--muted);margin-top:6px;font-size:.92rem}
+
+/* pager */
+.pager{display:flex;gap:8px;justify-content:center;margin:28px 0;flex-wrap:wrap}
+.pager button{border:1px solid var(--line-strong);background:#fff;min-width:42px;height:42px;cursor:pointer;
+  font:inherit;border-radius:var(--r-sm);color:var(--ink-2);padding:0 10px}
+.pager button:hover:not(:disabled){border-color:var(--ink)}
+.pager button[aria-current]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pager button:disabled{opacity:.4;cursor:default}
+
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:10px 16px;z-index:100;border-radius:0 0 var(--r-sm) 0}
+.skip:focus{left:0;top:0}
+
+/* toolbar-driven states */
+html.txt-lg{font-size:18px}
+html.txt-xl{font-size:20px}
+html.contrast body{background:#000}
+html.contrast .page{background:#000;box-shadow:0 0 0 1px #fff}
+html.contrast,html.contrast body{color:#fff}
+html.contrast h1,html.contrast h2,html.contrast h3,html.contrast h4{color:#fff}
+html.contrast .utility,html.contrast .footer,html.contrast .leftnav,html.contrast .rail,html.contrast .mainnav,
+html.contrast .filterbar,html.contrast .card,html.contrast .org,html.contrast .tile,html.contrast .crumb,
+html.contrast .hero .slide,html.contrast .helpline-band,html.contrast .note-box,html.contrast .stat{background:#000;border-color:#fff;color:#fff}
+html.contrast a{color:#ffd200}
+html.contrast .btn{background:#000;color:#fff;border-color:#fff}
+html.contrast .btn.primary,html.contrast .btn.accent{background:#fff;color:#000}
+html.readable body{font-family:Georgia,"Times New Roman",serif}
+html.underline a{text-decoration:underline !important}
+
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto !important;transition:none !important;animation:none !important}}
+
+/* ============================ RESPONSIVE ============================ */
+@media (max-width:980px){
+  .with-aside,.with-rail{grid-template-columns:1fr}
+  .leftnav,.rail{border:0;border-bottom:1px solid var(--line)}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .dropdown{min-width:auto}
+  .finder{grid-template-columns:1fr}
+  .finder .map{border-left:0;border-top:1px solid var(--line)}
+  .selfselect .opts{grid-template-columns:1fr 1fr}
+  .footer .cols{grid-template-columns:1fr 1fr}
+  .hero .slide{grid-template-columns:1fr}
+  .hero .media{min-height:240px;border-left:0;border-top:1px solid var(--line)}
+  .hero .copy{padding:40px 28px}
+}
+@media (max-width:680px){
+  .masthead .searchbox{display:none}
+  .menu-toggle{display:inline-flex}
+  .mainnav{display:none}
+  .mainnav.open{display:block}
+  .mainnav > ul{flex-direction:column;padding:0}
+  .mainnav > ul > li > a{border-top:1px solid var(--line)}
+  .mainnav > ul > li > a::after{float:right}
+  .dropdown{position:static;display:none;border:0;box-shadow:none;padding:0 0 10px 18px;grid-template-columns:1fr}
+  .mainnav li.exp .dropdown{display:grid}
+  .dropdown .promo{display:none}
+  .intent,.selfselect .opts,.amounts,.g2,.g3,.g4,.formgrid{grid-template-columns:1fr}
+  .footer .cols{grid-template-columns:1fr}
+  .tile.wide{grid-column:auto}
+  .hero .copy h1{font-size:1.7rem}
+  .section{padding:32px 20px}
+}
+
+/* ==========================================================================
+   FIDELITY UPGRADE — filled chrome, browser frame, card headers,
+   contact/date blocks, annotation callouts. (Appended overrides win.)
+   ========================================================================== */
+
+/* faux browser frame so it reads as a wireframe mock */
+.browserframe{background:#dcdce0;border-bottom:1px solid var(--line-2);padding:9px 14px;display:flex;align-items:center;gap:12px}
+.browserframe .dots{display:flex;gap:7px;flex:0 0 auto}
+.browserframe .dots i{width:11px;height:11px;border-radius:50%;background:#bdbdc4;display:block}
+.browserframe .url{flex:1;max-width:560px;margin:0 auto;background:#fff;border:1px solid var(--line-2);
+  border-radius:20px;padding:6px 14px;font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:8px;justify-content:center}
+.browserframe .url::before{content:"";width:11px;height:11px;flex:0 0 auto;
+  background:no-repeat center/contain url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%239a9aa0" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>')}
+.browserframe .anno-toggle{flex:0 0 auto;border:1px solid var(--line-strong);background:#fff;border-radius:20px;
+  padding:4px 12px;font:inherit;font-size:.74rem;font-weight:600;color:var(--muted);cursor:pointer}
+.browserframe .anno-toggle[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* filled dark chrome: utility bar + legal footer band */
+.utility{background:#2b2b2e;border-bottom:1px solid #2b2b2e;color:#e9e9ea}
+.utility .tagline{color:#b6b6bb}
+.utility .helpline{color:#fff}
+.utility .helpline a,.utility a{color:#fff;text-decoration-color:#7a7a80}
+.utility .social span{border-color:#5a5a60;background:transparent;color:#cfcfd4}
+.utility .btn.sm.primary{background:#fff;color:#1d1d1f;border-color:#fff}
+.utility .btn.sm.primary:hover{background:#e9e9ea}
+.utility .btn.sm{background:transparent;color:#fff;border-color:#6a6a70}
+.utility .btn.sm:hover{background:#3a3a3e}
+
+.legal{background:#2b2b2e;color:#b6b6bb;border-top:0}
+.legal a{color:#e3e3e6;text-decoration-color:#6a6a70}
+.legal .badge{background:transparent;border-color:#5a5a60;color:#e3e3e6}
+
+/* main nav gets a touch more presence */
+.mainnav{background:var(--fill-3)}
+.mainnav > ul > li[aria-current] > a{box-shadow:inset 0 -3px 0 var(--ink);background:#fff}
+
+/* generic panel with a labelled header row (like the reference cards) */
+.panel{border:1px solid var(--line);border-radius:var(--r);background:#fff;overflow:hidden;margin:0 0 18px}
+.panel > .pad{padding:18px}
+.cardhead{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 16px;border-bottom:1px solid var(--line);background:var(--fill-2)}
+.cardhead h3{margin:0;font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700}
+.cardhead a{font-size:.82rem;color:var(--muted);font-weight:600;text-decoration:none;white-space:nowrap}
+.cardhead a:hover{color:var(--ink)}
+
+/* contact card (avatar + name + role + email) */
+.contact{display:flex;gap:12px;align-items:flex-start;padding:16px;border-right:1px solid var(--line)}
+.contact:last-child{border-right:0}
+.contact .avatar{width:46px;height:46px}
+.contact .nm{font-weight:700;line-height:1.2}
+.contact .ro{font-size:.82rem;color:var(--muted);margin:2px 0 6px}
+.contact .em{font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.contact-row{display:grid;grid-template-columns:repeat(3,1fr)}
+
+/* date block for events/briefings */
+.dateblock{flex:0 0 auto;width:62px;text-align:center;border:1px solid var(--line);border-radius:var(--r-sm);
+  padding:8px 4px;background:var(--fill-2)}
+.dateblock b{display:block;font-size:1.4rem;font-weight:800;line-height:1}
+.dateblock span{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:2px}
+
+/* dark CTA panel (like "Have a question?") */
+.ctapanel{background:var(--ink);color:#fff;border-radius:var(--r);padding:22px}
+.ctapanel h3{color:#fff;margin:0 0 .3em}
+.ctapanel p{color:#c9c9cf;margin:0 0 .8em}
+
+/* annotation callout — references the requirement, toggle from the frame */
+.anno{border:1px dashed #c08a2e;background:#fbf5ea;border-radius:var(--r-sm);padding:9px 12px;margin:14px 0;
+  font-size:.8rem;line-height:1.45;color:#7c5717;display:flex;gap:9px;align-items:flex-start}
+.anno::before{content:"";width:14px;height:14px;flex:0 0 auto;margin-top:1px;
+  background:no-repeat center/contain url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23c08a2e" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>')}
+.anno b{color:#6a490f;font-weight:700;white-space:nowrap}
+html.no-anno .anno{display:none}
+
+/* contrast-mode coverage for new dark blocks */
+html.contrast .browserframe,html.contrast .panel,html.contrast .cardhead,html.contrast .dateblock,
+html.contrast .ctapanel,html.contrast .contact{background:#000;border-color:#fff;color:#fff}
+html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
+
+@media (max-width:680px){
+  .contact-row{grid-template-columns:1fr}
+  .contact{border-right:0;border-bottom:1px solid var(--line)}
+  .browserframe .url{max-width:none}
+  .browserframe .anno-toggle{display:none}
+}
+
+/* ==========================================================================
+   REUSABLE DONATE WIDGET — embeddable on any page (home, get-involved, rails)
+   ========================================================================== */
+.donate-widget{margin:0}
+.donate-widget .dw-body{padding:18px}
+.donate-widget .segmented.dw-freq{display:flex;width:100%;margin:0 0 14px}
+.donate-widget .segmented.dw-freq button{flex:1}
+.donate-widget .dw-amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 10px}
+.donate-widget .dw-amounts button{border:1px solid var(--line-strong);background:#fff;padding:.85em .4em;
+  font:inherit;font-size:1.1rem;font-weight:700;cursor:pointer;border-radius:var(--r-sm);color:var(--ink)}
+.donate-widget .dw-amounts button small{display:block;font-weight:500;font-size:.66rem;color:var(--muted)}
+.donate-widget .dw-amounts button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.donate-widget .dw-amounts button[aria-pressed="true"] small{color:#c9c9cf}
+.donate-widget .dw-custom{width:100%;padding:.65em .75em;border:1px solid var(--line-strong);
+  border-radius:var(--r-sm);font:inherit;min-height:44px;margin:0 0 12px}
+.donate-widget .dw-giftaid{display:flex;gap:8px;align-items:flex-start;font-size:.85rem;color:var(--ink-2);margin:0 0 12px;font-weight:400}
+.donate-widget .dw-impact{margin:0 0 14px}
+/* compact variant for narrow sidebars/rails */
+.donate-widget.compact .dw-amounts{grid-template-columns:1fr 1fr}
+.donate-widget.compact .dw-amounts button{font-size:1rem;padding:.7em .4em}
+.donate-widget.compact .dw-body{padding:14px}
+
+/* homepage "give" band: copy + widget side by side */
+.give-band{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center}
+.give-band .copy h2{margin-top:0}
+.give-band .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media (max-width:980px){.give-band{grid-template-columns:1fr;gap:24px}}
+
+</style>
+</head>
+<body data-page="about-bi">
+<div class="page">
+  <header id="site-header"></header>
+  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › <a href="about-brain-injury.html">About brain injury</a> › Effects › Fatigue</nav>
+
+  <main id="main">
+    <div class="with-aside">
+      <aside class="leftnav" aria-label="Section navigation">
+        <h3>Effects of brain injury</h3>
+        <ul>
+          <li aria-current="page"><a href="topic.html">Fatigue</a></li>
+          <li><a href="topic.html">Memory problems</a></li>
+          <li><a href="topic.html">Communication</a></li>
+          <li><a href="topic.html">Behaviour &amp; emotion</a></li>
+          <li><a href="topic.html">Physical effects</a></li>
+        </ul>
+        <h3>More</h3>
+        <ul>
+          <li><a href="information-library.html">Download factsheets</a></li>
+          <li><a href="brain-injury-and-me.html">Read real stories</a></li>
+        </ul>
+      </aside>
+
+      <div class="with-rail">
+        <div class="maincol">
+          <h1>Coping with fatigue</h1>
+          <!-- in-page contents — for long pages (Cleveland Clinic pattern) -->
+          <div class="note-box" style="margin:8px 0 18px">
+            <strong>On this page</strong>
+            <div style="margin-top:6px"><a href="#what">What is fatigue?</a> · <a href="#why">Why it happens</a> · <a href="#manage">Managing fatigue</a> · <a href="#help">Getting help</a></div>
+          </div>
+
+          <h2 id="what">What is fatigue?</h2>
+          <p>Fatigue is an overwhelming sense of tiredness that doesn't always improve with rest. It's one of the most common effects of brain injury, and because it's invisible, others may not realise how much it affects daily life.</p>
+
+          <blockquote style="border-left:4px solid var(--line-strong);margin:18px 0;padding:8px 16px;color:var(--muted);font-style:italic">
+            "Fatigue is the thing people understand the least — but it shapes everything about my day."
+            <footer style="font-style:normal;font-size:.85rem;margin-top:6px">— from a Brain Injury &amp; Me story</footer>
+          </blockquote>
+
+          <h2 id="why">Why it happens</h2>
+          <p>After a brain injury, the brain often has to work harder to do everyday tasks, which uses more energy. This can leave you feeling drained much sooner than before.</p>
+
+          <div class="ph" style="margin:16px 0">Video explainer embed — “What is brain injury fatigue?”</div>
+
+          <h2 id="manage">Managing fatigue</h2>
+          <p>Different strategies work for different people. Expand the areas below to read more only when you need to.</p>
+
+          <!-- expandable panels — user stories: bite-sized / expandable content, control how much you read -->
+          <div class="anno"><b>User stories: cognitive load</b><span>Bite-sized, expandable panels so users control how much they read — a recurring need for users experiencing fatigue or cognitive difficulty.</span></div>
+          <div class="accordion">
+            <details><summary>Pacing your day</summary><div class="body">Break activities into smaller chunks and plan rest before you feel exhausted, not after.</div></details>
+            <details><summary>Spotting your warning signs</summary><div class="body">Notice early signals — losing focus, irritability, headache — and pause before pushing on.</div></details>
+            <details><summary>Sleep and routine</summary><div class="body">A consistent sleep routine and a wind-down period can improve the quality of your rest.</div></details>
+            <details><summary>Talking to others about it</summary><div class="body">Explaining fatigue to family, friends or employers helps them support you. A brain injury ID card can help, too.</div></details>
+          </div>
+
+          <h2 id="help">Getting help</h2>
+          <p>If fatigue is affecting your daily life, you don't have to manage it alone.</p>
+          <p><a class="btn primary" href="helpline.html">Talk to our helpline</a> <a class="btn" href="find-local-support.html">Find local support</a></p>
+        </div>
+
+        <!-- related links + contact rail — CMP-009 / CMP-010 -->
+        <aside class="rail">
+          <h3>Related links</h3>
+          <ul style="padding-left:18px;color:var(--accent)">
+            <li><a href="topic.html">Memory problems</a></li>
+            <li><a href="information-library.html">Coping with fatigue (PDF)</a></li>
+            <li><a href="glossary.html">Term: Fatigue</a></li>
+            <li><a href="brain-injury-and-me.html">“Fatigue is invisible” — Sam's story</a></li>
+          </ul>
+          <div class="note-box" style="margin-top:14px">
+            <strong>Related contact</strong><br>
+            Information &amp; helpline team<br>
+            <a href="helpline.html">0808 800 2244</a>
+          </div>
+
+          <div data-donate-widget data-compact data-title="Support this work" data-link="false" style="margin-top:16px;display:block"></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+</div>
+<script>
+/* Shared chrome for every wireframe page.
+   Each page sets <body data-page="..."> to drive the active nav state.
+   Pure vanilla JS, no dependencies, works from file:// */
+
+(function () {
+  const HELPLINE = "0808 800 2244";
+
+  // ---- Information architecture (end-user only; admin/editor journeys excluded) ----
+  const NAV = [
+    { id: "about-bi", label: "About brain injury", href: "about-brain-injury.html",
+      cols: [
+        ["Information & support", [
+          ["What is brain injury?", "topic.html"],
+          ["Effects of brain injury", "topic.html"],
+          ["Types of brain injury", "topic.html"],
+          ["Common brain injury terms (A–Z)", "glossary.html"],
+          ["Information library", "information-library.html"],
+        ]],
+        ["Real experiences", [
+          ["Brain Injury &amp; Me — stories", "brain-injury-and-me.html"],
+          ["Brain injury ID card", "id-card.html"],
+        ]],
+      ],
+      promo: ["Brain Injury &amp; Me", "Watch and read real stories from survivors, carers and families.", "brain-injury-and-me.html"] },
+
+    { id: "supporting-you", label: "Supporting you", href: "supporting-you.html",
+      cols: [
+        ["Get support", [
+          ["Helpline", "helpline.html"],
+          ["Find local support near you", "find-local-support.html"],
+          ["Someone I know has a brain injury", "someone-i-know.html"],
+          ["Brain injury ID card", "id-card.html"],
+          ["Emergency fund", "topic.html"],
+        ]],
+        ["Browse information", [
+          ["Information library", "information-library.html"],
+          ["Useful organisations", "find-local-support.html"],
+          ["Search the site", "search.html"],
+        ]],
+      ],
+      promo: ["Need to talk?", "Our helpline is open Mon–Fri, 9am–5pm. " + HELPLINE, "helpline.html"] },
+
+    { id: "get-involved", label: "Get involved", href: "get-involved.html",
+      cols: [
+        ["Give", [
+          ["Donate", "donate.html"],
+          ["Give in memory", "donate.html"],
+          ["Friends of Headway membership", "get-involved.html"],
+        ]],
+        ["Do", [
+          ["Fundraise for us", "fundraise.html"],
+          ["Take part in an event", "events.html"],
+          ["Volunteer", "volunteer.html"],
+          ["Corporate partnerships", "corporate.html"],
+        ]],
+      ],
+      promo: ["Your support changes lives", "See the difference your donation makes after brain injury.", "donate.html"] },
+
+    { id: "professionals", label: "Training &amp; professionals", href: "for-professionals.html",
+      cols: [
+        ["Training", [
+          ["Training courses", "training.html"],
+          ["Bespoke / in-house training", "training.html"],
+        ]],
+        ["For professionals", [
+          ["Refer someone to Headway", "refer.html"],
+          ["Justice project", "justice-project.html"],
+          ["Approved providers", "find-local-support.html?tab=care"],
+          ["Find a solicitor", "find-local-support.html?tab=solicitor"],
+        ]],
+      ],
+      promo: ["Courses for your role", "Filter training by role, topic and level.", "training.html"] },
+
+    { id: "about", label: "About Headway", href: "about-headway.html",
+      cols: [
+        ["Who we are", [
+          ["What we do", "about-headway.html"],
+          ["Our impact", "about-headway.html"],
+          ["News &amp; campaigns", "news.html"],
+          ["Events", "events.html"],
+        ]],
+        ["Work with us", [
+          ["Vacancies", "vacancies.html"],
+          ["Volunteer", "volunteer.html"],
+          ["Contact us", "helpline.html"],
+        ]],
+      ],
+      promo: ["Headway UK and local groups", "Understand the difference, and who to contact.", "about-headway.html"] },
+  ];
+
+  function dd(section) {
+    const cols = section.cols.map(([title, links]) => {
+      const items = links.map(([l, h]) => `<li><a href="${h}">${l}</a></li>`).join("");
+      return `<div><h4 class="wf-note">${title}</h4><ul>${items}</ul></div>`;
+    }).join("");
+    const [pt, pd, ph] = section.promo;
+    const promo = `<div class="promo"><div class="ph">Promo image</div><div class="pad"><h4>${pt}</h4><p>${pd}</p><a href="${ph}">Find out more →</a></div></div>`;
+    return `<div class="dropdown"><div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">${cols}</div>${promo}</div>`;
+  }
+
+  function buildHeader(active) {
+    const nav = NAV.map(s => {
+      const cur = s.id === active ? ' aria-current="page"' : '';
+      return `<li${cur}><a href="${s.href}">${s.label}</a>${dd(s)}</li>`;
+    }).join("");
+
+    return `
+    <a class="skip" href="#main">Skip to main content</a>
+
+    <div class="browserframe">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="url" id="bf-url">headway.org.uk</span>
+      <button type="button" class="anno-toggle" id="anno-toggle" aria-pressed="true">&#9998; Annotations: On</button>
+    </div>
+
+    <!-- Accessibility toolbar — NFR-001 / competitor rec: ReciteMe-style controls -->
+    <div class="a11ybar" role="region" aria-label="Accessibility tools">
+      <div class="inner">
+        <strong>Accessibility</strong>
+        <button type="button" data-a11y="txt">A+ Text size</button>
+        <button type="button" data-a11y="contrast">High contrast</button>
+        <button type="button" data-a11y="readable">Readable font</button>
+        <button type="button" data-a11y="underline">Underline links</button>
+        <button type="button" data-a11y="speak">▶ Read page aloud</button>
+        <span class="spacer"></span>
+        <button type="button" data-a11y="reset">Reset</button>
+        <span class="wf-note" style="color:#aaa">Wireframe: controls demonstrate intent</span>
+      </div>
+    </div>
+
+    <!-- Utility bar — HDR-003 / HDR-006 -->
+    <div class="utility">
+      <div class="inner">
+        <span class="tagline">Supporting people through every step of life after brain injury</span>
+        <span class="spacer"></span>
+        <span class="helpline">Need to talk? Helpline <a href="helpline.html">${HELPLINE}</a></span>
+        <a class="btn sm primary" href="donate.html">Donate</a>
+        <a class="btn sm" href="get-involved.html">Join</a>
+        <span class="social" aria-label="Follow us">
+          <span>f</span><span>X</span><span>in</span><span>IG</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Masthead: logo + search + actions — HDR-004 / HDR-005 -->
+    <div class="masthead">
+      <a class="logo" href="index.html">headway<small>the brain injury association</small></a>
+      <span class="spacer"></span>
+      <form class="searchbox" role="search" action="search.html" onsubmit="return Headway.go(event,'search.html')">
+        <input type="search" name="q" placeholder="Search information, support, terms…" aria-label="Search the site">
+        <button type="submit" aria-label="Search">🔍</button>
+      </form>
+      <button class="btn menu-toggle" type="button" aria-expanded="false" onclick="Headway.toggleMenu(this)">☰ Menu</button>
+    </div>
+
+    <!-- Primary navigation w/ promo dropdowns — HDR-001 / HDR-002 -->
+    <nav class="mainnav" aria-label="Main">
+      <ul>${nav}</ul>
+    </nav>`;
+  }
+
+  function buildFooter() {
+    return `
+    <footer class="footer">
+      <div class="cols">
+        <div>
+          <h4>Headway</h4>
+          <p style="font-size:.9rem;color:var(--muted)">The brain injury association. We promote understanding of brain injury and provide information, support and services to survivors, families and carers.</p>
+          <div class="helpblock">
+            <strong>Helpline</strong><br>
+            <span style="font-size:1.15rem;font-weight:700">${HELPLINE}</span><br>
+            <small>Mon–Fri, 9am–5pm &middot; <a href="helpline.html">helpline@headway.org.uk</a></small>
+          </div>
+        </div>
+        <div>
+          <h4>Get support</h4>
+          <ul>
+            <li><a href="helpline.html">Helpline</a></li>
+            <li><a href="find-local-support.html">Find local support</a></li>
+            <li><a href="information-library.html">Information library</a></li>
+            <li><a href="glossary.html">A–Z of terms</a></li>
+            <li><a href="id-card.html">Brain injury ID card</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get involved</h4>
+          <ul>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="get-involved.html">Fundraise</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="get-involved.html">Friends of Headway</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul>
+            <li><a href="about-headway.html">About Headway</a></li>
+            <li><a href="news.html">News &amp; campaigns</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="for-professionals.html">For professionals</a></li>
+            <li><a href="vacancies.html">Vacancies</a></li>
+            <li><a href="helpline.html">Contact us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="social-stats">
+        <div><strong>48k</strong> Facebook followers</div>
+        <div><strong>32k</strong> X followers</div>
+        <div><strong>15k</strong> Instagram followers</div>
+        <div><strong>9k</strong> LinkedIn followers</div>
+      </div>
+      <div class="legal">
+        <span class="badge">Fundraising Regulator</span>
+        <a href="#">Privacy</a><a href="#">Cookies</a><a href="#">Terms &amp; conditions</a><a href="#">Accessibility</a>
+        <a href="sitemap.html">Sitemap</a>
+        <span class="spacer"></span>
+        <span>Registered charity no. 1025852 &middot; © Headway 2026</span>
+      </div>
+    </footer>`;
+  }
+
+  // ---- public helpers ----
+  const Headway = {
+    go(e, page) {
+      e.preventDefault();
+      const q = e.target.querySelector('input[type=search]');
+      const val = q ? encodeURIComponent(q.value || "") : "";
+      window.location.href = page + (val ? "?q=" + val : "");
+      return false;
+    },
+    toggleMenu(btn) {
+      const nav = document.querySelector(".mainnav");
+      const open = nav.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open);
+    },
+    param(name) {
+      const m = new RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+      return m ? decodeURIComponent(m[1].replace(/\+/g, " ")) : "";
+    },
+
+    // ---- reusable donation widget (mirrors stage 1 of the donate page) ----
+    DONATE: {
+      presets: { once: [10, 25, 50, 100], monthly: [5, 10, 20, 40] },
+      impact: {
+        10: "£10 could answer a call to our helpline.",
+        25: "£25 could send an information pack to a newly diagnosed family.",
+        50: "£50 could fund a group session for survivors.",
+        100: "£100 could support a carer through the hardest early weeks.",
+        5: "£5 a month helps us be there all year round.",
+        20: "£20 a month could fund regular peer support.",
+        40: "£40 a month sustains local services."
+      }
+    },
+
+    buildDonateWidget(opts) {
+      opts = opts || {};
+      const compact = opts.compact ? " compact" : "";
+      const title = opts.title || "Make a donation";
+      const link = opts.link === false ? "" :
+        `<a href="donate.html">More ways to give &rarr;</a>`;
+      return `
+      <div class="donate-widget panel${compact}">
+        <div class="cardhead"><h3>${title}</h3>${link}</div>
+        <div class="dw-body">
+          <div class="anno"><b>FORM-007</b><span>Reusable donate block — same component embedded across the site; carries the chosen gift into the full donation flow.</span></div>
+          <div class="segmented dw-freq" role="group" aria-label="Frequency">
+            <button type="button" data-freq="once" aria-pressed="true">Single gift</button>
+            <button type="button" data-freq="monthly" aria-pressed="false">Monthly</button>
+          </div>
+          <div class="dw-amounts"></div>
+          <input class="dw-custom" inputmode="decimal" placeholder="Other amount (£)" aria-label="Other amount in pounds">
+          <label class="dw-giftaid"><input type="checkbox"> <span>Add <strong>Gift Aid</strong> (+25%) — I am a UK taxpayer.</span></label>
+          <div class="note-box dw-impact">Select an amount to see the difference it makes.</div>
+          <a class="btn primary block dw-go" href="donate.html">Donate</a>
+        </div>
+      </div>`;
+    },
+
+    initDonateWidget(root) {
+      const D = Headway.DONATE;
+      const st = { freq: "once", amount: null, giftaid: false };
+      const amountsWrap = root.querySelector(".dw-amounts");
+      const custom = root.querySelector(".dw-custom");
+      const impact = root.querySelector(".dw-impact");
+      const go = root.querySelector(".dw-go");
+      const giftaid = root.querySelector(".dw-giftaid input");
+
+      function renderAmounts() {
+        amountsWrap.innerHTML = D.presets[st.freq].map(a =>
+          `<button type="button" data-a="${a}" aria-pressed="false">£${a}${st.freq === "monthly" ? "<small>/mo</small>" : ""}</button>`).join("");
+        amountsWrap.querySelectorAll("button").forEach(b => b.onclick = () => {
+          st.amount = +b.dataset.a; custom.value = "";
+          amountsWrap.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", "false"));
+          b.setAttribute("aria-pressed", "true"); sync();
+        });
+      }
+      function sync() {
+        impact.textContent = (st.amount && D.impact[st.amount]) ? D.impact[st.amount]
+          : (st.amount ? `Thank you — £${st.amount}${st.freq === "monthly" ? " a month" : ""} makes a real difference.`
+          : "Select an amount to see the difference it makes.");
+        go.textContent = st.amount ? `Donate £${st.amount}${st.freq === "monthly" ? "/mo" : ""}` : "Donate";
+        const q = new URLSearchParams({ freq: st.freq });
+        if (st.amount) q.set("amount", st.amount);
+        if (st.giftaid) q.set("giftaid", "1");
+        go.setAttribute("href", "donate.html?" + q.toString());
+      }
+      root.querySelectorAll(".dw-freq button").forEach(b => b.onclick = () => {
+        st.freq = b.dataset.freq; st.amount = null; custom.value = "";
+        root.querySelectorAll(".dw-freq button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+        renderAmounts(); sync();
+      });
+      custom.addEventListener("input", () => {
+        st.amount = parseFloat(custom.value) || null;
+        amountsWrap.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", "false"));
+        sync();
+      });
+      giftaid.addEventListener("change", () => { st.giftaid = giftaid.checked; sync(); });
+      renderAmounts(); sync();
+    }
+  };
+  window.Headway = Headway;
+
+  // ---- accessibility toolbar behaviour ----
+  function wireA11y() {
+    const html = document.documentElement;
+    let txt = 0;
+    document.querySelectorAll("[data-a11y]").forEach(b => {
+      b.addEventListener("click", () => {
+        const k = b.getAttribute("data-a11y");
+        if (k === "txt") {
+          txt = (txt + 1) % 3;
+          html.classList.toggle("txt-lg", txt === 1);
+          html.classList.toggle("txt-xl", txt === 2);
+          b.setAttribute("aria-pressed", txt !== 0);
+        } else if (k === "reset") {
+          txt = 0;
+          html.className = "";
+          document.querySelectorAll("[data-a11y]").forEach(x => x.setAttribute("aria-pressed", "false"));
+          window.speechSynthesis && window.speechSynthesis.cancel();
+        } else if (k === "speak") {
+          const on = b.getAttribute("aria-pressed") === "true";
+          if (window.speechSynthesis) {
+            if (on) { window.speechSynthesis.cancel(); b.setAttribute("aria-pressed", "false"); }
+            else {
+              const main = document.getElementById("main");
+              const u = new SpeechSynthesisUtterance((main || document.body).innerText.slice(0, 4000));
+              window.speechSynthesis.cancel(); window.speechSynthesis.speak(u);
+              b.setAttribute("aria-pressed", "true");
+            }
+          }
+        } else {
+          const cls = { contrast: "contrast", readable: "readable", underline: "underline" }[k];
+          const on = html.classList.toggle(cls);
+          b.setAttribute("aria-pressed", on);
+        }
+      });
+    });
+  }
+
+  // mobile: tap a top-level item to expand its dropdown
+  function wireMobileExpand() {
+    document.querySelectorAll(".mainnav > ul > li").forEach(li => {
+      const a = li.querySelector(":scope > a");
+      a && a.addEventListener("click", (e) => {
+        if (window.matchMedia("(max-width:680px)").matches && li.querySelector(".dropdown")) {
+          e.preventDefault();
+          li.classList.toggle("exp");
+        }
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const active = document.body.getAttribute("data-page") || "";
+    const h = document.getElementById("site-header");
+    const f = document.getElementById("site-footer");
+    if (h) h.innerHTML = buildHeader(active);
+    if (f) f.innerHTML = buildFooter();
+    wireA11y();
+    wireMobileExpand();
+    wireFrame();
+    // mount any reusable donate widgets on the page
+    document.querySelectorAll("[data-donate-widget]").forEach(el => {
+      el.innerHTML = Headway.buildDonateWidget({
+        compact: el.hasAttribute("data-compact"),
+        title: el.getAttribute("data-title") || undefined,
+        link: el.getAttribute("data-link") !== "false"
+      });
+      Headway.initDonateWidget(el);
+    });
+  });
+
+  function wireFrame() {
+    const PRETTY = {
+      "index":"", "about-brain-injury":"about-brain-injury", "topic":"about-brain-injury/effects/fatigue",
+      "brain-injury-and-me":"about-brain-injury/brain-injury-and-me", "bim-story":"about-brain-injury/brain-injury-and-me/story",
+      "glossary":"about-brain-injury/common-terms", "information-library":"about-brain-injury/information-library",
+      "supporting-you":"supporting-you", "helpline":"supporting-you/helpline",
+      "find-local-support":"supporting-you/in-your-area", "id-card":"supporting-you/brain-injury-id-card",
+      "someone-i-know":"supporting-you/someone-i-know-has-a-brain-injury",
+      "get-involved":"get-involved", "donate":"get-involved/donate", "events":"get-involved/events",
+      "volunteer":"get-involved/volunteer-with-us", "fundraise":"get-involved/fundraise", "corporate":"get-involved/corporate-partnerships",
+      "for-professionals":"professionals", "training":"professionals/training", "justice-project":"professionals/justice-project", "refer":"professionals/refer-someone",
+      "about-headway":"about-headway", "vacancies":"about-headway/working-with-us/vacancies",
+      "news":"news-and-campaigns/news", "news-article":"news-and-campaigns/news/article",
+      "search":"search", "sitemap":"sitemap", "404":"page-not-found"
+    };
+    const file = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "");
+    const slug = (file in PRETTY) ? PRETTY[file] : "";
+    const url = document.getElementById("bf-url");
+    if (url) url.textContent = "headway.org.uk" + (slug ? "/" + slug : "");
+    const t = document.getElementById("anno-toggle");
+    if (t) t.addEventListener("click", () => {
+      const off = document.documentElement.classList.toggle("no-anno");
+      t.setAttribute("aria-pressed", String(!off));
+      t.innerHTML = (off ? "\u270E Annotations: Off" : "\u270E Annotations: On");
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+HEADWAY — INTERACTIVE WIREFRAMES (mid-fidelity, monochrome)
+
+HOW TO OPEN
+1. If you received a .zip: right-click it and choose "Extract All" first.
+   (Opening a page directly from inside the zip can strip its styling.)
+2. Open  index.html  in any browser.
+
+Every page is now fully self-contained (styles + scripts are built in),
+so each page also renders correctly on its own.
+
+WHAT TO TRY
+- Top-right of each page: "Annotations: On/Off" toggles the dashed
+  requirement callouts (for design hand-off, switch them Off).
+- Accessibility bar: larger text, high contrast, readable font, read aloud.
+- Filters that actually work: Brain Injury & Me, Find local support
+  (postcode + tabs + map pins), News, Information library, Training,
+  Glossary A–Z, Search, Events.
+- Donate: single/monthly, amounts, Gift Aid, multi-step flow.
+
+These are end-user journeys only (no admin/editor screens), greyscale by
+design so a visual/brand layer can sit on top.
