@@ -560,6 +560,92 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
 .give-band .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
 @media (max-width:980px){.give-band{grid-template-columns:1fr;gap:24px}}
 
+/* ==========================================================================
+   WORKSHOP ROUND — collapsible left-nav, footer social links, sponsors, A–Z links
+   ========================================================================== */
+
+/* footer social links (replaces follower stats) */
+.footer .social-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center;padding:18px 28px;border-top:1px solid var(--line)}
+.footer .social-links .sl-label{font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.footer .social-links a{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;color:var(--ink-2);text-decoration:none}
+.footer .social-links a:hover{text-decoration:underline;color:var(--ink)}
+.footer .social-links .sl-ic{width:26px;height:26px;border:1px solid var(--line-strong);border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.68rem;color:var(--muted);background:#fff}
+
+/* collapsible left-nav sections + mobile toggle */
+.leftnav .ln-mobile{display:none}
+.ln-group{margin:0 0 8px}
+.ln-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px;
+  background:transparent;border:0;cursor:pointer;font:inherit;text-align:left;
+  font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;
+  padding:8px 4px;border-bottom:1px solid var(--line)}
+.ln-toggle:hover{color:var(--ink)}
+.ln-caret{width:7px;height:7px;flex:0 0 auto;border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  transform:rotate(45deg);transition:transform .15s}
+[aria-expanded="false"] > .ln-caret{transform:rotate(-45deg)}
+.ln-body{padding-top:6px}
+.ln-group.collapsed .ln-body{display:none}
+
+@media (max-width:980px){
+  .leftnav{padding:14px 16px}
+  .leftnav .ln-mobile{display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px;
+    background:var(--fill);border:1px solid var(--line-2);border-radius:var(--r-sm);
+    padding:13px 14px;font:inherit;font-weight:700;cursor:pointer;color:var(--ink)}
+  .leftnav .ln-groups{display:none;margin-top:12px}
+  .leftnav.open .ln-groups{display:block}
+}
+
+/* sponsors carousel (event detail) */
+.sponsors{position:relative}
+.sponsor-track{display:grid;grid-auto-flow:column;grid-auto-columns:160px;gap:16px;overflow-x:auto;
+  scroll-snap-type:x mandatory;padding-bottom:8px}
+.sponsor-track > .sponsor{scroll-snap-align:start;border:1px solid var(--line);border-radius:var(--r);
+  background:#fff;height:100px;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px}
+.sponsor .ph{border:0;min-height:0;width:100%;height:100%;background:var(--img)}
+.sponsors .s-arrows{display:flex;gap:8px;justify-content:flex-end;margin-bottom:8px}
+.sponsors .s-arrows button{border:1px solid var(--line-strong);background:#fff;width:36px;height:36px;
+  border-radius:50%;cursor:pointer;font-size:1rem;color:var(--ink)}
+.sponsors .s-arrows button:hover{background:var(--fill)}
+.sponsor-tier{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;margin:14px 0 8px}
+
+/* A–Z in link mode: term rows are links */
+.termlist li.linkrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.termlist li.linkrow a.term-link{font-size:1.05rem;font-weight:700;text-decoration:none;color:var(--ink)}
+.termlist li.linkrow a.term-link:hover{text-decoration:underline}
+.termlist li.linkrow .go{font-size:.85rem;color:var(--muted);white-space:nowrap}
+
+/* staff directory cards */
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.staff-card{border:1px solid var(--line);border-radius:var(--r);background:#fff;padding:16px;text-align:center}
+.staff-card .avatar{width:72px;height:72px;margin:0 auto 10px}
+.staff-card .nm{font-weight:700}
+.staff-card .ro{font-size:.85rem;color:var(--muted);margin:2px 0 6px}
+
+/* sitemap tree (3 levels) */
+.sitetree{list-style:none;margin:0;padding:0}
+.sitetree > li{border:1px solid var(--line);border-radius:var(--r);background:#fff;padding:16px 18px;margin:0 0 14px}
+.sitetree > li > a.l1{font-size:1.1rem;font-weight:700;text-decoration:none;color:var(--ink)}
+.sitetree ul{list-style:none;margin:8px 0 0;padding:0}
+.sitetree .l2{margin:10px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 24px}
+.sitetree .l2 > li > a{font-weight:600;text-decoration:none;color:var(--ink)}
+.sitetree .l2 > li > a:hover{text-decoration:underline}
+.sitetree .l3{margin-top:4px}
+.sitetree .l3 li{margin:3px 0}
+.sitetree .l3 a{font-size:.9rem;color:var(--muted);text-decoration:none}
+.sitetree .l3 a:hover{text-decoration:underline;color:var(--ink)}
+
+html.contrast .ln-toggle,html.contrast .leftnav .ln-mobile,html.contrast .sponsor-track > .sponsor,
+html.contrast .staff-card,html.contrast .sitetree > li{background:#000;border-color:#fff;color:#fff}
+
+/* staff department accordions (DIR-008) */
+.staff-dept{border:1px solid var(--line);border-radius:var(--r-sm);margin:0 0 12px;background:#fff}
+.staff-dept > summary{cursor:pointer;padding:14px 16px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.staff-dept > summary::-webkit-details-marker{display:none}
+.staff-dept > summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s}
+.staff-dept[open] > summary::after{transform:rotate(-135deg)}
+.staff-dept > .body{padding:0 16px 16px}
+html.contrast .staff-dept{background:#000;border-color:#fff;color:#fff}
+
 </style>
 </head>
 <body data-page="about">
@@ -609,6 +695,7 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
           ["Effects of brain injury", "topic.html"],
           ["Types of brain injury", "topic.html"],
           ["Common brain injury terms (A–Z)", "glossary.html"],
+          ["Dealing with brain injury (A–Z)", "dealing-with-brain-injury.html"],
           ["Information library", "information-library.html"],
         ]],
         ["Real experiences", [
@@ -671,6 +758,7 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
         ["Who we are", [
           ["What we do", "about-headway.html"],
           ["Our impact", "about-headway.html"],
+          ["Our team", "staff-directory.html"],
           ["News &amp; campaigns", "news.html"],
           ["Events", "events.html"],
         ]],
@@ -799,11 +887,13 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
           </ul>
         </div>
       </div>
-      <div class="social-stats">
-        <div><strong>48k</strong> Facebook followers</div>
-        <div><strong>32k</strong> X followers</div>
-        <div><strong>15k</strong> Instagram followers</div>
-        <div><strong>9k</strong> LinkedIn followers</div>
+      <div class="social-links" aria-label="Follow Headway on social media">
+        <span class="sl-label">Follow us</span>
+        <a href="#" aria-label="Facebook"><span class="sl-ic">f</span> Facebook</a>
+        <a href="#" aria-label="X (Twitter)"><span class="sl-ic">X</span> X</a>
+        <a href="#" aria-label="Instagram"><span class="sl-ic">IG</span> Instagram</a>
+        <a href="#" aria-label="LinkedIn"><span class="sl-ic">in</span> LinkedIn</a>
+        <a href="#" aria-label="YouTube"><span class="sl-ic">▶</span> YouTube</a>
       </div>
       <div class="legal">
         <span class="badge">Fundraising Regulator</span>
@@ -916,6 +1006,76 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
   };
   window.Headway = Headway;
 
+  // ---- reusable A–Z list (used by the glossary and "Dealing with brain injury") ----
+  Headway.azWidget = function (opts) {
+    const root = opts.mount;
+    const linkMode = opts.mode === "link";
+    const items = opts.items.slice().sort((a, b) => a.term.localeCompare(b.term));
+    const noun = opts.noun || "item";
+    const cssid = s => "az-" + s.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
+    root.innerHTML = `
+      <div class="filterbar">
+        <div class="field autoc" style="max-width:460px">
+          <span style="font-size:.78rem;color:var(--muted);font-weight:600">${opts.searchLabel || "Search"}</span>
+          <input class="az-kw" type="search" autocomplete="off" aria-label="${opts.searchLabel || "Search"}" placeholder="${opts.placeholder || "Start typing…"}">
+          <div class="sugg" hidden></div>
+        </div>
+      </div>
+      <div class="azbar" role="group" aria-label="Jump to letter"></div>
+      <p class="result-meta az-meta"></p>
+      <ul class="termlist az-list"></ul>
+      <div class="empty az-empty" hidden>No results found. <button class="btn sm az-reset" type="button">Show all</button></div>`;
+
+    const kw = root.querySelector(".az-kw"), sugg = root.querySelector(".sugg"),
+          az = root.querySelector(".azbar"), list = root.querySelector(".az-list"),
+          meta = root.querySelector(".az-meta"), empty = root.querySelector(".az-empty");
+    const st = { letter: "", kw: "" };
+    const present = new Set(items.map(i => i.term[0].toUpperCase()));
+
+    const allBtn = document.createElement("button");
+    allBtn.textContent = "All"; allBtn.style.width = "auto"; allBtn.style.padding = "0 10px";
+    allBtn.onclick = () => { st.letter = ""; st.kw = ""; kw.value = ""; sugg.hidden = true; sync(); render(); };
+    az.appendChild(allBtn);
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(L => {
+      const b = document.createElement("button"); b.textContent = L;
+      if (!present.has(L)) b.disabled = true;
+      b.onclick = () => { st.letter = st.letter === L ? "" : L; st.kw = ""; kw.value = ""; sugg.hidden = true; sync(); render(); };
+      az.appendChild(b);
+    });
+    function sync() { [...az.children].forEach(b => b.setAttribute("aria-pressed", b.textContent === (st.letter || "All"))); }
+    function filtered() {
+      return items.filter(it => (!st.letter || it.term[0].toUpperCase() === st.letter) &&
+        (!st.kw || (it.term + " " + (it.def || "")).toLowerCase().includes(st.kw.toLowerCase())));
+    }
+    function render() {
+      const L = filtered();
+      meta.textContent = `${L.length} ${noun}${L.length === 1 ? "" : "s"}` + (st.letter ? ` starting with ${st.letter}` : "");
+      empty.hidden = L.length > 0;
+      list.innerHTML = L.map(it => linkMode
+        ? `<li class="linkrow" id="${cssid(it.term)}"><a class="term-link" href="${it.url || "#"}">${it.term}</a><span class="go"><a href="${it.url || "#"}">${it.cta || opts.cta || "Read more"} &rarr;</a></span></li>`
+        : `<li id="${cssid(it.term)}"><h3>${it.term}</h3><p style="margin:0;color:var(--muted)">${it.def || ""}</p></li>`
+      ).join("");
+    }
+    kw.addEventListener("input", () => {
+      st.kw = kw.value; st.letter = ""; sync(); render();
+      const q = kw.value.trim().toLowerCase();
+      if (!q) { sugg.hidden = true; return; }
+      const matches = items.map((it, i) => [it, i]).filter(([it]) => it.term.toLowerCase().startsWith(q)).slice(0, 6);
+      if (!matches.length) { sugg.hidden = true; return; }
+      sugg.hidden = false;
+      sugg.innerHTML = matches.map(([m, i]) => `<button type="button" data-idx="${i}"><strong>${m.term}</strong>${m.def ? (" — " + m.def.slice(0, 44) + "…") : ""}</button>`).join("");
+      sugg.querySelectorAll("button").forEach(b => b.onclick = () => {
+        const it = items[+b.dataset.idx];
+        if (linkMode && it.url) { window.location.href = it.url; return; }
+        kw.value = it.term; st.kw = it.term; sugg.hidden = true; render();
+        const el = root.querySelector("#" + cssid(it.term)); el && el.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+    document.addEventListener("click", e => { if (!sugg.contains(e.target) && e.target !== kw) sugg.hidden = true; });
+    root.querySelector(".az-reset").onclick = () => { st.letter = ""; st.kw = ""; kw.value = ""; sugg.hidden = true; sync(); render(); };
+    sync(); render();
+  };
+
   // ---- accessibility toolbar behaviour ----
   function wireA11y() {
     const html = document.documentElement;
@@ -953,7 +1113,67 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
     });
   }
 
-  // mobile: tap a top-level item to expand its dropdown
+  // Turn each .leftnav into collapsible sections + a single mobile toggle so it
+  // doesn't dominate the page on load on small screens.
+  function enhanceLeftNav() {
+    document.querySelectorAll(".leftnav").forEach(nav => {
+      if (nav.dataset.enhanced) return;
+      nav.dataset.enhanced = "1";
+
+      // gather sibling nodes into groups, each starting at an <h3>
+      const kids = [...nav.children];
+      const groups = [];
+      let cur = null;
+      kids.forEach(node => {
+        if (node.tagName === "H3") { cur = { head: node, body: [] }; groups.push(cur); }
+        else if (cur) { cur.body.push(node); }
+        else { cur = { head: null, body: [node] }; groups.push(cur); }
+      });
+
+      const groupsWrap = document.createElement("div");
+      groupsWrap.className = "ln-groups";
+
+      groups.forEach((g, i) => {
+        const sec = document.createElement("div");
+        sec.className = "ln-group";
+        if (g.head) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "ln-toggle";
+          btn.setAttribute("aria-expanded", "true");
+          btn.innerHTML = g.head.innerHTML + '<span class="ln-caret" aria-hidden="true"></span>';
+          const body = document.createElement("div");
+          body.className = "ln-body";
+          g.body.forEach(n => body.appendChild(n));
+          btn.addEventListener("click", () => {
+            const open = btn.getAttribute("aria-expanded") === "true";
+            btn.setAttribute("aria-expanded", String(!open));
+            sec.classList.toggle("collapsed", open);
+          });
+          sec.appendChild(btn); sec.appendChild(body);
+        } else {
+          g.body.forEach(n => sec.appendChild(n));
+        }
+        groupsWrap.appendChild(sec);
+      });
+
+      // mobile toggle (hidden on desktop via CSS)
+      const mobile = document.createElement("button");
+      mobile.type = "button";
+      mobile.className = "ln-mobile";
+      mobile.setAttribute("aria-expanded", "false");
+      mobile.innerHTML = 'In this section<span class="ln-caret" aria-hidden="true"></span>';
+      mobile.addEventListener("click", () => {
+        const open = nav.classList.toggle("open");
+        mobile.setAttribute("aria-expanded", String(open));
+      });
+
+      nav.innerHTML = "";
+      nav.appendChild(mobile);
+      nav.appendChild(groupsWrap);
+    });
+  }
+
   function wireMobileExpand() {
     document.querySelectorAll(".mainnav > ul > li").forEach(li => {
       const a = li.querySelector(":scope > a");
@@ -975,6 +1195,7 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
     wireA11y();
     wireMobileExpand();
     wireFrame();
+    enhanceLeftNav();
     // mount any reusable donate widgets on the page
     document.querySelectorAll("[data-donate-widget]").forEach(el => {
       el.innerHTML = Headway.buildDonateWidget({
@@ -990,14 +1211,14 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
     const PRETTY = {
       "index":"", "about-brain-injury":"about-brain-injury", "topic":"about-brain-injury/effects/fatigue",
       "brain-injury-and-me":"about-brain-injury/brain-injury-and-me", "bim-story":"about-brain-injury/brain-injury-and-me/story",
-      "glossary":"about-brain-injury/common-terms", "information-library":"about-brain-injury/information-library",
+      "glossary":"about-brain-injury/common-terms", "dealing-with-brain-injury":"about-brain-injury/dealing-with-brain-injury", "event-golf-day":"get-involved/events/charity-golf-day", "information-library":"about-brain-injury/information-library",
       "supporting-you":"supporting-you", "helpline":"supporting-you/helpline",
       "find-local-support":"supporting-you/in-your-area", "id-card":"supporting-you/brain-injury-id-card",
       "someone-i-know":"supporting-you/someone-i-know-has-a-brain-injury",
       "get-involved":"get-involved", "donate":"get-involved/donate", "events":"get-involved/events",
       "volunteer":"get-involved/volunteer-with-us", "fundraise":"get-involved/fundraise", "corporate":"get-involved/corporate-partnerships",
       "for-professionals":"professionals", "training":"professionals/training", "justice-project":"professionals/justice-project", "refer":"professionals/refer-someone",
-      "about-headway":"about-headway", "vacancies":"about-headway/working-with-us/vacancies",
+      "about-headway":"about-headway", "vacancies":"about-headway/working-with-us/vacancies", "staff-directory":"about-headway/working-with-us/our-team",
       "news":"news-and-campaigns/news", "news-article":"news-and-campaigns/news/article",
       "search":"search", "sitemap":"sitemap", "404":"page-not-found"
     };
@@ -1017,6 +1238,7 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
 </script>
 <script>
   const E=[
+    {t:"Headway UK Charity Golf Day",type:"Fundraising",date:"11 Sep 2026",loc:"Oakmoor Golf & Country Club",ex:"Our annual golf day — teams of four, prizes, auction and a two-course meal.",url:"event-golf-day.html"},
     {t:"London Marathon — Team Headway",type:"Fundraising",date:"26 Apr 2026",loc:"London",ex:"Run for Headway in the world's most famous marathon."},
     {t:"ABI Games Roadshow",type:"Community",date:"14 May 2026",loc:"Nottingham",ex:"A day of adaptive sport and activities for survivors."},
     {t:"Annual Conference 2026",type:"Conference",date:"10 Jun 2026",loc:"Birmingham",ex:"Talks and workshops for professionals and supporters."},
@@ -1032,8 +1254,8 @@ html.contrast .anno{background:#000;border-color:#ffd200;color:#ffd200}
     document.getElementById("results").innerHTML=list.map(e=>`
       <div class="org" style="grid-template-columns:70px 1fr auto">
         <div class="dateblock"><b>${e.date.split(" ")[0]}</b><span>${e.date.split(" ")[1]}</span></div>
-        <div><span class="tag">${e.type}</span><h3 style="margin:.1em 0;font-size:1.05rem"><a href="#">${e.t}</a></h3><div class="meta">${e.loc} · ${e.date}</div><p style="margin:.3em 0 0;color:var(--muted);font-size:.9rem">${e.ex}</p></div>
-        <div class="dist"><a class="btn sm" href="#" onclick="return false">Sign up</a></div>
+        <div><span class="tag">${e.type}</span><h3 style="margin:.1em 0;font-size:1.05rem"><a href="${e.url||'#'}">${e.t}</a></h3><div class="meta">${e.loc} · ${e.date}</div><p style="margin:.3em 0 0;color:var(--muted);font-size:.9rem">${e.ex}</p></div>
+        <div class="dist"><a class="btn sm ${e.url?'primary':''}" href="${e.url||'#'}" ${e.url?'':'onclick="return false"'}>${e.url?'Details':'Sign up'}</a></div>
       </div>`).join("");
   }
   document.querySelectorAll(".chip[data-type]").forEach(c=>c.addEventListener("click",()=>{

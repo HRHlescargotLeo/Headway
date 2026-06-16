@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Get involved — Headway (wireframe)</title>
+<title>Our team — Headway (wireframe)</title>
 <style>
 /* ==========================================================================
    Headway rebuild — MID-FIDELITY WIREFRAMES
@@ -648,60 +648,28 @@ html.contrast .staff-dept{background:#000;border-color:#fff;color:#fff}
 
 </style>
 </head>
-<body data-page="get-involved">
+<body data-page="about">
 <div class="page">
   <header id="site-header"></header>
-  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › Get involved</nav>
+  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › <a href="about-headway.html">About Headway</a> › Working with us › Our team</nav>
 
   <main id="main">
     <section class="section">
-      <h1>Get involved</h1>
-      <p class="lede">However you choose to help, you make it possible for us to be there after brain injury.</p>
+      <h1>Our team</h1>
+      <p class="lede">Meet the people at Headway UK. Search for someone by name or role, or browse by department.</p>
+      <div class="anno"><b>DIR-008</b><span>Searchable staff card grid (photo, job title, email, phone) with staff presented within their departments in accordions — reusing the directory/aggregator pattern.</span></div>
 
-      <!-- clear next steps (user story: don't drop off) -->
-      <div class="grid g4" style="margin:18px 0">
-        <a class="card link" href="donate.html"><div class="pad"><h3>Donate</h3><p style="color:var(--muted);margin:0">A one-off or regular gift.</p></div></a>
-        <a class="card link" href="fundraise.html"><div class="pad"><h3>Fundraise</h3><p style="color:var(--muted);margin:0">Take on a challenge your way.</p></div></a>
-        <a class="card link" href="volunteer.html"><div class="pad"><h3>Volunteer</h3><p style="color:var(--muted);margin:0">Give your time and skills.</p></div></a>
-        <a class="card link" href="events.html"><div class="pad"><h3>Events</h3><p style="color:var(--muted);margin:0">Find an event near you.</p></div></a>
-      </div>
-    </section>
-
-    <!-- impact + stories (donor user stories) -->
-    <section class="section">
-      <h2>The difference you make</h2>
-      <div class="grid g3">
-        <div class="stat"><strong>122,000</strong><span>helpline queries answered last year</span></div>
-        <div class="stat"><strong>400+</strong><span>families supported by the emergency fund</span></div>
-        <div class="stat"><strong>83p</strong><span>of every £1 goes to supporting people</span></div>
-      </div>
-
-      <div class="card" style="margin:22px 0"><div class="pad" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-        <div class="ph" style="flex:0 0 200px">Story image</div>
-        <div style="flex:1;min-width:240px"><span class="tag">Survivor story</span><h3>“Headway gave my family hope.”</h3><p style="color:var(--muted);margin:0 0 .6em">Real stories show exactly where your support goes.</p><a href="brain-injury-and-me.html">Read more stories →</a></div>
-      </div></div>
-    </section>
-
-    <!-- more ways -->
-    <section class="section">
-      <h2>More ways to support us</h2>
-      <div class="grid g3">
-        <div class="card"><div class="pad"><h3>Volunteer with us</h3><p style="color:var(--muted)">Find opportunities at Headway UK and your local group.</p><a class="btn" href="volunteer.html">Volunteering opportunities</a></div></div>
-        <div class="card"><div class="pad"><h3>Give in memory</h3><p style="color:var(--muted)">Honour someone special with a tribute gift.</p><a class="btn" href="donate.html">Give in memory</a></div></div>
-        <div class="card"><div class="pad"><h3>Corporate partnerships</h3><p style="color:var(--muted)">Partner with us — see the impact and benefits.</p><a class="btn" href="corporate.html">Partner with us</a></div></div>
-      </div>
-    </section>
-
-    <!-- DONATE FORM — positioned last, immediately before the footer -->
-    <section class="section">
-      <div class="give-band">
-        <div class="copy">
-          <p class="eyebrow">Make a donation</p>
-          <h2>Give a one-off or regular gift</h2>
-          <p>Choose an amount to see the difference it makes, then continue to complete your donation. You can also give in memory of someone special.</p>
+      <div class="filterbar">
+        <div class="filterrow">
+          <div class="field" style="flex:1;min-width:220px"><label for="kw">Search by name or role</label><input id="kw" type="search" placeholder="e.g. Sarah, or fundraising…"></div>
+          <button class="btn" type="button" id="expand">Expand all</button>
+          <button class="btn" type="button" id="collapse">Collapse all</button>
         </div>
-        <div data-donate-widget data-link="false"></div>
       </div>
+
+      <p class="result-meta" id="meta"></p>
+      <div id="results"></div>
+      <div class="empty" id="empty" hidden>No team members match. <button class="btn sm" type="button" onclick="document.getElementById('kw').value='';window.dispatchEvent(new Event('staff-reset'))">Reset</button></div>
     </section>
   </main>
 
@@ -1264,6 +1232,65 @@ html.contrast .staff-dept{background:#000;border-color:#fff;color:#fff}
   }
 })();
 
+</script>
+<script>
+  const STAFF=[
+    {n:"Helen Carter", r:"Chief Executive", team:"Leadership"},
+    {n:"David Osei", r:"Director of Services", team:"Leadership"},
+    {n:"Priya Shah", r:"Director of Fundraising", team:"Leadership"},
+    {n:"Mark Ellison", r:"Helpline Manager", team:"Helpline & Information"},
+    {n:"Sarah Mitchell", r:"Information Officer", team:"Helpline & Information"},
+    {n:"Tom Reilly", r:"Helpline Adviser", team:"Helpline & Information"},
+    {n:"Aisha Khan", r:"Information Content Officer", team:"Helpline & Information"},
+    {n:"Laura Bennett", r:"Community Fundraising Manager", team:"Fundraising"},
+    {n:"Joe Adams", r:"Events Fundraiser", team:"Fundraising"},
+    {n:"Grace Lin", r:"Partnerships Officer", team:"Fundraising"},
+    {n:"Ben Foster", r:"Communications Manager", team:"Communications"},
+    {n:"Nadia Rahman", r:"Digital Content Officer", team:"Communications"},
+    {n:"Chris Wood", r:"Training Manager", team:"Training"},
+    {n:"Emma Doyle", r:"Training Coordinator", team:"Training"},
+    {n:"Paul Hughes", r:"Head of Finance", team:"Finance & Operations"},
+    {n:"Sofia Romano", r:"Operations Officer", team:"Finance & Operations"},
+    {n:"Daniel Price", r:"Policy & Campaigns Manager", team:"Policy & Campaigns"},
+    {n:"Yasmin Ali", r:"Policy Officer", team:"Policy & Campaigns"}
+  ];
+  // department order
+  const DEPTS=["Leadership","Helpline & Information","Fundraising","Communications","Training","Finance & Operations","Policy & Campaigns"];
+  function email(n){return n.toLowerCase().split(" ").map((p,i)=>i===0?p[0]:p).join(".")+"@headway.org.uk";}
+
+  const results=document.getElementById("results");
+  const kwEl=document.getElementById("kw");
+  let q="";
+
+  function card(s){
+    return `<div class="staff-card">
+      <div class="avatar ph"></div>
+      <div class="nm">${s.n}</div>
+      <div class="ro">${s.r}</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:6px">
+        <a href="#">${email(s.n)}</a><br>0115 924 0800
+      </div>
+    </div>`;
+  }
+  function render(){
+    const ql=q.trim().toLowerCase();
+    let shown=0;
+    results.innerHTML = DEPTS.map(dep=>{
+      const members=STAFF.filter(s=>s.team===dep && (!ql || (s.n+" "+s.r+" "+s.team).toLowerCase().includes(ql)));
+      if(members.length===0) return "";
+      shown+=members.length;
+      const open = (ql ? "open" : (dep==="Leadership"?"open":""));
+      return `<details class="staff-dept" ${open}><summary>${dep} <span style="color:var(--muted);font-weight:400">(${members.length})</span></summary>
+        <div class="body" style="padding-top:12px"><div class="staff-grid">${members.map(card).join("")}</div></div></details>`;
+    }).join("");
+    document.getElementById("meta").textContent = `${shown} team member${shown===1?"":"s"}`+(ql?` matching “${q}”`:"");
+    document.getElementById("empty").hidden = shown>0;
+  }
+  kwEl.addEventListener("input",e=>{q=e.target.value;render();});
+  window.addEventListener("staff-reset",()=>{q="";kwEl.value="";render();});
+  document.getElementById("expand").onclick=()=>results.querySelectorAll("details").forEach(d=>d.open=true);
+  document.getElementById("collapse").onclick=()=>results.querySelectorAll("details").forEach(d=>d.open=false);
+  render();
 </script>
 </body>
 </html>
