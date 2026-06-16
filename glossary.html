@@ -646,6 +646,23 @@ html.contrast .staff-card,html.contrast .sitetree > li{background:#000;border-co
 .staff-dept > .body{padding:0 16px 16px}
 html.contrast .staff-dept{background:#000;border-color:#fff;color:#fff}
 
+/* prominent helpline CTA in the utility bar (Brain & Spine-style emphasis) */
+.utility .helpline-cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--ink);
+  border-radius:26px;padding:5px 16px 5px 6px;text-decoration:none;line-height:1.05;
+  box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.utility .helpline-cta:hover{background:#efeff0;text-decoration:none}
+.utility .helpline-cta .hl-icon{width:32px;height:32px;flex:0 0 auto;border-radius:50%;background:var(--ink);
+  color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+.utility .helpline-cta .hl-text{display:flex;flex-direction:column}
+.utility .helpline-cta .hl-label{font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.utility .helpline-cta strong{font-size:1.02rem;color:var(--ink);font-weight:800;letter-spacing:.01em}
+@media (max-width:680px){
+  .utility .helpline-cta{padding:4px 12px 4px 5px}
+  .utility .helpline-cta strong{font-size:.95rem}
+}
+html.contrast .utility .helpline-cta{background:#fff;color:#000}
+html.contrast .utility .helpline-cta strong{color:#000}
+
 </style>
 </head>
 <body data-page="about-bi">
@@ -843,23 +860,6 @@ window.HData = {
 
   // ---- Information architecture (end-user only; admin/editor journeys excluded) ----
   const NAV = [
-    { id: "about-bi", label: "About brain injury", href: "about-brain-injury.html",
-      cols: [
-        ["Information & support", [
-          ["What is brain injury?", "topic.html"],
-          ["Effects of brain injury", "topic.html"],
-          ["Types of brain injury", "topic.html"],
-          ["Common brain injury terms (A–Z)", "glossary.html"],
-          ["Dealing with brain injury (A–Z)", "dealing-with-brain-injury.html"],
-          ["Information library", "information-library.html"],
-        ]],
-        ["Real experiences", [
-          ["Brain Injury &amp; Me — stories", "brain-injury-and-me.html"],
-          ["Brain injury ID card", "id-card.html"],
-        ]],
-      ],
-      promo: ["Brain Injury &amp; Me", "Watch and read real stories from survivors, carers and families.", "brain-injury-and-me.html"] },
-
     { id: "supporting-you", label: "Supporting you", href: "supporting-you.html",
       cols: [
         ["Get support", [
@@ -876,6 +876,23 @@ window.HData = {
         ]],
       ],
       promo: ["Need to talk?", "Our helpline is open Mon–Fri, 9am–5pm. " + HELPLINE, "helpline.html"] },
+
+    { id: "about-bi", label: "About brain injury", href: "about-brain-injury.html",
+      cols: [
+        ["Information & support", [
+          ["What is brain injury?", "topic.html"],
+          ["Effects of brain injury", "topic.html"],
+          ["Types of brain injury", "topic.html"],
+          ["Common brain injury terms (A–Z)", "glossary.html"],
+          ["Dealing with brain injury (A–Z)", "dealing-with-brain-injury.html"],
+          ["Information library", "information-library.html"],
+        ]],
+        ["Real experiences", [
+          ["Brain Injury &amp; Me — stories", "brain-injury-and-me.html"],
+          ["Brain injury ID card", "id-card.html"],
+        ]],
+      ],
+      promo: ["Brain Injury &amp; Me", "Watch and read real stories from survivors, carers and families.", "brain-injury-and-me.html"] },
 
     { id: "get-involved", label: "Get involved", href: "get-involved.html",
       cols: [
@@ -971,7 +988,10 @@ window.HData = {
       <div class="inner">
         <span class="tagline">Supporting people through every step of life after brain injury</span>
         <span class="spacer"></span>
-        <span class="helpline">Need to talk? Helpline <a href="helpline.html">${HELPLINE}</a></span>
+        <a class="helpline-cta" href="helpline.html">
+          <span class="hl-icon" aria-hidden="true">&#9742;</span>
+          <span class="hl-text"><span class="hl-label">Need to talk?</span><strong>${HELPLINE}</strong></span>
+        </a>
         <a class="btn sm primary" href="donate.html">Donate</a>
         <a class="btn sm" href="get-involved.html">Join</a>
         <span class="social" aria-label="Follow us">
