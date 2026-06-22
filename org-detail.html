@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A–Z of brain injury terms — Headway (wireframe)</title>
+<title>Organisation details — Headway (wireframe)</title>
 <style>
 /* ==========================================================================
    Headway rebuild — MID-FIDELITY WIREFRAMES
@@ -698,20 +698,13 @@ html.contrast .hero-mc .bg{background:#222}
 
 </style>
 </head>
-<body data-page="about-bi">
+<body data-page="supporting-you">
 <div class="page">
   <header id="site-header"></header>
-  <nav class="crumb" aria-label="Breadcrumb">
-    <a href="index.html">Home</a> › <a href="about-brain-injury.html">About brain injury</a> › Common terms A–Z
-  </nav>
+  <nav class="crumb" aria-label="Breadcrumb" id="crumb"><a href="index.html">Home</a> › <a href="supporting-you.html">Supporting you</a> › <a href="find-local-support.html">Find local support</a> › <span id="crumb-name">Organisation</span></nav>
 
   <main id="main">
-    <section class="section">
-      <h1>Common brain injury terms (A–Z)</h1>
-      <p class="lede">Plain-English explanations of words you might hear after a brain injury. Search or browse by letter.</p>
-      <div class="anno"><b>SRCH-005 · reusable A–Z template</b><span>This A–Z is a shared component (search + autocomplete + letter filter). The same template powers “Dealing with brain injury”, in link mode.</span></div>
-      <div id="az-root"></div>
-    </section>
+    <section class="section" id="wrap"></section>
   </main>
 
   <footer id="site-footer"></footer>
@@ -1494,14 +1487,83 @@ window.HData = {
 
 </script>
 <script>
-  Headway.azWidget({
-    mount: document.getElementById("az-root"),
-    items: HData.glossary,           // {term, def}
-    mode: "def",
-    noun: "term",
-    searchLabel: "Search terms",
-    placeholder: "Start typing, e.g. fati…"
-  });
+  const TYPE = { group:"Group", branch:"Branch", solicitor:"Solicitor", care:"Approved care provider", shop:"Charity shop" };
+  const TABOF = { group:"groupbranch", branch:"groupbranch", solicitor:"solicitor", care:"care", shop:"shop" };
+  const name = Headway.param("org");
+  const o = (HData.orgs || []).find(x => x.name === name);
+  const wrap = document.getElementById("wrap");
+
+  if (!o) {
+    document.getElementById("crumb-name").textContent = "Not found";
+    wrap.innerHTML = `<h1>Organisation not found</h1><p class="lede">We couldn't find that listing. <a href="find-local-support.html">Return to find local support</a>.</p>`;
+  } else {
+    document.getElementById("crumb-name").textContent = o.name;
+    const d = o.d || {};
+    // synthesise basic contact if a detailed record isn't present
+    const address = d.address || `${o.region} (address available on request)`;
+    const phone = d.phone || "0808 800 2244";
+    const email = d.email; const web = d.web;
+    const isBrand = o.type==="group"||o.type==="branch"||o.type==="shop";
+
+    function taggroup(label, arr){ return arr&&arr.length ? `<div style="margin:0 0 10px"><strong style="display:block;font-size:.82rem;margin-bottom:4px">${label}</strong>${arr.map(s=>`<span class="tag">${s}</span>`).join("")}</div>` : ""; }
+    function contactRows(){
+      const rows=[`<li style="padding:7px 0;border-bottom:1px solid var(--line)"><strong>Address</strong><br>${address}</li>`,
+                  `<li style="padding:7px 0;border-bottom:1px solid var(--line)"><strong>Phone</strong><br><a href="#" onclick="return false">${phone}</a></li>`];
+      if(email) rows.push(`<li style="padding:7px 0;border-bottom:1px solid var(--line)"><strong>Email</strong><br><a href="#" onclick="return false">${email}</a></li>`);
+      if(web)   rows.push(`<li style="padding:7px 0"><strong>Website</strong><br><a href="#" onclick="return false">${web} &#8599;</a></li>`);
+      return `<ul style="list-style:none;padding:0;margin:0;color:var(--muted);font-size:.92rem">${rows.join("")}</ul>`;
+    }
+
+    // type-specific main content
+    let mainHtml = "";
+    mainHtml += `<p class="lede">${d.about || (TYPE[o.type] + " in " + o.region + ".")}</p>`;
+    if (o.type==="group" || o.type==="branch") {
+      if (d.meet) mainHtml += `<h2>When &amp; where we meet</h2><div class="grid g3"><div class="stat"><strong>${d.meet.day}</strong><span>Days</span></div><div class="stat"><strong>${d.meet.time}</strong><span>Times</span></div><div class="stat" style="text-align:left"><strong style="font-size:1rem">${d.meet.venue}</strong><span>Venue</span></div></div>`;
+      mainHtml += `<h2>What we offer</h2>${taggroup("Services", o.services)}${taggroup("Activities", d.activities)}`;
+    } else if (o.type==="solicitor") {
+      mainHtml += `<h2>How they can help</h2>${taggroup("Case types & services", o.services)}${taggroup("Accreditations", d.accreditations)}`;
+      mainHtml += `<div class="note-box">Headway lists approved solicitors who have experience of brain injury cases. Listing is not a recommendation of any individual firm; please make your own checks.</div>`;
+    } else if (o.type==="care") {
+      mainHtml += `<h2>About this service</h2>${taggroup("Level of care", o.level)}${taggroup("Unit speciality", o.speciality)}${taggroup("Admission criteria", o.admission)}${taggroup("Type of accommodation", o.accom)}`;
+      mainHtml += `<div class="note-box">Approved providers meet Headway's quality standards. We recommend visiting and carrying out your own assessment before making a decision.</div>`;
+    } else if (o.type==="shop") {
+      if (d.hours) mainHtml += `<h2>Opening hours</h2><ul style="list-style:none;padding:0;margin:0 0 8px;max-width:320px">${d.hours.map(([k,v])=>`<li style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)"><span>${k}</span><strong>${v}</strong></li>`).join("")}</ul>`;
+      mainHtml += `<h2>What we accept</h2>${taggroup("Donations welcome", d.accepts || o.services)}`;
+    }
+    // further information accordion (DIR-007)
+    if (d.further && d.further.length) {
+      mainHtml += `<h2>Further information</h2><div class="accordion">${d.further.map((qa,i)=>`<details ${i===0?"open":""}><summary>${qa[0]}</summary><div class="body">${qa[1]}</div></details>`).join("")}</div>`;
+    }
+
+    // related orgs (same region, exclude self) -> back to filtered finder
+    const tab = TABOF[o.type];
+    wrap.innerHTML = `
+      <div class="anno"><b>PT-005 · DIR-002 / DIR-007 · INT-001 (Salesforce)</b><span>Organisation-details page (reused for groups, branches, solicitors, approved providers and shops). Static read-only map band; data sourced from Salesforce.</span></div>
+      <div class="with-rail" style="padding:0">
+        <div style="min-width:0">
+          <span class="tag">${TYPE[o.type]}</span> <span class="tag">${o.region}</span>
+          <h1 style="margin:.2em 0 .1em">${o.name}</h1>
+          <p style="color:var(--muted);margin:0 0 14px">${o.meta||""}</p>
+          ${mainHtml}
+          <p style="margin-top:20px"><a class="btn" href="find-local-support.html?tab=${tab}">&larr; Back to all ${TYPE[o.type].toLowerCase()}s</a></p>
+        </div>
+        <aside class="rail">
+          <h3>Contact</h3>
+          ${contactRows()}
+          <a class="btn primary block" href="#" onclick="return false" style="margin:12px 0 0">${o.type==="solicitor"?"Enquire":(o.type==="care"?"Request information":"Get in touch")}</a>
+          <h3 style="margin-top:16px">Location</h3>
+          <div class="maparea" id="map" style="min-height:200px"><div class="scrim"></div><span class="lbl">Map (read-only)</span></div>
+          <p style="font-size:.82rem;color:var(--faint);margin-top:6px">${o.region}</p>
+        </aside>
+      </div>`;
+
+    // single static pin
+    const map=document.getElementById("map");
+    const pin=document.createElement("div"); pin.className="mappin";
+    pin.style.left=o.x+"%"; pin.style.top=o.y+"%";
+    pin.innerHTML=`<div class="dot"></div><span class="cap">${o.name.replace('Headway ','').replace('Headway Charity Shop — ','')}</span>`;
+    map.appendChild(pin);
+  }
 </script>
 </body>
 </html>
