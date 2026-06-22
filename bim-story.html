@@ -882,6 +882,33 @@ window.HData = {
     { t:"Find a solicitor", url:"find-local-support.html", type:"Support", ex:"Filter by case type and services." },
     { t:"Emergency fund", url:"topic.html", type:"Support", ex:"One-off grants for essential costs." },
     { t:"Events", url:"events.html", type:"Get involved", ex:"Find a fundraising event to take part in." },
+  ],
+
+  // DIR-011 — useful organisations directory (external orgs, by category, with contact nodes)
+  usefulOrgs: [
+    { name:"Stroke Association", cat:"Brain injury & related conditions", desc:"Support, information and research for people affected by stroke.", web:"stroke.org.uk", phone:"0303 3033 100", email:"info@stroke.org.uk" },
+    { name:"Encephalitis International", cat:"Brain injury & related conditions", desc:"Information and support for people affected by encephalitis.", web:"encephalitis.info", phone:"01653 692 583", email:"support@encephalitis.info" },
+    { name:"The Brain Charity", cat:"Brain injury & related conditions", desc:"Practical help, emotional support and social activities for all neurological conditions.", web:"thebraincharity.org.uk", phone:"0151 298 2999", email:"info@thebraincharity.org.uk" },
+    { name:"Different Strokes", cat:"Brain injury & related conditions", desc:"Support for younger stroke survivors.", web:"differentstrokes.co.uk", phone:"0345 130 7172", email:"info@differentstrokes.co.uk" },
+    { name:"Spinal Injuries Association", cat:"Brain injury & related conditions", desc:"Support for people affected by spinal cord injury.", web:"spinal.co.uk", phone:"0800 980 0501", email:"sias@spinal.co.uk" },
+
+    { name:"Child Brain Injury Trust", cat:"Children & young people", desc:"Support for children, young people and families affected by acquired brain injury.", web:"childbraininjurytrust.org.uk", phone:"0303 303 2248", email:"info@cbituk.org" },
+    { name:"Cerebra", cat:"Children & young people", desc:"Help for children with brain conditions and their families.", web:"cerebra.org.uk", phone:"0800 328 1159", email:"info@cerebra.org.uk" },
+    { name:"Contact", cat:"Children & young people", desc:"Support for families with disabled children.", web:"contact.org.uk", phone:"0808 808 3555", email:"helpline@contact.org.uk" },
+
+    { name:"Carers UK", cat:"Carers & families", desc:"Advice, information and support for unpaid carers.", web:"carersuk.org", phone:"0808 808 7777", email:"advice@carersuk.org" },
+    { name:"Carers Trust", cat:"Carers & families", desc:"Practical and financial support for carers.", web:"carers.org", phone:"0300 772 9600", email:"info@carers.org" },
+
+    { name:"Mind", cat:"Mental health & wellbeing", desc:"Information and support for mental health.", web:"mind.org.uk", phone:"0300 123 3393", email:"info@mind.org.uk" },
+    { name:"Samaritans", cat:"Mental health & wellbeing", desc:"Confidential emotional support, any time.", web:"samaritans.org", phone:"116 123", email:"jo@samaritans.org" },
+    { name:"SANE", cat:"Mental health & wellbeing", desc:"Emotional support for anyone affected by mental illness.", web:"sane.org.uk", phone:"0300 304 7000", email:"info@sane.org.uk" },
+
+    { name:"Citizens Advice", cat:"Money, benefits & legal", desc:"Free, confidential advice on benefits, debt and rights.", web:"citizensadvice.org.uk", phone:"0800 144 8848", email:"" },
+    { name:"Turn2us", cat:"Money, benefits & legal", desc:"Help accessing welfare benefits, grants and financial support.", web:"turn2us.org.uk", phone:"0808 802 2000", email:"info@turn2us.org.uk" },
+    { name:"Disability Rights UK", cat:"Money, benefits & legal", desc:"Advice and resources on disability rights and independent living.", web:"disabilityrightsuk.org", phone:"0330 995 0400", email:"enquiries@disabilityrightsuk.org" },
+
+    { name:"Motability Scheme", cat:"Mobility & independence", desc:"Lease a car, scooter or powered wheelchair using a mobility allowance.", web:"motability.co.uk", phone:"0800 093 1000", email:"" },
+    { name:"Disabled Living Foundation", cat:"Mobility & independence", desc:"Impartial advice on equipment for daily living.", web:"livingmadeeasy.org.uk", phone:"0300 999 0004", email:"" }
   ]
 };
 
@@ -907,7 +934,7 @@ window.HData = {
         ]],
         ["Browse information", [
           ["Information library", "information-library.html"],
-          ["Useful organisations", "find-local-support.html"],
+          ["Useful organisations", "useful-organisations.html"],
           ["Search the site", "search.html"],
         ]],
       ],
@@ -921,6 +948,7 @@ window.HData = {
           ["Types of brain injury", "topic.html"],
           ["Common brain injury terms (A–Z)", "glossary.html"],
           ["Dealing with brain injury (A–Z)", "dealing-with-brain-injury.html"],
+          ["Useful organisations", "useful-organisations.html"],
           ["Information library", "information-library.html"],
         ]],
         ["Real experiences", [
@@ -1422,7 +1450,7 @@ window.HData = {
     const PRETTY = {
       "index":"", "about-brain-injury":"about-brain-injury", "topic":"about-brain-injury/effects/fatigue",
       "brain-injury-and-me":"about-brain-injury/brain-injury-and-me", "bim-story":"about-brain-injury/brain-injury-and-me/story",
-      "glossary":"about-brain-injury/common-terms", "dealing-with-brain-injury":"about-brain-injury/dealing-with-brain-injury", "event-golf-day":"get-involved/events/charity-golf-day", "information-library":"about-brain-injury/information-library",
+      "glossary":"about-brain-injury/common-terms", "dealing-with-brain-injury":"about-brain-injury/dealing-with-brain-injury", "useful-organisations":"about-brain-injury/further-information/useful-organisations", "event-golf-day":"get-involved/events/charity-golf-day", "information-library":"about-brain-injury/information-library",
       "supporting-you":"supporting-you", "helpline":"supporting-you/helpline",
       "find-local-support":"supporting-you/in-your-area", "id-card":"supporting-you/brain-injury-id-card",
       "someone-i-know":"supporting-you/someone-i-know-has-a-brain-injury",

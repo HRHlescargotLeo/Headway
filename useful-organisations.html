@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Helpline &amp; contact — Headway (wireframe)</title>
+<title>Useful organisations — Headway (wireframe)</title>
 <style>
 /* ==========================================================================
    Headway rebuild — MID-FIDELITY WIREFRAMES
@@ -687,62 +687,230 @@ html.contrast .hero-mc .bg{background:#222}
 
 </style>
 </head>
-<body data-page="supporting-you">
+<body data-page="about-bi">
 <div class="page">
   <header id="site-header"></header>
-  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › <a href="supporting-you.html">Supporting you</a> › Helpline</nav>
+  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › <a href="about-brain-injury.html">About brain injury</a> › Further information › Useful organisations</nav>
 
   <main id="main">
-    <section class="section with-rail" style="padding:0">
-      <div style="padding:26px 30px;min-width:0">
-        <h1>Helpline &amp; contact</h1>
-        <p class="lede">Free, confidential support and information for anyone affected by brain injury.</p>
+    <section class="section">
+      <h1>Useful organisations</h1>
+      <p class="lede">As well as Headway, many other organisations can help people affected by brain injury. Browse by category or search for an organisation, and contact them directly.</p>
+      <div class="anno"><b>DIR-011 · INT-001 (Salesforce)</b><span>Categorised directory of external organisations with website, phone and email detail nodes — reusing the directory/accordion pattern. Contact details are illustrative in this wireframe.</span></div>
 
-        <div class="helpline-band" style="margin:14px 0">
-          <div><p class="wf-note" style="margin:0">Call us</p><span class="num">0808 800 2244</span></div>
-          <div style="color:var(--muted)">Mon–Fri, 9am–5pm</div>
+      <div class="filterbar">
+        <div class="filterrow">
+          <div class="field"><label for="cat">Category</label><select id="cat"><option value="">All categories</option></select></div>
+          <div class="field" style="flex:1;min-width:220px"><label for="kw">Search organisations</label><input id="kw" type="search" placeholder="e.g. carers, stroke, benefits…"></div>
+          <button class="btn" type="button" id="expand">Expand all</button>
+          <button class="btn" type="button" id="collapse">Collapse all</button>
         </div>
-
-        <!-- out-of-hours dynamic notice (Mind pattern) -->
-        <div class="note-box" id="hours" style="margin-bottom:18px"></div>
-
-        <h2>Choose how to contact us</h2>
-        <div class="grid g3">
-          <div class="card"><div class="pad"><h3>📞 Phone</h3><p style="color:var(--muted);margin:0">0808 800 2244</p></div></div>
-          <div class="card"><div class="pad"><h3>✉ Email</h3><p style="color:var(--muted);margin:0"><a href="#">helpline@headway.org.uk</a></p></div></div>
-          <div class="card"><div class="pad"><h3>📝 Enquiry form</h3><p style="color:var(--muted);margin:0"><a href="#form">Send us a message</a></p></div></div>
-        </div>
-
-        <h2 style="margin-top:26px">What the helpline can and can't do</h2>
-        <div class="grid g2">
-          <div class="card"><div class="pad"><h3>We can</h3><ul style="color:var(--muted);margin:0;padding-left:18px"><li>Listen and offer emotional support</li><li>Explain brain injury in plain English</li><li>Signpost you to local services</li><li>Send information and factsheets</li></ul></div></div>
-          <div class="card"><div class="pad"><h3>We can't</h3><ul style="color:var(--muted);margin:0;padding-left:18px"><li>Give clinical or medical advice</li><li>Provide legal advice</li><li>Make decisions on your behalf</li></ul><p style="margin:.6em 0 0;font-size:.85rem">We'll always help you find the right place to go.</p></div></div>
-        </div>
-
-        <!-- embeddable enquiry form — FORM-001 / Whole-website "simple, easy forms" story -->
-        <h2 id="form" style="margin-top:26px">Send us a message</h2>
-        <div class="formgrid">
-          <div class="fld"><label>Your name</label><input></div>
-          <div class="fld"><label>Email</label><input type="email"></div>
-          <div class="fld full"><label>I'm getting in touch as a…</label>
-            <select><option>Brain injury survivor</option><option>Family member or carer</option><option>Professional</option><option>Supporter</option></select></div>
-          <div class="fld full"><label>How can we help?</label><textarea rows="4"></textarea></div>
-        </div>
-        <button class="btn primary" onclick="alert('Wireframe: enquiry routed to the right team (Whole-website user story).')">Send message</button>
       </div>
 
-      <aside class="rail">
-        <h3>Urgent help</h3>
-        <p style="color:var(--muted)">If you or someone else is in immediate danger, call 999.</p>
-        <div class="note-box"><strong>Not sure where to go?</strong><br><small>Our helpline can point you to local support, information, or other organisations.</small></div>
-        <h3 style="margin-top:14px">Other organisations</h3>
-        <ul style="padding-left:18px;color:var(--accent)"><li><a href="useful-organisations.html">Useful organisations directory</a></li></ul>
-      </aside>
+      <p class="result-meta" id="meta"></p>
+      <div id="results"></div>
+      <div class="empty" id="empty" hidden>No organisations match. <button class="btn sm" type="button" onclick="document.getElementById('kw').value='';window.dispatchEvent(new Event('uo-reset'))">Reset</button></div>
+
+      <div class="note-box" style="margin-top:20px">Headway is not responsible for the content of external organisations. Listing here is not an endorsement. If you'd like to suggest an organisation, please <a href="helpline.html">contact us</a>.</div>
     </section>
   </main>
 
   <footer id="site-footer"></footer>
 </div>
+<script>
+/* Datasets that power the working filters in the wireframes.
+   Realistic-but-placeholder content so the journeys read correctly. */
+window.HData = {
+
+  /* Brain Injury & Me stories — drives BIM-002 filters (condition, perspective, media, length) */
+  bim: [
+    { t:"Dave's story: relearning to walk", cond:"Stroke",  persp:"Survivor", media:"Video",   len:"Long",  cat:"featured-video" },
+    { t:"Mornings with memory loss", cond:"TBI",            persp:"Survivor", media:"Written", len:"Short", cat:"written-word" },
+    { t:"Caring for my husband after his TBI", cond:"TBI",  persp:"Carer",    media:"Audio",   len:"Medium",cat:"living-with" },
+    { t:"Painting got me through", cond:"Haemorrhage",      persp:"Survivor", media:"Written", len:"Medium",cat:"creative-expression" },
+    { t:"A dad's road back to work", cond:"TBI",            persp:"Survivor", media:"Video",   len:"Medium",cat:"video-audio" },
+    { t:"Our family's new normal", cond:"Stroke",          persp:"Family",   media:"Written", len:"Long",  cat:"living-with" },
+    { t:"Running for Headway: Priya", cond:"Encephalitis",  persp:"Survivor", media:"Video",   len:"Short", cat:"headway-heroes" },
+    { t:"Anosmia changed how I taste life", cond:"TBI",     persp:"Survivor", media:"Audio",   len:"Short", cat:"video-audio" },
+    { t:"Supporting my mum's recovery", cond:"Stroke",      persp:"Carer",    media:"Written", len:"Medium",cat:"living-with" },
+    { t:"Poetry after my haemorrhage", cond:"Haemorrhage",  persp:"Survivor", media:"Written", len:"Short", cat:"creative-expression" },
+    { t:"Fatigue is invisible — Sam", cond:"Encephalitis",  persp:"Survivor", media:"Video",   len:"Medium",cat:"featured-video" },
+    { t:"A carer's guide to small wins", cond:"TBI",        persp:"Carer",    media:"Audio",   len:"Long",  cat:"living-with" },
+  ],
+
+  /* News — drives NEWS-001 category filter + search */
+  news: [
+    { t:"Basingstoke volunteer wins national award", cat:"Local",    date:"22 May 2026", ex:"A long-serving volunteer has been recognised for outstanding service to survivors." },
+    { t:"New brain injury identity card rolls out nationally", cat:"National", date:"14 May 2026", ex:"The card helps survivors explain hidden disabilities in everyday situations." },
+    { t:"Helpline answers record number of calls", cat:"General", date:"02 May 2026", ex:"Demand for emotional and practical support continues to grow year on year." },
+    { t:"Yorkshire group reopens after refurbishment", cat:"Local", date:"28 Apr 2026", ex:"Members return to a refreshed space for activities and peer support." },
+    { t:"Headway responds to government disability review", cat:"National", date:"19 Apr 2026", ex:"We welcome proposals but call for clearer support for hidden disabilities." },
+    { t:"Five tips for managing fatigue after brain injury", cat:"General", date:"11 Apr 2026", ex:"Practical, everyday strategies from our information team." },
+    { t:"Channel Islands branch launches buddy scheme", cat:"Local", date:"03 Apr 2026", ex:"Newly diagnosed survivors are paired with experienced peers." },
+    { t:"Research spotlight: returning to work", cat:"General", date:"25 Mar 2026", ex:"What the latest evidence says about vocational rehabilitation." },
+    { t:"London Marathon team raises £180,000", cat:"National", date:"16 Mar 2026", ex:"Thank you to every runner and supporter who made it possible." },
+    { t:"Guernsey coffee morning returns this spring", cat:"Local", date:"08 Mar 2026", ex:"An informal drop-in for survivors, families and carers." },
+    { t:"Emergency fund supports 400 families", cat:"National", date:"01 Mar 2026", ex:"One-off grants help with essential costs after injury." },
+    { t:"Understanding the brain: a new explainer series", cat:"General", date:"20 Feb 2026", ex:"Short videos break down medical terms in plain English." },
+  ],
+
+  /* Information library — drives DOC-001 filters (category, audience, file type) */
+  library: [
+    { t:"Coping with fatigue", cat:"Effects of brain injury", aud:"Survivor", type:"PDF", size:"480 KB" },
+    { t:"Memory problems after brain injury", cat:"Effects of brain injury", aud:"Survivor", type:"PDF", size:"512 KB" },
+    { t:"A carer's guide to the early days", cat:"For carers", aud:"Carer", type:"PDF", size:"720 KB" },
+    { t:"Returning to work", cat:"Life after brain injury", aud:"Survivor", type:"PDF", size:"610 KB" },
+    { t:"Welfare benefits explained", cat:"Practical & legal", aud:"Carer", type:"PDF", size:"1.1 MB" },
+    { t:"Talking to children about brain injury", cat:"For carers", aud:"Family", type:"PDF", size:"540 KB" },
+    { t:"Brain injury: a guide for professionals", cat:"For professionals", aud:"Professional", type:"PDF", size:"1.4 MB" },
+    { t:"Managing anger and irritability", cat:"Effects of brain injury", aud:"Survivor", type:"Easy read", size:"380 KB" },
+    { t:"Driving after brain injury", cat:"Practical & legal", aud:"Survivor", type:"PDF", size:"330 KB" },
+    { t:"Sleep and brain injury", cat:"Effects of brain injury", aud:"Survivor", type:"Easy read", size:"290 KB" },
+    { t:"Supporting recovery at home", cat:"For carers", aud:"Carer", type:"Video", size:"—" },
+    { t:"Headway groups & branches: what they offer", cat:"Life after brain injury", aud:"Family", type:"PDF", size:"260 KB" },
+  ],
+
+  /* A–Z glossary — drives SRCH-005 */
+  glossary: [
+    { term:"Anosmia", def:"Loss of the sense of smell, common after some brain injuries." },
+    { term:"Aphasia", def:"Difficulty with language — speaking, understanding, reading or writing." },
+    { term:"Ataxia", def:"Loss of coordination and balance affecting movement." },
+    { term:"Cognition", def:"Mental processes such as memory, attention and problem-solving." },
+    { term:"Concussion", def:"A mild traumatic brain injury, usually from a knock to the head." },
+    { term:"Dysphagia", def:"Difficulty swallowing food or drink safely." },
+    { term:"Executive function", def:"Skills for planning, organising and managing tasks." },
+    { term:"Fatigue", def:"Overwhelming tiredness that is common and often invisible after brain injury." },
+    { term:"Haematoma", def:"A collection of blood outside blood vessels, e.g. within the skull." },
+    { term:"Hemiparesis", def:"Weakness affecting one side of the body." },
+    { term:"Hypoxia", def:"A shortage of oxygen reaching the brain's tissues." },
+    { term:"Neuroplasticity", def:"The brain's ability to reorganise and form new connections." },
+    { term:"Oedema", def:"Swelling caused by a build-up of fluid, e.g. in brain tissue." },
+    { term:"Perseveration", def:"Repeating a word, action or thought involuntarily." },
+    { term:"Rehabilitation", def:"Therapy and support to regain skills and independence." },
+    { term:"Spasticity", def:"Muscle stiffness or tightness that can affect movement." },
+    { term:"Tinnitus", def:"Hearing ringing or buzzing not caused by an external sound." },
+    { term:"Vestibular", def:"Relating to the balance system in the inner ear and brain." },
+  ],
+
+  /* Local support directory — drives DIR-001..005 (tabs, region filter, solicitor case-types) */
+  /* x/y are 0–100 schematic positions on the placeholder map */
+  orgs: [
+    { name:"Headway Guernsey", type:"group", region:"Channel Islands", x:30, y:86,
+      services:["Drop-in","Carer support","Activities"], meta:"Group · meets weekly", postcodes:["gy"] },
+    { name:"Headway Yorkshire", type:"group", region:"Yorkshire", x:55, y:34,
+      services:["Day centre","Cognitive rehab"], meta:"Branch · day services", postcodes:["ls","yo","hd","s"] },
+    { name:"Headway East London", type:"branch", region:"London", x:62, y:60,
+      services:["Day centre","Art studio"], meta:"Branch · award-winning services", postcodes:["e","ec"] },
+    { name:"Headway Birmingham", type:"group", region:"West Midlands", x:50, y:52,
+      services:["Peer support","Carer support"], meta:"Group · meets fortnightly", postcodes:["b"] },
+    { name:"Headway Glasgow", type:"branch", region:"Scotland", x:42, y:14,
+      services:["Day services","Counselling"], meta:"Branch", postcodes:["g"] },
+    { name:"Headway Cardiff", type:"group", region:"Wales", x:38, y:58,
+      services:["Drop-in","Activities"], meta:"Group · meets weekly", postcodes:["cf"] },
+
+    { name:"Oakfield Solicitors", type:"solicitor", region:"London", x:60, y:62,
+      services:["Road traffic injury","No win no fee","Home visits"], meta:"Personal injury specialists", postcodes:["w","sw"] },
+    { name:"Bramley Legal", type:"solicitor", region:"Yorkshire", x:54, y:36,
+      services:["Medical negligence","Work accident"], meta:"Serious injury team", postcodes:["ls"] },
+    { name:"Carter & Voss", type:"solicitor", region:"West Midlands", x:49, y:50,
+      services:["Road traffic injury","Medical negligence","No win no fee"], meta:"Catastrophic injury", postcodes:["b"] },
+    { name:"Mercer Law", type:"solicitor", region:"Scotland", x:43, y:16,
+      services:["Work accident","Home visits"], meta:"Accident claims", postcodes:["g","eh"] },
+
+    { name:"Bridgeview Care", type:"care", region:"London", x:64, y:58,
+      services:["Residential","Neuro rehab"], meta:"Approved provider", postcodes:["n","e"],
+      level:["Residential care","Nursing care","Rehabilitation"], speciality:["Acquired brain injury","Complex needs"],
+      admission:["Aged 18–65","Self-funding","Local authority funded"], accom:["Single ensuite rooms","Wheelchair accessible"] },
+    { name:"Meadow House", type:"care", region:"Yorkshire", x:56, y:32,
+      services:["Supported living","Respite"], meta:"Approved provider", postcodes:["yo"],
+      level:["Supported living","Respite care"], speciality:["Acquired brain injury","Young adults"],
+      admission:["Aged 18–65","Local authority funded"], accom:["Self-contained flats","Ground floor"] },
+    { name:"Ashworth Neuro Centre", type:"care", region:"West Midlands", x:48, y:54,
+      services:["Residential","Day rehab"], meta:"Approved provider", postcodes:["b","cv"],
+      level:["Residential care","Rehabilitation","Day services"], speciality:["Neurological conditions","Behavioural support","Complex needs"],
+      admission:["Aged 18–65","Aged 65+","NHS funded","Detained under Mental Health Act"], accom:["Single ensuite rooms","Shared facilities"] },
+    { name:"Rosewood Lodge", type:"care", region:"Scotland", x:43, y:17,
+      services:["Nursing care","Respite"], meta:"Approved provider", postcodes:["g","eh"],
+      level:["Nursing care","Respite care"], speciality:["Acquired brain injury","Physical disability","Huntington's disease"],
+      admission:["Aged 65+","NHS funded","Self-funding"], accom:["Single ensuite rooms","Wheelchair accessible","Ground floor"] },
+    { name:"Hillside Rehabilitation", type:"care", region:"Wales", x:38, y:56,
+      services:["Neuro rehab","Outreach"], meta:"Approved provider", postcodes:["cf","sa"],
+      level:["Rehabilitation","Outreach / community"], speciality:["Acquired brain injury","Mental health","Young adults"],
+      admission:["Aged 18–65","Mixed","Local authority funded"], accom:["Self-contained flats","Bungalows","Wheelchair accessible"] },
+    { name:"Beechcroft Care Home", type:"care", region:"London", x:60, y:64,
+      services:["Residential","Supported living"], meta:"Approved provider", postcodes:["se","sw"],
+      level:["Residential care","Supported living","Day services"], speciality:["Neurological conditions","Physical disability","Complex needs"],
+      admission:["Aged 18–65","Aged 65+","Self-funding","Local authority funded"], accom:["Shared facilities","Ground floor"] },
+
+    { name:"Headway Charity Shop — Leeds", type:"shop", region:"Yorkshire", x:55, y:35,
+      services:["Donations welcome"], meta:"Open Mon–Sat", postcodes:["ls"] },
+    { name:"Headway Charity Shop — Cardiff", type:"shop", region:"Wales", x:39, y:57,
+      services:["Donations welcome"], meta:"Open Mon–Sat", postcodes:["cf"] },
+    { name:"Headway Charity Shop — Glasgow", type:"shop", region:"Scotland", x:42, y:15,
+      services:["Donations welcome"], meta:"Open Mon–Sat", postcodes:["g"] },
+  ],
+
+  /* Training courses — drives Training filters (role, topic, level) */
+  training: [
+    { t:"Brain injury awareness", role:"Healthcare", topic:"Awareness", level:"Introductory", fmt:"Online" },
+    { t:"Cognitive effects of brain injury", role:"Healthcare", topic:"Clinical", level:"Intermediate", fmt:"In person" },
+    { t:"Brain injury and the justice system", role:"Justice", topic:"Justice", level:"Introductory", fmt:"Online" },
+    { t:"Supporting clients with brain injury", role:"Solicitor", topic:"Legal", level:"Intermediate", fmt:"Online" },
+    { t:"Behaviour that challenges", role:"Social care", topic:"Behaviour", level:"Advanced", fmt:"In person" },
+    { t:"Communication after brain injury", role:"Healthcare", topic:"Communication", level:"Intermediate", fmt:"Online" },
+    { t:"Brain injury for case managers", role:"Solicitor", topic:"Legal", level:"Advanced", fmt:"In person" },
+    { t:"Trauma-informed practice", role:"Justice", topic:"Behaviour", level:"Intermediate", fmt:"Online" },
+    { t:"Family & carer support skills", role:"Social care", topic:"Awareness", level:"Introductory", fmt:"Online" },
+  ],
+
+  /* Search index — drives SRCH-001 / predictive search on search.html */
+  search: [
+    { t:"Helpline", url:"helpline.html", type:"Support", ex:"Free, confidential support Mon–Fri 9–5." },
+    { t:"Find local support near you", url:"find-local-support.html", type:"Support", ex:"Postcode search for groups, branches and services." },
+    { t:"Brain Injury & Me stories", url:"brain-injury-and-me.html", type:"Stories", ex:"Real experiences from survivors and carers." },
+    { t:"Information library", url:"information-library.html", type:"Information", ex:"Download factsheets and guides." },
+    { t:"Coping with fatigue", url:"information-library.html", type:"Information", ex:"Everyday strategies for managing fatigue." },
+    { t:"Memory problems", url:"topic.html", type:"Information", ex:"Why memory is affected and how to help." },
+    { t:"Brain injury ID card", url:"id-card.html", type:"Support", ex:"Explain a hidden disability in everyday situations." },
+    { t:"Donate", url:"donate.html", type:"Get involved", ex:"Make a one-off or regular gift." },
+    { t:"Training courses", url:"training.html", type:"Professionals", ex:"Filter courses by role, topic and level." },
+    { t:"Anosmia", url:"glossary.html", type:"Glossary", ex:"Loss of the sense of smell." },
+    { t:"Aphasia", url:"glossary.html", type:"Glossary", ex:"Difficulty with language." },
+    { t:"Fatigue", url:"glossary.html", type:"Glossary", ex:"Overwhelming, often invisible tiredness." },
+    { t:"Find a solicitor", url:"find-local-support.html", type:"Support", ex:"Filter by case type and services." },
+    { t:"Emergency fund", url:"topic.html", type:"Support", ex:"One-off grants for essential costs." },
+    { t:"Events", url:"events.html", type:"Get involved", ex:"Find a fundraising event to take part in." },
+  ],
+
+  // DIR-011 — useful organisations directory (external orgs, by category, with contact nodes)
+  usefulOrgs: [
+    { name:"Stroke Association", cat:"Brain injury & related conditions", desc:"Support, information and research for people affected by stroke.", web:"stroke.org.uk", phone:"0303 3033 100", email:"info@stroke.org.uk" },
+    { name:"Encephalitis International", cat:"Brain injury & related conditions", desc:"Information and support for people affected by encephalitis.", web:"encephalitis.info", phone:"01653 692 583", email:"support@encephalitis.info" },
+    { name:"The Brain Charity", cat:"Brain injury & related conditions", desc:"Practical help, emotional support and social activities for all neurological conditions.", web:"thebraincharity.org.uk", phone:"0151 298 2999", email:"info@thebraincharity.org.uk" },
+    { name:"Different Strokes", cat:"Brain injury & related conditions", desc:"Support for younger stroke survivors.", web:"differentstrokes.co.uk", phone:"0345 130 7172", email:"info@differentstrokes.co.uk" },
+    { name:"Spinal Injuries Association", cat:"Brain injury & related conditions", desc:"Support for people affected by spinal cord injury.", web:"spinal.co.uk", phone:"0800 980 0501", email:"sias@spinal.co.uk" },
+
+    { name:"Child Brain Injury Trust", cat:"Children & young people", desc:"Support for children, young people and families affected by acquired brain injury.", web:"childbraininjurytrust.org.uk", phone:"0303 303 2248", email:"info@cbituk.org" },
+    { name:"Cerebra", cat:"Children & young people", desc:"Help for children with brain conditions and their families.", web:"cerebra.org.uk", phone:"0800 328 1159", email:"info@cerebra.org.uk" },
+    { name:"Contact", cat:"Children & young people", desc:"Support for families with disabled children.", web:"contact.org.uk", phone:"0808 808 3555", email:"helpline@contact.org.uk" },
+
+    { name:"Carers UK", cat:"Carers & families", desc:"Advice, information and support for unpaid carers.", web:"carersuk.org", phone:"0808 808 7777", email:"advice@carersuk.org" },
+    { name:"Carers Trust", cat:"Carers & families", desc:"Practical and financial support for carers.", web:"carers.org", phone:"0300 772 9600", email:"info@carers.org" },
+
+    { name:"Mind", cat:"Mental health & wellbeing", desc:"Information and support for mental health.", web:"mind.org.uk", phone:"0300 123 3393", email:"info@mind.org.uk" },
+    { name:"Samaritans", cat:"Mental health & wellbeing", desc:"Confidential emotional support, any time.", web:"samaritans.org", phone:"116 123", email:"jo@samaritans.org" },
+    { name:"SANE", cat:"Mental health & wellbeing", desc:"Emotional support for anyone affected by mental illness.", web:"sane.org.uk", phone:"0300 304 7000", email:"info@sane.org.uk" },
+
+    { name:"Citizens Advice", cat:"Money, benefits & legal", desc:"Free, confidential advice on benefits, debt and rights.", web:"citizensadvice.org.uk", phone:"0800 144 8848", email:"" },
+    { name:"Turn2us", cat:"Money, benefits & legal", desc:"Help accessing welfare benefits, grants and financial support.", web:"turn2us.org.uk", phone:"0808 802 2000", email:"info@turn2us.org.uk" },
+    { name:"Disability Rights UK", cat:"Money, benefits & legal", desc:"Advice and resources on disability rights and independent living.", web:"disabilityrightsuk.org", phone:"0330 995 0400", email:"enquiries@disabilityrightsuk.org" },
+
+    { name:"Motability Scheme", cat:"Mobility & independence", desc:"Lease a car, scooter or powered wheelchair using a mobility allowance.", web:"motability.co.uk", phone:"0800 093 1000", email:"" },
+    { name:"Disabled Living Foundation", cat:"Mobility & independence", desc:"Impartial advice on equipment for daily living.", web:"livingmadeeasy.org.uk", phone:"0300 999 0004", email:"" }
+  ]
+};
+
+</script>
 <script>
 /* Shared chrome for every wireframe page.
    Each page sets <body data-page="..."> to drive the active nav state.
@@ -1306,10 +1474,45 @@ html.contrast .hero-mc .bg{background:#222}
 
 </script>
 <script>
-  const h=new Date().getHours(), d=new Date().getDay(), open=(d>=1&&d<=5&&h>=9&&h<17);
-  document.getElementById("hours").innerHTML = open
-    ? "🟢 <strong>The helpline is open now.</strong> We're here until 5pm."
-    : "🔴 <strong>The helpline is currently closed.</strong> We're open Mon–Fri, 9am–5pm. You can still <a href='#form'>send a message</a> or browse the <a href='information-library.html'>information library</a>.";
+  const O = HData.usefulOrgs;
+  // category order = first appearance in data
+  const CATS = [...new Set(O.map(o=>o.cat))];
+  const csel=document.getElementById("cat");
+  CATS.forEach(c=>{const op=document.createElement("option");op.value=c;op.textContent=c;csel.appendChild(op);});
+  const state={cat:"",kw:""};
+
+  function node(o){
+    const bits=[];
+    if(o.web)   bits.push(`<a href="#" onclick="return false">${o.web} &#8599;</a>`);
+    if(o.phone) bits.push(`<a href="#" onclick="return false">${o.phone}</a>`);
+    if(o.email) bits.push(`<a href="#" onclick="return false">${o.email}</a>`);
+    return `<div class="card"><div class="pad">
+      <h3 style="font-size:1.05rem;margin:.1em 0 .25em">${o.name}</h3>
+      <p style="color:var(--muted);font-size:.9rem;margin:0 0 .5em">${o.desc}</p>
+      <p class="uo-contact" style="font-size:.85rem;margin:0">${bits.join(' <span style="color:var(--faint)">·</span> ')}</p>
+    </div></div>`;
+  }
+  function render(){
+    const ql=state.kw.trim().toLowerCase();
+    let shown=0;
+    document.getElementById("results").innerHTML = CATS.map(cat=>{
+      if(state.cat && cat!==state.cat) return "";
+      const items=O.filter(o=>o.cat===cat && (!ql || (o.name+" "+o.desc+" "+o.cat).toLowerCase().includes(ql)));
+      if(!items.length) return "";
+      shown+=items.length;
+      const open = (ql || state.cat) ? "open" : (cat===CATS[0] ? "open" : "");
+      return `<details class="staff-dept" ${open}><summary>${cat} <span style="color:var(--muted);font-weight:400">(${items.length})</span></summary>
+        <div class="body" style="padding-top:12px"><div class="grid g2">${items.map(node).join("")}</div></div></details>`;
+    }).join("");
+    document.getElementById("meta").textContent = `${shown} organisation${shown===1?"":"s"}`+(state.cat?` in ${state.cat}`:"")+(ql?` matching “${state.kw}”`:"");
+    document.getElementById("empty").hidden = shown>0;
+  }
+  csel.addEventListener("change",e=>{state.cat=e.target.value;render();});
+  document.getElementById("kw").addEventListener("input",e=>{state.kw=e.target.value;render();});
+  window.addEventListener("uo-reset",()=>{state.kw="";state.cat="";csel.value="";document.getElementById("kw").value="";render();});
+  document.getElementById("expand").onclick=()=>document.querySelectorAll("#results details").forEach(d=>d.open=true);
+  document.getElementById("collapse").onclick=()=>document.querySelectorAll("#results details").forEach(d=>d.open=false);
+  render();
 </script>
 </body>
 </html>
