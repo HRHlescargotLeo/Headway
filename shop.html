@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Helpline &amp; contact — Headway (wireframe)</title>
+<title>Shop with Headway — wireframe</title>
 <style>
 /* ==========================================================================
    Headway rebuild — MID-FIDELITY WIREFRAMES
@@ -717,57 +717,30 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
 
 </style>
 </head>
-<body data-page="supporting-you">
+<body data-page="get-involved">
 <div class="page">
   <header id="site-header"></header>
-  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › <a href="supporting-you.html">Supporting you</a> › Helpline</nav>
+  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › <a href="get-involved.html">Get involved</a> › Shop with Headway</nav>
 
   <main id="main">
-    <section class="section with-rail" style="padding:0">
-      <div style="padding:26px 30px;min-width:0">
-        <h1>Helpline &amp; contact</h1>
-        <p class="lede">Free, confidential support and information for anyone affected by brain injury.</p>
+    <section class="section">
+      <h1>Shop with Headway</h1>
+      <p class="lede">Every purchase helps fund our support for people affected by brain injury. Browse our publications, awareness products, cards and gifts.</p>
+      <div class="anno"><b>CMP-011 · shared list + filter pattern</b><span>Product listing reuses the same list/filter/results pattern as the directories and events — one component, different content. Looking for a physical charity shop? <a href="find-local-support.html?tab=shop">Find one near you</a>.</span></div>
 
-        <div class="helpline-band" style="margin:14px 0">
-          <div><p class="wf-note" style="margin:0">Call us</p><span class="num">0808 800 2244</span></div>
-          <div style="color:var(--muted)">Mon–Fri, 9am–5pm</div>
+      <div class="filterbar">
+        <div class="filterrow">
+          <div class="field"><label for="cat">Category</label><select id="cat"><option value="">All categories</option></select></div>
+          <div class="field" style="flex:1;min-width:200px"><label for="kw">Search products</label><input id="kw" type="search" placeholder="e.g. ID card, fatigue, cards…"></div>
+          <button class="btn" type="button" id="reset">Reset filters</button>
         </div>
-
-        <!-- out-of-hours dynamic notice (Mind pattern) -->
-        <div class="note-box" id="hours" style="margin-bottom:18px"></div>
-
-        <h2>Choose how to contact us</h2>
-        <div class="grid g3">
-          <div class="card"><div class="pad"><h3>📞 Phone</h3><p style="color:var(--muted);margin:0">0808 800 2244</p></div></div>
-          <div class="card"><div class="pad"><h3>✉ Email</h3><p style="color:var(--muted);margin:0"><a href="#">helpline@headway.org.uk</a></p></div></div>
-          <div class="card"><div class="pad"><h3>📝 Enquiry form</h3><p style="color:var(--muted);margin:0"><a href="#form">Send us a message</a></p></div></div>
-        </div>
-
-        <h2 style="margin-top:26px">What the helpline can and can't do</h2>
-        <div class="grid g2">
-          <div class="card"><div class="pad"><h3>We can</h3><ul style="color:var(--muted);margin:0;padding-left:18px"><li>Listen and offer emotional support</li><li>Explain brain injury in plain English</li><li>Signpost you to local services</li><li>Send information and factsheets</li></ul></div></div>
-          <div class="card"><div class="pad"><h3>We can't</h3><ul style="color:var(--muted);margin:0;padding-left:18px"><li>Give clinical or medical advice</li><li>Provide legal advice</li><li>Make decisions on your behalf</li></ul><p style="margin:.6em 0 0;font-size:.85rem">We'll always help you find the right place to go.</p></div></div>
-        </div>
-
-        <!-- embeddable enquiry form — FORM-001 / Whole-website "simple, easy forms" story -->
-        <h2 id="form" style="margin-top:26px">Send us a message</h2>
-        <div class="formgrid">
-          <div class="fld"><label>Your name</label><input></div>
-          <div class="fld"><label>Email</label><input type="email"></div>
-          <div class="fld full"><label>I'm getting in touch as a…</label>
-            <select><option>Brain injury survivor</option><option>Family member or carer</option><option>Professional</option><option>Supporter</option></select></div>
-          <div class="fld full"><label>How can we help?</label><textarea rows="4"></textarea></div>
-        </div>
-        <button class="btn primary" onclick="alert('Wireframe: enquiry routed to the right team (Whole-website user story).')">Send message</button>
       </div>
 
-      <aside class="rail">
-        <h3>Urgent help</h3>
-        <p style="color:var(--muted)">If you or someone else is in immediate danger, call 999.</p>
-        <div class="note-box"><strong>Not sure where to go?</strong><br><small>Our helpline can point you to local support, information, or other organisations.</small></div>
-        <h3 style="margin-top:14px">Other organisations</h3>
-        <ul style="padding-left:18px;color:var(--accent)"><li><a href="useful-organisations.html">Useful organisations directory</a></li></ul>
-      </aside>
+      <p class="result-meta" id="meta"></p>
+      <div class="grid g3" id="results"></div>
+      <div class="empty" id="empty" hidden>No products match. <button class="btn sm" type="button" onclick="document.getElementById('reset').click()">Reset</button></div>
+
+      <div class="note-box" style="margin-top:20px">Orders are fulfilled by Headway UK; proceeds support survivors, families and carers. Many of our information publications are also available as <a href="information-library.html">free downloads</a>.</div>
     </section>
   </main>
 
@@ -1362,10 +1335,42 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
 
 </script>
 <script>
-  const h=new Date().getHours(), d=new Date().getDay(), open=(d>=1&&d<=5&&h>=9&&h<17);
-  document.getElementById("hours").innerHTML = open
-    ? "🟢 <strong>The helpline is open now.</strong> We're here until 5pm."
-    : "🔴 <strong>The helpline is currently closed.</strong> We're open Mon–Fri, 9am–5pm. You can still <a href='#form'>send a message</a> or browse the <a href='information-library.html'>information library</a>.";
+  const P=[
+    {t:"Brain injury — the basics (booklet)", cat:"Publications", price:"£3.50", ex:"Our best-selling introduction for survivors and families."},
+    {t:"Coping with fatigue (booklet)", cat:"Publications", price:"£2.50", ex:"Practical strategies for managing post-injury fatigue."},
+    {t:"Memory problems after brain injury", cat:"Publications", price:"£2.50", ex:"Understanding and living with memory difficulties."},
+    {t:"Hello, my name is… (children's book)", cat:"Books", price:"£6.99", ex:"Explaining a parent's brain injury to children."},
+    {t:"Brain injury ID card wallet", cat:"ID card accessories", price:"£3.00", ex:"A protective wallet for your brain injury identity card."},
+    {t:"Brain injury ID card lanyard", cat:"ID card accessories", price:"£3.50", ex:"Wear your ID card discreetly and securely."},
+    {t:"Headway awareness pin badge", cat:"Awareness & gifts", price:"£2.00", ex:"Show your support for brain injury awareness."},
+    {t:"Headway tote bag", cat:"Awareness & gifts", price:"£7.50", ex:"Sturdy cotton tote with the Headway logo."},
+    {t:"Headway water bottle", cat:"Awareness & gifts", price:"£9.00", ex:"Reusable bottle to support our work."},
+    {t:"Christmas cards (pack of 10)", cat:"Greetings cards", price:"£4.50", ex:"Send season's greetings and support Headway."},
+    {t:"Thank you cards (pack of 6)", cat:"Greetings cards", price:"£3.00", ex:"Perfect for thanking fundraisers and supporters."},
+    {t:"Headway t-shirt", cat:"Clothing", price:"£12.00", ex:"Soft cotton tee in a range of sizes."}
+  ];
+  const state={cat:"",kw:""};
+  const csel=document.getElementById("cat");
+  [...new Set(P.map(p=>p.cat))].sort().forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;csel.appendChild(o);});
+  function render(){
+    const list=P.filter(p=>(!state.cat||p.cat===state.cat)&&(!state.kw||(p.t+" "+p.ex+" "+p.cat).toLowerCase().includes(state.kw.toLowerCase())));
+    document.getElementById("meta").textContent=`${list.length} product${list.length===1?"":"s"}`;
+    document.getElementById("empty").hidden=list.length>0;
+    document.getElementById("results").innerHTML=list.map(p=>`
+      <article class="card"><div class="ph ratio-4x3">Product image</div><div class="pad">
+        <span class="tag">${p.cat}</span>
+        <h3 style="font-size:1rem;margin:.3em 0 .2em">${p.t}</h3>
+        <p style="color:var(--muted);font-size:.88rem;margin:0 0 .6em">${p.ex}</p>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <strong style="font-size:1.05rem">${p.price}</strong>
+          <a class="btn sm primary" href="#" onclick="return false">Add to basket</a>
+        </div>
+      </div></article>`).join("");
+  }
+  csel.addEventListener("change",e=>{state.cat=e.target.value;render();});
+  document.getElementById("kw").addEventListener("input",e=>{state.kw=e.target.value;render();});
+  document.getElementById("reset").addEventListener("click",()=>{state.cat="";state.kw="";csel.value="";document.getElementById("kw").value="";render();});
+  render();
 </script>
 </body>
 </html>

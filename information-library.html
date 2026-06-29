@@ -150,8 +150,10 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
 .utility .helpline{color:var(--ink)}
 .utility .helpline a{font-weight:700}
 .utility .social{display:flex;gap:6px}
-.utility .social span{width:24px;height:24px;border:1px solid var(--line-strong);border-radius:50%;
-  display:inline-flex;align-items:center;justify-content:center;font-size:.62rem;color:var(--muted);background:#fff}
+.utility .social span,.utility .social a{width:24px;height:24px;border:1px solid var(--line-strong);border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.62rem;color:var(--muted);background:#fff;text-decoration:none}
+.utility .social a:hover{color:var(--ink);border-color:var(--ink)}
+.utility .social a svg,.footer .social-links .sl-ic svg{display:block}
 
 .masthead{display:flex;align-items:center;gap:22px;padding:18px 28px;border-bottom:1px solid var(--line)}
 .logo{font-weight:800;font-size:1.4rem;letter-spacing:-.02em;text-decoration:none;color:var(--ink);
@@ -247,6 +249,9 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
 .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .checkset{display:flex;flex-direction:column;gap:6px}
 .checkset label{font-size:.9rem;display:flex;gap:8px;align-items:center;color:var(--ink-2);font-weight:400}
+.checkset .all-opt{font-weight:600;color:var(--ink);padding-right:12px;margin-right:4px;border-right:1px solid var(--line)}
+.checkset[data-facet] .all-opt{border-right:0;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:2px}
+
 .result-meta{font-size:.88rem;color:var(--muted);margin:0 0 16px}
 .empty{border:1px dashed var(--line-strong);padding:36px;text-align:center;color:var(--muted);border-radius:var(--r);background:var(--fill-3)}
 
@@ -419,6 +424,9 @@ html.underline a{text-decoration:underline !important}
 /* ============================ RESPONSIVE ============================ */
 @media (max-width:980px){
   .with-aside,.with-rail{grid-template-columns:1fr}
+  /* org-detail: show contact rail first when stacked on mobile */
+  .with-rail.rail-first-mobile{display:flex;flex-direction:column}
+  .with-rail.rail-first-mobile > .rail{order:-1;margin-bottom:18px}
   .leftnav,.rail{border:0;border-bottom:1px solid var(--line)}
   .g4{grid-template-columns:repeat(2,1fr)}
   .dropdown{min-width:auto}
@@ -480,7 +488,7 @@ html.underline a{text-decoration:underline !important}
 .utility .tagline{color:#b6b6bb}
 .utility .helpline{color:#fff}
 .utility .helpline a,.utility a{color:#fff;text-decoration-color:#7a7a80}
-.utility .social span{border-color:#5a5a60;background:transparent;color:#cfcfd4}
+.utility .social span,.utility .social a{border-color:#5a5a60;background:transparent;color:#cfcfd4}
 .utility .btn.sm.primary{background:#fff;color:#1d1d1f;border-color:#fff}
 .utility .btn.sm.primary:hover{background:#e9e9ea}
 .utility .btn.sm{background:transparent;color:#fff;border-color:#6a6a70}
@@ -696,6 +704,17 @@ html.contrast .utility .helpline-cta strong{color:#000}
 html.contrast .hero-mc .card{background:#000;border:1px solid #fff}
 html.contrast .hero-mc .bg{background:#222}
 
+/* org-detail: multiple meeting records ("where we meet") */
+.meet-list{display:flex;flex-direction:column;gap:12px;margin:0 0 8px}
+.meet-card{border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:var(--r-sm);padding:14px 16px;background:#fff}
+.meet-name{font-weight:700;font-size:1rem;margin-bottom:8px}
+.meet-grid{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:14px}
+.meet-grid > div{display:flex;flex-direction:column}
+.meet-grid strong{font-size:1.05rem;line-height:1.2}
+.meet-grid span{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:2px}
+@media (max-width:680px){ .meet-grid{grid-template-columns:1fr} }
+html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#fff}
+
 </style>
 </head>
 <body data-page="about-bi">
@@ -716,6 +735,7 @@ html.contrast .hero-mc .bg{background:#222}
           <div class="field"><label for="aud">Who it's for</label><select id="aud"><option value="">Anyone</option></select></div>
           <div class="field"><label for="type">Format</label><select id="type"><option value="">All formats</option></select></div>
           <div class="field" style="flex:1;min-width:180px"><label for="kw">Search</label><input id="kw" type="search" placeholder="Search the library…"></div>
+          <button class="btn" type="button" data-reset>Reset filters</button>
           <div class="field">
             <label>View</label>
             <div class="segmented" role="group" aria-label="View mode">
@@ -819,7 +839,11 @@ window.HData = {
     { name:"Headway Yorkshire", type:"group", region:"Yorkshire", x:55, y:34,
       services:["Day centre","Cognitive rehab"], meta:"Branch · day services", postcodes:["ls","yo","hd","s"],
       d:{ address:"Unit 4, Kirkstall Business Park, Leeds, LS5 3BF", phone:"0113 496 0100", email:"hello@headwayyorkshire.org.uk", web:"headwayyorkshire.org.uk",
-        meet:{ day:"Tuesdays & Thursdays", time:"10:00am – 3:00pm", venue:"Kirkstall day centre (and online drop-in Fridays)" },
+        meetings:[
+          { name:"Leeds day centre", day:"Tuesdays & Thursdays", time:"10:00am – 3:00pm", venue:"Kirkstall Business Park, Leeds LS5 3BF" },
+          { name:"Wakefield support group", day:"1st Monday monthly", time:"6:30pm – 8:30pm", venue:"Wakefield Community Centre" },
+          { name:"Online drop-in", day:"Fridays", time:"11:00am – 12:00pm", venue:"Online (Zoom)" }
+        ],
         activities:["Cognitive rehabilitation groups","Art & music therapy","Carer support group","Peer mentoring","Lunch club"],
         about:"Headway Yorkshire is an independent charity affiliated to Headway UK, providing day services and rehabilitation for brain injury survivors across West and North Yorkshire.",
         further:[["How do I join?","Most people are referred by a health or social care professional, but you can also contact us directly for an informal chat and assessment."],["Is there a cost?","Some services are funded; others may be self-funded or covered by a personal budget. We will talk you through the options."],["Do you support carers?","Yes — we run a dedicated carer support group and can signpost to further help."]] } },
@@ -1008,6 +1032,7 @@ window.HData = {
           ["Take part in an event", "events.html"],
           ["Volunteer", "volunteer.html"],
           ["Corporate partnerships", "corporate.html"],
+          ["Shop with Headway", "shop.html"],
         ]],
       ],
       promo: ["Your support changes lives", "See the difference your donation makes after brain injury.", "donate.html"] },
@@ -1095,9 +1120,16 @@ window.HData = {
           <span class="hl-text"><span class="hl-label">Need to talk?</span><strong>${HELPLINE}</strong></span>
         </a>
         <a class="btn sm primary" href="donate.html">Donate</a>
+        <a class="btn sm" href="shop.html">Shop</a>
         <a class="btn sm" href="get-involved.html">Join</a>
         <span class="social" aria-label="Follow us">
-          <span>f</span><span>X</span><span>in</span><span>IG</span>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="X (formerly Twitter)">X</a>
+          <a href="#" aria-label="Bluesky"><svg viewBox="0 0 32 32" width="14" height="13" fill="currentColor" aria-hidden="true"><path d="M16 12c-1.7-3-4.8-5.5-8-5.5-2.3 0-3.7 1.5-3.7 3.8 0 3 2.5 5.2 6.4 6.6-3.6 1-5.7 2.6-5.7 5 0 2 1.5 3.3 3.7 3.3 3 0 5.6-2.6 7.3-5.8 1.7 3.2 4.3 5.8 7.3 5.8 2.2 0 3.7-1.3 3.7-3.3 0-2.4-2.1-4-5.7-5 3.9-1.4 6.4-3.6 6.4-6.6 0-2.3-1.4-3.8-3.7-3.8-3.2 0-6.3 2.5-8 5.5z"/></svg></a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="YouTube">▶</a>
+          <a href="https://healthunlocked.com/headway" aria-label="Discussion forum on HealthUnlocked"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M5 3h14a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-8l-4 4v-4H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z"/></svg></a>
         </span>
       </div>
     </div>
@@ -1167,10 +1199,12 @@ window.HData = {
       <div class="social-links" aria-label="Follow Headway on social media">
         <span class="sl-label">Follow us</span>
         <a href="#" aria-label="Facebook"><span class="sl-ic">f</span> Facebook</a>
-        <a href="#" aria-label="X (Twitter)"><span class="sl-ic">X</span> X</a>
+        <a href="#" aria-label="X (formerly Twitter)"><span class="sl-ic">X</span> X</a>
+        <a href="#" aria-label="Bluesky"><span class="sl-ic"><svg viewBox="0 0 32 32" width="14" height="13" fill="currentColor" aria-hidden="true"><path d="M16 12c-1.7-3-4.8-5.5-8-5.5-2.3 0-3.7 1.5-3.7 3.8 0 3 2.5 5.2 6.4 6.6-3.6 1-5.7 2.6-5.7 5 0 2 1.5 3.3 3.7 3.3 3 0 5.6-2.6 7.3-5.8 1.7 3.2 4.3 5.8 7.3 5.8 2.2 0 3.7-1.3 3.7-3.3 0-2.4-2.1-4-5.7-5 3.9-1.4 6.4-3.6 6.4-6.6 0-2.3-1.4-3.8-3.7-3.8-3.2 0-6.3 2.5-8 5.5z"/></svg></span> Bluesky</a>
         <a href="#" aria-label="Instagram"><span class="sl-ic">IG</span> Instagram</a>
         <a href="#" aria-label="LinkedIn"><span class="sl-ic">in</span> LinkedIn</a>
         <a href="#" aria-label="YouTube"><span class="sl-ic">▶</span> YouTube</a>
+        <a href="https://healthunlocked.com/headway" aria-label="Discussion forum on HealthUnlocked"><span class="sl-ic"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M5 3h14a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-8l-4 4v-4H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z"/></svg></span> Discussion forum</a>
       </div>
       <div class="legal">
         <span class="badge">Fundraising Regulator</span>
@@ -1482,7 +1516,23 @@ window.HData = {
       });
       Headway.initDonateWidget(el);
     });
+    wireResets();
   });
+
+  // Reusable filter reset: any [data-reset] button clears the controls in its
+  // filter bar and re-triggers the page's existing filter listeners.
+  function wireResets() {
+    document.querySelectorAll("[data-reset]").forEach(btn => {
+      if (btn._reset) return; btn._reset = true;
+      btn.addEventListener("click", () => {
+        const bar = btn.closest(".filterbar") || document;
+        bar.querySelectorAll("select").forEach(s => { s.value = ""; s.dispatchEvent(new Event("change", { bubbles: true })); });
+        bar.querySelectorAll("input[type=search],input[type=text]").forEach(i => { i.value = ""; i.dispatchEvent(new Event("input", { bubbles: true })); });
+        bar.querySelectorAll("input[type=checkbox]").forEach(c => { if (c.checked) { c.checked = false; c.dispatchEvent(new Event("change", { bubbles: true })); } });
+      });
+    });
+  }
+  Headway.wireResets = wireResets;
 
   function wireFrame() {
     const PRETTY = {
@@ -1493,7 +1543,7 @@ window.HData = {
       "find-local-support":"supporting-you/in-your-area", "org-detail":"supporting-you/in-your-area/organisation", "id-card":"supporting-you/brain-injury-id-card",
       "someone-i-know":"supporting-you/someone-i-know-has-a-brain-injury",
       "get-involved":"get-involved", "donate":"get-involved/donate", "events":"get-involved/events",
-      "volunteer":"get-involved/volunteer-with-us", "fundraise":"get-involved/fundraise", "corporate":"get-involved/corporate-partnerships",
+      "volunteer":"get-involved/volunteer-with-us", "fundraise":"get-involved/fundraise", "corporate":"get-involved/corporate-partnerships", "shop":"get-involved/shop-with-headway-uk",
       "for-professionals":"professionals", "training":"professionals/training", "justice-project":"professionals/justice-project", "refer":"professionals/refer-someone",
       "about-headway":"about-headway", "vacancies":"about-headway/working-with-us/vacancies", "staff-directory":"about-headway/working-with-us/our-team",
       "news":"news-and-campaigns/news", "news-article":"news-and-campaigns/news/article",
