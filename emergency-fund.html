@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Get involved — Headway (wireframe)</title>
+<title>Headway Emergency Fund — wireframe</title>
 <style>
 /* ==========================================================================
    Headway rebuild — MID-FIDELITY WIREFRAMES
@@ -820,60 +820,58 @@ html.contrast .downloads,html.contrast .dl-list a,html.contrast .dl-ic{backgroun
 
 </style>
 </head>
-<body data-page="get-involved">
+<body data-page="supporting-you">
 <div class="page">
   <header id="site-header"></header>
-  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › Get involved</nav>
+  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › <a href="supporting-you.html">Supporting you</a> › Emergency fund</nav>
 
   <main id="main">
-    <section class="section">
-      <h1>Get involved</h1>
-      <p class="lede">However you choose to help, you make it possible for us to be there after brain injury.</p>
+    <section class="section with-rail" style="padding:0">
+      <div style="padding:26px 30px;min-width:0">
+        <h1>Headway Emergency Fund</h1>
+        <p class="lede">The Headway Emergency Fund provides small grants to brain injury survivors experiencing financial hardship, to help with essential items and costs.</p>
+        <div class="anno"><b>FORM-005 · reused eligibility pattern</b><span>Reuses the brain injury ID card eligibility self-check pattern. Questions mirror the emergency fund application form. Reachable from the Supporting you menu.</span></div>
 
-      <!-- clear next steps (user story: don't drop off) -->
-      <div class="grid g4" style="margin:18px 0">
-        <a class="card link" href="donate.html"><div class="pad"><h3>Donate</h3><p style="color:var(--muted);margin:0">A one-off or regular gift.</p></div></a>
-        <a class="card link" href="fundraise.html"><div class="pad"><h3>Fundraise</h3><p style="color:var(--muted);margin:0">Take on a challenge your way.</p></div></a>
-        <a class="card link" href="volunteer.html"><div class="pad"><h3>Volunteer</h3><p style="color:var(--muted);margin:0">Give your time and skills.</p></div></a>
-        <a class="card link" href="events.html"><div class="pad"><h3>Events</h3><p style="color:var(--muted);margin:0">Find an event near you.</p></div></a>
-      </div>
-    </section>
+        <div class="mini-nav"><a href="#about">About the fund</a> · <a href="#covers">What it covers</a> · <a href="#eligible">Check eligibility</a></div>
 
-    <!-- impact + stories (donor user stories) -->
-    <section class="section">
-      <h2>The difference you make</h2>
-      <div class="grid g3">
-        <div class="stat"><strong>122,000</strong><span>helpline queries answered last year</span></div>
-        <div class="stat"><strong>400+</strong><span>families supported by the emergency fund</span></div>
-        <div class="stat"><strong>83p</strong><span>of every £1 goes to supporting people</span></div>
-      </div>
+        <h2 id="about">About the fund</h2>
+        <p>Life after brain injury can bring sudden financial pressure. The emergency fund offers one-off grants to help survivors who are struggling to afford essential items. Applications must be supported by a professional or third party (for example a social worker, case manager, occupational therapist or a Headway group) who can verify the person's situation.</p>
 
-      <div class="card" style="margin:22px 0"><div class="pad" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-        <div class="ph" style="flex:0 0 200px">Story image</div>
-        <div style="flex:1;min-width:240px"><span class="tag">Survivor story</span><h3>“Headway gave my family hope.”</h3><p style="color:var(--muted);margin:0 0 .6em">Real stories show exactly where your support goes.</p><a href="brain-injury-and-me.html">Read more stories →</a></div>
-      </div></div>
-    </section>
-
-    <!-- more ways -->
-    <section class="section">
-      <h2>More ways to support us</h2>
-      <div class="grid g3">
-        <div class="card"><div class="pad"><h3>Volunteer with us</h3><p style="color:var(--muted)">Find opportunities at Headway UK and your local group.</p><a class="btn" href="volunteer.html">Volunteering opportunities</a></div></div>
-        <div class="card"><div class="pad"><h3>Give in memory</h3><p style="color:var(--muted)">Honour someone special with a tribute gift.</p><a class="btn" href="donate.html">Give in memory</a></div></div>
-        <div class="card"><div class="pad"><h3>Corporate partnerships</h3><p style="color:var(--muted)">Partner with us — see the impact and benefits.</p><a class="btn" href="corporate.html">Partner with us</a></div></div>
-      </div>
-    </section>
-
-    <!-- DONATE FORM — positioned last, immediately before the footer -->
-    <section class="section">
-      <div class="give-band">
-        <div class="copy">
-          <p class="eyebrow">Make a donation</p>
-          <h2>Give a one-off or regular gift</h2>
-          <p>Choose an amount to see the difference it makes, then continue to complete your donation. You can also give in memory of someone special.</p>
+        <h2 id="covers">What the fund can and can't help with</h2>
+        <div class="grid g2">
+          <div class="card"><div class="pad"><h3>Can help with</h3><ul><li>Essential household items (e.g. cooker, fridge, bed)</li><li>Specialist equipment not funded elsewhere</li><li>Priority bills in a crisis</li><li>Costs that support recovery and independence</li></ul></div></div>
+          <div class="card"><div class="pad"><h3>Can't usually help with</h3><ul><li>Existing debts or loan repayments</li><li>Items already purchased</li><li>Ongoing or regular costs</li><li>Needs met by statutory funding</li></ul></div></div>
         </div>
-        <div data-donate-widget data-link="false"></div>
+
+        <h2 id="eligible" style="margin-top:24px">Check if you're eligible</h2>
+        <div class="card"><div class="pad">
+          <p style="margin-top:0">Answer a few quick questions. This is a guide only and doesn't guarantee a grant.</p>
+          <div class="fld"><label>Has the person had an acquired brain injury?</label>
+            <div class="chipset" data-q="q1"><button class="chip" data-v="yes">Yes</button><button class="chip" data-v="no">No</button></div></div>
+          <div class="fld"><label>Are they resident in the UK?</label>
+            <div class="chipset" data-q="q2"><button class="chip" data-v="yes">Yes</button><button class="chip" data-v="no">No</button></div></div>
+          <div class="fld"><label>Are they experiencing financial hardship (e.g. on a low income or benefits)?</label>
+            <div class="chipset" data-q="q3"><button class="chip" data-v="yes">Yes</button><button class="chip" data-v="no">No</button></div></div>
+          <div class="fld"><label>Is the request for an essential item or need (not an existing debt or something already bought)?</label>
+            <div class="chipset" data-q="q4"><button class="chip" data-v="yes">Yes</button><button class="chip" data-v="no">No</button></div></div>
+          <div class="fld"><label>Can a professional or third party support the application?</label>
+            <div class="chipset" data-q="q5"><button class="chip" data-v="yes">Yes</button><button class="chip" data-v="no">No</button></div></div>
+          <div class="note-box" id="elig" hidden></div>
+        </div></div>
       </div>
+
+      <aside class="rail">
+        <h3>Apply to the fund</h3>
+        <p style="color:var(--muted)">Applications are made with support from a professional or third party. It takes around 15 minutes.</p>
+        <a class="btn primary block" href="#" onclick="return false" style="margin-bottom:8px">Start an application</a>
+        <a class="btn block" href="helpline.html">Get help applying</a>
+        <div class="note-box" style="margin-top:14px"><strong>Need to talk first?</strong><br><small>Our <a href="helpline.html">helpline</a> can talk through your situation and options.</small></div>
+        <h3 style="margin-top:16px">Related</h3>
+        <ul style="padding-left:18px;color:var(--muted)">
+          <li><a href="useful-organisations.html">Money &amp; benefits organisations</a></li>
+          <li><a href="find-groups.html">Find local support</a></li>
+        </ul>
+      </aside>
     </section>
   </main>
 
@@ -1635,6 +1633,23 @@ html.contrast .downloads,html.contrast .dl-list a,html.contrast .dl-ic{backgroun
   }
 })();
 
+</script>
+<script>
+  const ans={q1:null,q2:null,q3:null,q4:null,q5:null};
+  document.querySelectorAll("[data-q]").forEach(group=>{
+    group.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{
+      group.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed","false"));
+      b.setAttribute("aria-pressed","true"); ans[group.dataset.q]=b.dataset.v; check();
+    });
+  });
+  function check(){
+    if(Object.values(ans).some(v=>v==null)) return;
+    const el=document.getElementById("elig"); el.hidden=false;
+    const allYes=Object.values(ans).every(v=>v==="yes");
+    el.innerHTML = allYes
+      ? "&#9989; <strong>You're likely eligible to apply.</strong> A professional or third party can help you <a href='#' onclick='return false'>start an application</a>."
+      : "&#8505;&#65039; <strong>You may not meet all the standard criteria.</strong> Our <a href='helpline.html'>helpline</a> can talk through your options and other sources of help.";
+  }
 </script>
 </body>
 </html>

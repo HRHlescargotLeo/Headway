@@ -715,6 +715,109 @@ html.contrast .hero-mc .bg{background:#222}
 @media (max-width:680px){ .meet-grid{grid-template-columns:1fr} }
 html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#fff}
 
+/* simplified donate widget handoff note */
+.dw-handoff{font-size:.78rem;color:var(--muted);margin:8px 0 0;text-align:center}
+
+/* ---- reusable local support finder (Currys-inspired horizontal layout) ---- */
+.localfinder .lf-controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;background:var(--fill-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 16px;margin:0 0 14px}
+.localfinder .lf-search{flex:1;min-width:240px}
+.localfinder .lf-region{min-width:190px}
+.localfinder label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.localfinder .lf-row{display:flex;gap:8px}
+.localfinder .lf-pc{flex:1;min-width:0;padding:.6em .7em;border:1px solid var(--line-strong);border-radius:4px;font:inherit}
+.localfinder .lf-rg{width:100%;padding:.6em .7em;border:1px solid var(--line-strong);border-radius:4px;font:inherit;background:#fff}
+.localfinder .lf-or{align-self:center;padding-bottom:8px}
+.localfinder .lf-or span{display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.localfinder .lf-reset{align-self:flex-end}
+.localfinder .lf-refine{border:1px solid var(--line);border-radius:var(--r-sm);margin:0 0 14px;background:#fff}
+.localfinder .lf-refine > summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:.92rem}
+.localfinder .lf-refine-count{color:var(--muted);font-weight:400}
+.localfinder .lf-facets{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;padding:4px 16px 16px}
+.localfinder .lf-facet strong{display:block;font-size:.82rem;margin-bottom:6px}
+/* split: results left, map right (horizontal) */
+.localfinder .lf-split{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+.localfinder .lf-map{min-height:420px;position:sticky;top:12px}
+.localfinder .lf-list{display:flex;flex-direction:column;gap:10px}
+.localfinder .lf-item{display:flex;gap:12px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:var(--r-sm);padding:12px 14px;background:#fff}
+.localfinder .lf-item h3{font-size:1.02rem;margin:0 0 3px}
+.localfinder .lf-item-meta{color:var(--muted);font-size:.85rem;margin:0 0 6px}
+.localfinder .lf-contact{display:flex;flex-wrap:wrap;gap:8px;font-size:.85rem}
+.localfinder .lf-contact .sep{color:var(--faint)}
+.localfinder .lf-view{flex:0 0 auto}
+.localfinder .lf-meta{margin:0 0 10px}
+@media (max-width:820px){
+  .localfinder .lf-split{grid-template-columns:1fr}
+  .localfinder .lf-map{position:relative;min-height:240px;order:-1}
+  .localfinder .lf-or{width:100%;padding:0}
+  .localfinder .lf-or span::before,.localfinder .lf-or span::after{content:"";flex:1;border-top:1px solid var(--line);margin:0 8px}
+  .localfinder .lf-or span{display:flex;width:100%}
+}
+html.contrast .localfinder .lf-item,html.contrast .localfinder .lf-rg{background:#000;color:#fff}
+
+/* ---- AI assistant / chatbot embed ---- */
+.chatbot{border:1px solid var(--line-strong);border-radius:var(--r-md);overflow:hidden;background:#fff;max-width:560px}
+.chatbot.compact{max-width:none}
+.chatbot .cb-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--ink);color:#fff}
+.chatbot .cb-avatar{width:32px;height:32px;border-radius:50%;background:#fff;color:var(--ink);display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem;flex:0 0 auto}
+.chatbot .cb-head strong{display:block;font-size:.95rem}
+.chatbot .cb-status{font-size:.72rem;color:#c9c9cf}
+.chatbot .cb-body{padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--fill-2);max-height:340px;overflow:auto}
+.chatbot .cb-msg{max-width:82%;padding:9px 12px;border-radius:14px;font-size:.9rem;line-height:1.4}
+.chatbot .cb-msg.bot{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px;align-self:flex-start}
+.chatbot .cb-msg.user{background:var(--ink);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.chatbot .cb-chips{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start}
+.chatbot .cb-chip{border:1px solid var(--line-strong);background:#fff;border-radius:16px;padding:6px 12px;font-size:.82rem;cursor:pointer}
+.chatbot .cb-chip:hover{background:var(--fill-2)}
+.chatbot .cb-input{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+.chatbot .cb-input input{flex:1;padding:.55em .7em;border:1px solid var(--line-strong);border-radius:20px;font:inherit}
+.chatbot .cb-foot{font-size:.72rem;color:var(--muted);margin:0;padding:0 14px 12px}
+html.contrast .chatbot{background:#000;border-color:#fff}
+html.contrast .chatbot .cb-msg.bot{background:#000;color:#fff;border-color:#fff}
+html.contrast .chatbot .cb-body{background:#111}
+
+/* find local support service picker */
+.service-picker{background:var(--fill-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;max-width:520px}
+.service-picker label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.service-picker select{flex:1;min-width:0;padding:.6em .7em;border:1px solid var(--line-strong);border-radius:4px;font:inherit;background:#fff}
+
+/* home charity golf day promo band */
+.promo-band{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:#fff}
+.promo-band .promo-media{min-height:240px;border:0;border-radius:0;border-right:1px solid var(--img-line)}
+.promo-band .promo-copy{padding:26px 30px;display:flex;flex-direction:column;justify-content:center}
+.promo-band .promo-copy h2{margin:.2em 0 .3em}
+.promo-band .promo-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+@media (max-width:820px){ .promo-band{grid-template-columns:1fr} .promo-band .promo-media{border-right:0;border-bottom:1px solid var(--img-line);min-height:180px} }
+html.contrast .promo-band{background:#000;border-color:#fff}
+
+/* accordion rich media (video + image) demonstration */
+.acc-badge{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:1px 8px;margin-left:8px}
+.media-embed{display:flex;align-items:center;gap:10px;background:var(--img);border:1px solid var(--img-line);border-radius:var(--r-sm);min-height:120px;justify-content:center;color:var(--muted);font-size:.9rem;margin:10px 0}
+.media-embed .pl{width:34px;height:34px;border-radius:50%;background:#fff;border:1px solid var(--line-strong);display:inline-flex;align-items:center;justify-content:center}
+.acc-figure{margin:10px 0 0}
+.acc-figure .ph{min-height:120px}
+.acc-figure figcaption{font-size:.8rem;color:var(--muted);margin-top:6px}
+
+/* org-detail: bigger, more spread-out tags + social links */
+.org-detail-page .od-taggroup{margin:0 0 16px}
+.org-detail-page .od-tags{display:flex;flex-wrap:wrap;gap:8px 10px}
+.org-detail-page .od-tags .tag{font-size:.85rem;padding:6px 13px;border-radius:16px;line-height:1.3}
+.org-detail-page .od-social{display:flex;gap:8px}
+.org-detail-page .od-social a{text-decoration:none}
+.org-detail-page .od-social .sl-ic{width:30px;height:30px;border:1px solid var(--line-strong);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--muted)}
+.org-detail-page .od-social a:hover .sl-ic{color:var(--ink);border-color:var(--ink)}
+
+/* related downloads / PDF links (news articles) */
+.downloads{border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;margin:20px 0;background:var(--fill-2)}
+.downloads h2{margin:0 0 10px;font-size:1.05rem}
+.dl-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.dl-list a{display:flex;align-items:center;gap:12px;text-decoration:none;border:1px solid var(--line);background:#fff;border-radius:var(--r-sm);padding:10px 12px}
+.dl-list a:hover{border-color:var(--ink)}
+.dl-ic{flex:0 0 auto;font-size:.62rem;font-weight:700;letter-spacing:.03em;color:var(--muted);border:1px solid var(--line-strong);border-radius:3px;padding:6px 7px;background:#fff}
+.dl-meta{display:flex;flex-direction:column;line-height:1.25}
+.dl-meta small{color:var(--muted);font-size:.76rem}
+.dl-list.compact a{padding:8px 10px}
+html.contrast .downloads,html.contrast .dl-list a,html.contrast .dl-ic{background:#000;color:#fff}
+
 </style>
 </head>
 <body data-page="about">
@@ -803,12 +906,14 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
           ["Find local support near you", "find-local-support.html"],
           ["Someone I know has a brain injury", "someone-i-know.html"],
           ["Brain injury ID card", "id-card.html"],
-          ["Emergency fund", "topic.html"],
+          ["Emergency fund", "emergency-fund.html"],
         ]],
-        ["Browse information", [
-          ["Information library", "information-library.html"],
+        ["Find local support", [
+          ["Groups &amp; branches", "find-groups.html"],
+          ["Brain injury solicitors", "find-solicitors.html"],
+          ["Approved care providers", "find-care.html"],
+          ["Charity shops", "find-shops.html"],
           ["Useful organisations", "useful-organisations.html"],
-          ["Search the site", "search.html"],
         ]],
       ],
       promo: ["Need to talk?", "Our helpline is open Mon–Fri, 9am–5pm. " + HELPLINE, "helpline.html"] },
@@ -822,7 +927,6 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
           ["Common brain injury terms (A–Z)", "glossary.html"],
           ["Dealing with brain injury (A–Z)", "dealing-with-brain-injury.html"],
           ["Useful organisations", "useful-organisations.html"],
-          ["Information library", "information-library.html"],
         ]],
         ["Real experiences", [
           ["Brain Injury &amp; Me — stories", "brain-injury-and-me.html"],
@@ -857,8 +961,8 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
         ["For professionals", [
           ["Refer someone to Headway", "refer.html"],
           ["Justice project", "justice-project.html"],
-          ["Approved providers", "find-local-support.html?tab=care"],
-          ["Find a solicitor", "find-local-support.html?tab=solicitor"],
+          ["Approved providers", "find-care.html"],
+          ["Find a solicitor", "find-solicitors.html"],
         ]],
       ],
       promo: ["Courses for your role", "Filter training by role, topic and level.", "training.html"] },
@@ -871,6 +975,7 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
           ["Our team", "staff-directory.html"],
           ["News &amp; campaigns", "news.html"],
           ["Events", "events.html"],
+          ["Safeguarding", "safeguarding.html"],
         ]],
         ["Work with us", [
           ["Vacancies", "vacancies.html"],
@@ -980,7 +1085,6 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
           <ul>
             <li><a href="helpline.html">Helpline</a></li>
             <li><a href="find-local-support.html">Find local support</a></li>
-            <li><a href="information-library.html">Information library</a></li>
             <li><a href="glossary.html">A–Z of terms</a></li>
             <li><a href="id-card.html">Brain injury ID card</a></li>
           </ul>
@@ -1070,28 +1174,27 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
       <div class="donate-widget panel${compact}">
         <div class="cardhead"><h3>${title}</h3>${link}</div>
         <div class="dw-body">
-          <div class="anno"><b>FORM-007</b><span>Reusable donate block — same component embedded across the site; carries the chosen gift into the full donation flow.</span></div>
+          <div class="anno"><b>FORM-007 · FORM-008 · INT-002</b><span>Reusable donate block — choose frequency and amount, then continue to our secure payment provider (third party) for details, Gift Aid and payment.</span></div>
           <div class="segmented dw-freq" role="group" aria-label="Frequency">
             <button type="button" data-freq="once" aria-pressed="true">Single gift</button>
             <button type="button" data-freq="monthly" aria-pressed="false">Monthly</button>
           </div>
           <div class="dw-amounts"></div>
           <input class="dw-custom" inputmode="decimal" placeholder="Other amount (£)" aria-label="Other amount in pounds">
-          <label class="dw-giftaid"><input type="checkbox"> <span>Add <strong>Gift Aid</strong> (+25%) — I am a UK taxpayer.</span></label>
           <div class="note-box dw-impact">Select an amount to see the difference it makes.</div>
-          <a class="btn primary block dw-go" href="donate.html">Donate</a>
+          <a class="btn primary block dw-go" href="donate.html">Continue to donate</a>
+          <p class="dw-handoff">You'll finish your donation securely on our payment provider's site.</p>
         </div>
       </div>`;
     },
 
     initDonateWidget(root) {
       const D = Headway.DONATE;
-      const st = { freq: "once", amount: null, giftaid: false };
+      const st = { freq: "once", amount: null };
       const amountsWrap = root.querySelector(".dw-amounts");
       const custom = root.querySelector(".dw-custom");
       const impact = root.querySelector(".dw-impact");
       const go = root.querySelector(".dw-go");
-      const giftaid = root.querySelector(".dw-giftaid input");
 
       function renderAmounts() {
         amountsWrap.innerHTML = D.presets[st.freq].map(a =>
@@ -1106,10 +1209,9 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
         impact.textContent = (st.amount && D.impact[st.amount]) ? D.impact[st.amount]
           : (st.amount ? `Thank you — £${st.amount}${st.freq === "monthly" ? " a month" : ""} makes a real difference.`
           : "Select an amount to see the difference it makes.");
-        go.textContent = st.amount ? `Donate £${st.amount}${st.freq === "monthly" ? "/mo" : ""}` : "Donate";
+        go.textContent = st.amount ? `Continue to donate £${st.amount}${st.freq === "monthly" ? "/mo" : ""}` : "Continue to donate";
         const q = new URLSearchParams({ freq: st.freq });
         if (st.amount) q.set("amount", st.amount);
-        if (st.giftaid) q.set("giftaid", "1");
         go.setAttribute("href", "donate.html?" + q.toString());
       }
       root.querySelectorAll(".dw-freq button").forEach(b => b.onclick = () => {
@@ -1122,11 +1224,173 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
         amountsWrap.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", "false"));
         sync();
       });
-      giftaid.addEventListener("change", () => { st.giftaid = giftaid.checked; sync(); });
       renderAmounts(); sync();
     }
   };
   window.Headway = Headway;
+
+  // ---- reusable Local Support finder (embeddable on any page, one service each) ----
+  Headway.SERVICE = {
+    groupbranch: { label:"groups & branches", types:["group","branch"], noun:"group or branch" },
+    solicitor:   { label:"solicitors",        types:["solicitor"],       noun:"solicitor" },
+    care:        { label:"approved care providers", types:["care"],       noun:"care provider" },
+    shop:        { label:"charity shops",      types:["shop"],            noun:"charity shop" }
+  };
+  function hashStr(s){let h=5381;for(const c of s)h=((h*33)^c.charCodeAt(0))>>>0;return h;}
+  function contactFor(o){
+    const d=o.d||{};
+    const slug=o.name.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"");
+    const h=hashStr(o.name);
+    const email = d.email!==undefined ? d.email : (h%4!==0 ? slug.slice(0,16)+"@example.org.uk" : "");
+    const phone = d.phone!==undefined ? d.phone : (h%5!==0 ? "0"+(1+h%8)+((100+h%900))+" "+(100000+h%900000) : "");
+    const web   = d.web!==undefined   ? d.web   : (h%3!==0 ? slug.slice(0,18)+".org.uk" : "");
+    return { email, phone, web };
+  }
+  Headway.localFinder = function (opts) {
+    const mount = opts.mount; if (!mount) return;
+    const svc = Headway.SERVICE[opts.service] || Headway.SERVICE.groupbranch;
+    const O = (window.HData && HData.orgs || []).filter(o => svc.types.includes(o.type));
+    const regions = [...new Set(O.map(o => o.region))].sort();
+    const state = { pc:"", region:"", care:{}, cases:new Set() };
+    const CAREFACETS = [
+      { key:"level", field:"level", label:"Level of care" },
+      { key:"spec",  field:"speciality", label:"Unit speciality" },
+      { key:"adm",   field:"admission", label:"Admission criteria" },
+      { key:"accom", field:"accom", label:"Type of accommodation" }
+    ];
+    CAREFACETS.forEach(f => state.care[f.key] = new Set());
+
+    // build refine panel (care facets / solicitor case types) — compact & collapsible
+    let refine = "";
+    if (opts.service === "care") {
+      refine = CAREFACETS.map(f => {
+        const optsv=[...new Set(O.flatMap(o=>o[f.field]||[]))].sort();
+        return `<div class="lf-facet"><strong>${f.label}</strong><div class="checkset" data-facet="${f.key}">
+          <label class="all-opt"><input type="checkbox" data-all checked> All</label>
+          ${optsv.map(v=>`<label><input type="checkbox" value="${v.replace(/"/g,'&quot;')}"> ${v}</label>`).join("")}</div></div>`;
+      }).join("");
+    } else if (opts.service === "solicitor") {
+      const cases=[...new Set(O.flatMap(o=>o.services||[]))].sort();
+      refine = `<div class="lf-facet"><strong>Case type &amp; services</strong><div class="checkset" data-facet="cases" style="flex-direction:row;flex-wrap:wrap;gap:12px">
+        <label class="all-opt"><input type="checkbox" data-all checked> All</label>
+        ${cases.map(c=>`<label><input type="checkbox" value="${c}"> ${c}</label>`).join("")}</div></div>`;
+    }
+    const refineBlock = refine ? `<details class="lf-refine"><summary>Refine ${svc.label} <span class="lf-refine-count"></span></summary><div class="lf-facets">${refine}</div></details>` : "";
+
+    mount.innerHTML = `
+      <div class="localfinder" data-service="${opts.service}">
+        <div class="anno"><b>DIR-001 · DIR-005 · INT-001 (Salesforce) · INT-003 (Maps)</b><span>Reusable local-support finder — one embeddable component, placed on a page per service (${svc.label}). Postcode search and region browse are separate, either can be used. Results show contact details.</span></div>
+        <div class="lf-controls">
+          <div class="lf-search">
+            <label for="lf-pc-${opts.service}">Search by postcode or town</label>
+            <div class="lf-row"><input id="lf-pc-${opts.service}" class="lf-pc" type="search" placeholder="e.g. LS1 or Leeds"><button class="btn primary lf-go" type="button">Search</button></div>
+          </div>
+          <div class="lf-or"><span>or</span></div>
+          <div class="lf-region">
+            <label for="lf-rg-${opts.service}">Browse by region</label>
+            <select id="lf-rg-${opts.service}" class="lf-rg"><option value="">All regions</option>${regions.map(r=>`<option>${r}</option>`).join("")}</select>
+          </div>
+          <button class="btn lf-reset" type="button">Reset</button>
+        </div>
+        ${refineBlock}
+        <div class="lf-split">
+          <div class="lf-results">
+            <p class="lf-meta result-meta"></p>
+            <div class="lf-list"></div>
+            <div class="empty lf-empty" hidden>No ${svc.label} match. <button class="btn sm lf-reset2" type="button">Reset</button></div>
+          </div>
+          <div class="lf-mapwrap"><div class="maparea lf-map"><div class="scrim"></div><span class="lbl">Map view (schematic)</span></div></div>
+        </div>
+      </div>`;
+
+    const listEl = mount.querySelector(".lf-list");
+    const mapEl = mount.querySelector(".lf-map");
+    const metaEl = mount.querySelector(".lf-meta");
+    const emptyEl = mount.querySelector(".lf-empty");
+
+    function matches(o){
+      if (state.region && o.region !== state.region) return false;
+      if (state.pc){ const p=state.pc.toLowerCase().replace(/\s+/g,""); const hit=(o.postcodes||[]).some(pc=>p.startsWith(pc))||o.region.toLowerCase().includes(state.pc.toLowerCase()); if(!hit) return false; }
+      if (opts.service==="solicitor" && state.cases.size){ if(![...state.cases].every(c=>(o.services||[]).includes(c))) return false; }
+      if (opts.service==="care"){ for(const f of CAREFACETS){ const sel=state.care[f.key]; if(sel.size && ![...sel].some(v=>(o[f.field]||[]).includes(v))) return false; } }
+      return true;
+    }
+    function contactLine(o){
+      const c=contactFor(o); const bits=[];
+      if(c.phone) bits.push(`<a href="#" onclick="return false">&#9742; ${c.phone}</a>`);
+      if(c.email) bits.push(`<a href="#" onclick="return false">&#9993; ${c.email}</a>`);
+      if(c.web)   bits.push(`<a href="#" onclick="return false">&#127760; ${c.web}</a>`);
+      return `<div class="lf-contact">${bits.join('<span class="sep">·</span>')||'<span class="muted">Contact details on request</span>'}</div>`;
+    }
+    function render(){
+      const list=O.filter(matches);
+      metaEl.textContent = `${list.length} ${svc.label}`+(state.region?` in ${state.region}`:"")+(state.pc?` near “${state.pc}”`:"");
+      emptyEl.hidden = list.length>0;
+      listEl.innerHTML = list.map(o=>`
+        <div class="lf-item">
+          <div class="lf-item-main">
+            <h3><a href="org-detail.html?org=${encodeURIComponent(o.name)}">${o.name}</a></h3>
+            <p class="lf-item-meta">${o.region}${o.meta?` · ${o.meta}`:""}</p>
+            ${contactLine(o)}
+          </div>
+          <a class="btn sm lf-view" href="org-detail.html?org=${encodeURIComponent(o.name)}">View</a>
+        </div>`).join("");
+      mapEl.querySelectorAll(".mappin").forEach(p=>p.remove());
+      list.forEach(o=>{ const pin=document.createElement("div"); pin.className="mappin"; pin.style.left=o.x+"%"; pin.style.top=o.y+"%";
+        pin.innerHTML=`<div class="dot"></div><span class="cap">${o.name.replace('Headway ','').replace('Headway Charity Shop — ','')}</span>`; mapEl.appendChild(pin); });
+      const rc=mount.querySelector(".lf-refine-count");
+      if(rc){ const n = state.cases.size + Object.values(state.care).reduce((a,s)=>a+s.size,0); rc.textContent = n?`(${n} applied)`:""; }
+    }
+    // wire controls
+    const pcEl=mount.querySelector(".lf-pc"), rgEl=mount.querySelector(".lf-rg");
+    mount.querySelector(".lf-go").onclick=()=>{ state.pc=pcEl.value; render(); };
+    pcEl.addEventListener("keydown",e=>{ if(e.key==="Enter"){ state.pc=pcEl.value; render(); } });
+    rgEl.addEventListener("change",()=>{ state.region=rgEl.value; render(); });
+    function resetAll(){ state.pc="";state.region=""; pcEl.value="";rgEl.value="";
+      state.cases.clear(); CAREFACETS.forEach(f=>state.care[f.key].clear());
+      mount.querySelectorAll('.checkset input:not([data-all])').forEach(c=>c.checked=false);
+      mount.querySelectorAll('.checkset input[data-all]').forEach(c=>c.checked=true); render(); }
+    mount.querySelector(".lf-reset").onclick=resetAll;
+    const r2=mount.querySelector(".lf-reset2"); if(r2) r2.onclick=resetAll;
+    // refine facet wiring
+    mount.querySelectorAll('.checkset').forEach(group=>{
+      const key=group.dataset.facet; const allcb=group.querySelector('input[data-all]');
+      const store = key==="cases" ? state.cases : state.care[key];
+      allcb && allcb.addEventListener("change",()=>{ store.clear(); group.querySelectorAll('input:not([data-all])').forEach(c=>c.checked=false); allcb.checked=true; render(); });
+      group.querySelectorAll('input:not([data-all])').forEach(cb=>cb.addEventListener("change",()=>{
+        cb.checked?store.add(cb.value):store.delete(cb.value); if(allcb) allcb.checked=store.size===0; render(); }));
+    });
+    // deep-link ?pc= / ?region=
+    const pPc=Headway.param("pc"), pRg=Headway.param("region");
+    if(pPc){ state.pc=pPc; pcEl.value=pPc; }
+    if(pRg){ state.region=pRg; rgEl.value=pRg; }
+    render();
+  };
+
+  // ---- AI assistant / chatbot embed component (INT-007) ----
+  Headway.chatWidget = function (opts) {
+    const mount = opts.mount; if (!mount) return;
+    const title = (opts && opts.title) || "Ask Headway";
+    const compact = opts && opts.compact ? " compact" : "";
+    mount.innerHTML = `
+      <div class="chatbot${compact}" role="region" aria-label="${title}">
+        <div class="anno"><b>INT-007</b><span>Embeddable AI assistant component — Headway's chatbot placed in a content zone. Behaviour/appearance per Headway's build; this is a wireframe representation.</span></div>
+        <div class="cb-head"><span class="cb-avatar" aria-hidden="true">◍</span><div><strong>${title}</strong><span class="cb-status">Online · typical reply instantly</span></div></div>
+        <div class="cb-body">
+          <div class="cb-msg bot">Hi, I'm the Headway assistant. I can help you find information and support. What are you looking for today?</div>
+          <div class="cb-chips">
+            <button type="button" class="cb-chip">Find local support</button>
+            <button type="button" class="cb-chip">Brain injury ID card</button>
+            <button type="button" class="cb-chip">Talk to the helpline</button>
+          </div>
+          <div class="cb-msg user">How do I get a brain injury ID card?</div>
+          <div class="cb-msg bot">You can apply online in about 10 minutes. I can take you to the ID card page, or check your eligibility first — which would you prefer?</div>
+        </div>
+        <div class="cb-input"><input type="text" placeholder="Type your message…" aria-label="Message"><button class="btn sm primary" type="button">Send</button></div>
+        <p class="cb-foot">This assistant gives general information and isn't a substitute for the helpline. In an emergency call 999.</p>
+      </div>`;
+  };
+
 
   // ---- reusable A–Z list (used by the glossary and "Dealing with brain injury") ----
   Headway.azWidget = function (opts) {
@@ -1327,6 +1591,14 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
       });
       Headway.initDonateWidget(el);
     });
+    // mount reusable local-support finders
+    document.querySelectorAll("[data-local-finder]").forEach(el => {
+      Headway.localFinder({ mount: el, service: el.getAttribute("data-service") || "groupbranch" });
+    });
+    // mount AI assistant / chatbot embeds
+    document.querySelectorAll("[data-chat-widget]").forEach(el => {
+      Headway.chatWidget({ mount: el, title: el.getAttribute("data-title") || undefined, compact: el.hasAttribute("data-compact") });
+    });
     wireResets();
   });
 
@@ -1349,9 +1621,9 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
     const PRETTY = {
       "index":"", "about-brain-injury":"about-brain-injury", "topic":"about-brain-injury/effects/fatigue",
       "brain-injury-and-me":"about-brain-injury/brain-injury-and-me", "bim-story":"about-brain-injury/brain-injury-and-me/story",
-      "glossary":"about-brain-injury/common-terms", "dealing-with-brain-injury":"about-brain-injury/dealing-with-brain-injury", "useful-organisations":"about-brain-injury/further-information/useful-organisations", "event-golf-day":"get-involved/events/charity-golf-day", "information-library":"about-brain-injury/information-library",
+      "glossary":"about-brain-injury/common-terms", "dealing-with-brain-injury":"about-brain-injury/dealing-with-brain-injury", "useful-organisations":"about-brain-injury/further-information/useful-organisations", "event-golf-day":"get-involved/events/charity-golf-day",
       "supporting-you":"supporting-you", "helpline":"supporting-you/helpline",
-      "find-local-support":"supporting-you/in-your-area", "org-detail":"supporting-you/in-your-area/organisation", "id-card":"supporting-you/brain-injury-id-card",
+      "find-local-support":"supporting-you/in-your-area", "find-groups":"supporting-you/in-your-area/groups-and-branches", "find-solicitors":"supporting-you/in-your-area/solicitors", "find-care":"supporting-you/in-your-area/approved-care-providers", "find-shops":"supporting-you/in-your-area/charity-shops", "emergency-fund":"supporting-you/headway-emergency-fund", "safeguarding":"safeguarding", "org-detail":"supporting-you/in-your-area/organisation", "id-card":"supporting-you/brain-injury-id-card",
       "someone-i-know":"supporting-you/someone-i-know-has-a-brain-injury",
       "get-involved":"get-involved", "donate":"get-involved/donate", "events":"get-involved/events",
       "volunteer":"get-involved/volunteer-with-us", "fundraise":"get-involved/fundraise", "corporate":"get-involved/corporate-partnerships", "shop":"get-involved/shop-with-headway-uk",

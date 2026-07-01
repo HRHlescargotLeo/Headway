@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Get involved — Headway (wireframe)</title>
+<title>Find a brain injury solicitor — Headway (wireframe)</title>
 <style>
 /* ==========================================================================
    Headway rebuild — MID-FIDELITY WIREFRAMES
@@ -820,65 +820,261 @@ html.contrast .downloads,html.contrast .dl-list a,html.contrast .dl-ic{backgroun
 
 </style>
 </head>
-<body data-page="get-involved">
+<body data-page="supporting-you">
 <div class="page">
   <header id="site-header"></header>
-  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › Get involved</nav>
+  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> &rsaquo; <a href="supporting-you.html">Supporting you</a> &rsaquo; <a href="find-local-support.html">Find local support</a> &rsaquo; Solicitors</nav>
 
   <main id="main">
     <section class="section">
-      <h1>Get involved</h1>
-      <p class="lede">However you choose to help, you make it possible for us to be there after brain injury.</p>
-
-      <!-- clear next steps (user story: don't drop off) -->
-      <div class="grid g4" style="margin:18px 0">
-        <a class="card link" href="donate.html"><div class="pad"><h3>Donate</h3><p style="color:var(--muted);margin:0">A one-off or regular gift.</p></div></a>
-        <a class="card link" href="fundraise.html"><div class="pad"><h3>Fundraise</h3><p style="color:var(--muted);margin:0">Take on a challenge your way.</p></div></a>
-        <a class="card link" href="volunteer.html"><div class="pad"><h3>Volunteer</h3><p style="color:var(--muted);margin:0">Give your time and skills.</p></div></a>
-        <a class="card link" href="events.html"><div class="pad"><h3>Events</h3><p style="color:var(--muted);margin:0">Find an event near you.</p></div></a>
-      </div>
-    </section>
-
-    <!-- impact + stories (donor user stories) -->
-    <section class="section">
-      <h2>The difference you make</h2>
-      <div class="grid g3">
-        <div class="stat"><strong>122,000</strong><span>helpline queries answered last year</span></div>
-        <div class="stat"><strong>400+</strong><span>families supported by the emergency fund</span></div>
-        <div class="stat"><strong>83p</strong><span>of every £1 goes to supporting people</span></div>
-      </div>
-
-      <div class="card" style="margin:22px 0"><div class="pad" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-        <div class="ph" style="flex:0 0 200px">Story image</div>
-        <div style="flex:1;min-width:240px"><span class="tag">Survivor story</span><h3>“Headway gave my family hope.”</h3><p style="color:var(--muted);margin:0 0 .6em">Real stories show exactly where your support goes.</p><a href="brain-injury-and-me.html">Read more stories →</a></div>
-      </div></div>
-    </section>
-
-    <!-- more ways -->
-    <section class="section">
-      <h2>More ways to support us</h2>
-      <div class="grid g3">
-        <div class="card"><div class="pad"><h3>Volunteer with us</h3><p style="color:var(--muted)">Find opportunities at Headway UK and your local group.</p><a class="btn" href="volunteer.html">Volunteering opportunities</a></div></div>
-        <div class="card"><div class="pad"><h3>Give in memory</h3><p style="color:var(--muted)">Honour someone special with a tribute gift.</p><a class="btn" href="donate.html">Give in memory</a></div></div>
-        <div class="card"><div class="pad"><h3>Corporate partnerships</h3><p style="color:var(--muted)">Partner with us — see the impact and benefits.</p><a class="btn" href="corporate.html">Partner with us</a></div></div>
-      </div>
-    </section>
-
-    <!-- DONATE FORM — positioned last, immediately before the footer -->
-    <section class="section">
-      <div class="give-band">
-        <div class="copy">
-          <p class="eyebrow">Make a donation</p>
-          <h2>Give a one-off or regular gift</h2>
-          <p>Choose an amount to see the difference it makes, then continue to complete your donation. You can also give in memory of someone special.</p>
-        </div>
-        <div data-donate-widget data-link="false"></div>
-      </div>
+      <h1>Find a brain injury solicitor</h1>
+      <p class="lede">Headway keeps a list of approved solicitors experienced in serious brain injury cases.</p>
+      <div data-local-finder data-service="solicitor"></div>
     </section>
   </main>
 
   <footer id="site-footer"></footer>
 </div>
+<script>
+/* Datasets that power the working filters in the wireframes.
+   Realistic-but-placeholder content so the journeys read correctly. */
+window.HData = {
+
+  /* Brain Injury & Me stories — drives BIM-002 filters (condition, perspective, media, length) */
+  bim: [
+    { t:"Dave's story: relearning to walk", cond:"Stroke",  persp:"Survivor", media:"Video",   len:"Long",  cat:"featured-video" },
+    { t:"Mornings with memory loss", cond:"TBI",            persp:"Survivor", media:"Written", len:"Short", cat:"written-word" },
+    { t:"Caring for my husband after his TBI", cond:"TBI",  persp:"Carer",    media:"Audio",   len:"Medium",cat:"living-with" },
+    { t:"Painting got me through", cond:"Haemorrhage",      persp:"Survivor", media:"Written", len:"Medium",cat:"creative-expression" },
+    { t:"A dad's road back to work", cond:"TBI",            persp:"Survivor", media:"Video",   len:"Medium",cat:"video-audio" },
+    { t:"Our family's new normal", cond:"Stroke",          persp:"Family",   media:"Written", len:"Long",  cat:"living-with" },
+    { t:"Running for Headway: Priya", cond:"Encephalitis",  persp:"Survivor", media:"Video",   len:"Short", cat:"headway-heroes" },
+    { t:"Anosmia changed how I taste life", cond:"TBI",     persp:"Survivor", media:"Audio",   len:"Short", cat:"video-audio" },
+    { t:"Supporting my mum's recovery", cond:"Stroke",      persp:"Carer",    media:"Written", len:"Medium",cat:"living-with" },
+    { t:"Poetry after my haemorrhage", cond:"Haemorrhage",  persp:"Survivor", media:"Written", len:"Short", cat:"creative-expression" },
+    { t:"Fatigue is invisible — Sam", cond:"Encephalitis",  persp:"Survivor", media:"Video",   len:"Medium",cat:"featured-video" },
+    { t:"A carer's guide to small wins", cond:"TBI",        persp:"Carer",    media:"Audio",   len:"Long",  cat:"living-with" },
+  ],
+
+  /* News — drives NEWS-001 category filter + search */
+  news: [
+    { t:"Basingstoke volunteer wins national award", cat:"Local",    date:"22 May 2026", ex:"A long-serving volunteer has been recognised for outstanding service to survivors." },
+    { t:"New brain injury identity card rolls out nationally", cat:"National", date:"14 May 2026", ex:"The card helps survivors explain hidden disabilities in everyday situations." },
+    { t:"Helpline answers record number of calls", cat:"General", date:"02 May 2026", ex:"Demand for emotional and practical support continues to grow year on year." },
+    { t:"Yorkshire group reopens after refurbishment", cat:"Local", date:"28 Apr 2026", ex:"Members return to a refreshed space for activities and peer support." },
+    { t:"Headway responds to government disability review", cat:"National", date:"19 Apr 2026", ex:"We welcome proposals but call for clearer support for hidden disabilities." },
+    { t:"Five tips for managing fatigue after brain injury", cat:"General", date:"11 Apr 2026", ex:"Practical, everyday strategies from our information team." },
+    { t:"Channel Islands branch launches buddy scheme", cat:"Local", date:"03 Apr 2026", ex:"Newly diagnosed survivors are paired with experienced peers." },
+    { t:"Research spotlight: returning to work", cat:"General", date:"25 Mar 2026", ex:"What the latest evidence says about vocational rehabilitation." },
+    { t:"London Marathon team raises £180,000", cat:"National", date:"16 Mar 2026", ex:"Thank you to every runner and supporter who made it possible." },
+    { t:"Guernsey coffee morning returns this spring", cat:"Local", date:"08 Mar 2026", ex:"An informal drop-in for survivors, families and carers." },
+    { t:"Emergency fund supports 400 families", cat:"National", date:"01 Mar 2026", ex:"One-off grants help with essential costs after injury." },
+    { t:"Understanding the brain: a new explainer series", cat:"General", date:"20 Feb 2026", ex:"Short videos break down medical terms in plain English." },
+  ],
+
+  /* Information library — drives DOC-001 filters (category, audience, file type) */
+  library: [
+    { t:"Coping with fatigue", cat:"Effects of brain injury", aud:"Survivor", type:"PDF", size:"480 KB" },
+    { t:"Memory problems after brain injury", cat:"Effects of brain injury", aud:"Survivor", type:"PDF", size:"512 KB" },
+    { t:"A carer's guide to the early days", cat:"For carers", aud:"Carer", type:"PDF", size:"720 KB" },
+    { t:"Returning to work", cat:"Life after brain injury", aud:"Survivor", type:"PDF", size:"610 KB" },
+    { t:"Welfare benefits explained", cat:"Practical & legal", aud:"Carer", type:"PDF", size:"1.1 MB" },
+    { t:"Talking to children about brain injury", cat:"For carers", aud:"Family", type:"PDF", size:"540 KB" },
+    { t:"Brain injury: a guide for professionals", cat:"For professionals", aud:"Professional", type:"PDF", size:"1.4 MB" },
+    { t:"Managing anger and irritability", cat:"Effects of brain injury", aud:"Survivor", type:"Easy read", size:"380 KB" },
+    { t:"Driving after brain injury", cat:"Practical & legal", aud:"Survivor", type:"PDF", size:"330 KB" },
+    { t:"Sleep and brain injury", cat:"Effects of brain injury", aud:"Survivor", type:"Easy read", size:"290 KB" },
+    { t:"Supporting recovery at home", cat:"For carers", aud:"Carer", type:"Video", size:"—" },
+    { t:"Headway groups & branches: what they offer", cat:"Life after brain injury", aud:"Family", type:"PDF", size:"260 KB" },
+  ],
+
+  /* A–Z glossary — drives SRCH-005 */
+  glossary: [
+    { term:"Anosmia", def:"Loss of the sense of smell, common after some brain injuries." },
+    { term:"Aphasia", def:"Difficulty with language — speaking, understanding, reading or writing." },
+    { term:"Ataxia", def:"Loss of coordination and balance affecting movement." },
+    { term:"Cognition", def:"Mental processes such as memory, attention and problem-solving." },
+    { term:"Concussion", def:"A mild traumatic brain injury, usually from a knock to the head." },
+    { term:"Dysphagia", def:"Difficulty swallowing food or drink safely." },
+    { term:"Executive function", def:"Skills for planning, organising and managing tasks." },
+    { term:"Fatigue", def:"Overwhelming tiredness that is common and often invisible after brain injury." },
+    { term:"Haematoma", def:"A collection of blood outside blood vessels, e.g. within the skull." },
+    { term:"Hemiparesis", def:"Weakness affecting one side of the body." },
+    { term:"Hypoxia", def:"A shortage of oxygen reaching the brain's tissues." },
+    { term:"Neuroplasticity", def:"The brain's ability to reorganise and form new connections." },
+    { term:"Oedema", def:"Swelling caused by a build-up of fluid, e.g. in brain tissue." },
+    { term:"Perseveration", def:"Repeating a word, action or thought involuntarily." },
+    { term:"Rehabilitation", def:"Therapy and support to regain skills and independence." },
+    { term:"Spasticity", def:"Muscle stiffness or tightness that can affect movement." },
+    { term:"Tinnitus", def:"Hearing ringing or buzzing not caused by an external sound." },
+    { term:"Vestibular", def:"Relating to the balance system in the inner ear and brain." },
+  ],
+
+  /* Local support directory — drives DIR-001..005 (tabs, region filter, solicitor case-types) */
+  /* x/y are 0–100 schematic positions on the placeholder map */
+  orgs: [
+    { name:"Headway Guernsey", type:"group", region:"Channel Islands", x:30, y:86,
+      services:["Drop-in","Carer support","Activities"], meta:"Group · meets weekly", postcodes:["gy"] },
+    { name:"Headway Yorkshire", type:"group", region:"Yorkshire", x:55, y:34,
+      services:["Day centre","Cognitive rehab"], meta:"Branch · day services", postcodes:["ls","yo","hd","s"],
+      d:{ address:"Unit 4, Kirkstall Business Park, Leeds, LS5 3BF", phone:"0113 496 0100", email:"hello@headwayyorkshire.org.uk", web:"headwayyorkshire.org.uk",
+        meetings:[
+          { name:"Leeds day centre", day:"Tuesdays & Thursdays", time:"10:00am – 3:00pm", venue:"Kirkstall Business Park, Leeds LS5 3BF" },
+          { name:"Wakefield support group", day:"1st Monday monthly", time:"6:30pm – 8:30pm", venue:"Wakefield Community Centre" },
+          { name:"Online drop-in", day:"Fridays", time:"11:00am – 12:00pm", venue:"Online (Zoom)" }
+        ],
+        activities:["Cognitive rehabilitation groups","Art & music therapy","Carer support group","Peer mentoring","Lunch club"],
+        about:"Headway Yorkshire is an independent charity affiliated to Headway UK, providing day services and rehabilitation for brain injury survivors across West and North Yorkshire.",
+        further:[["How do I join?","Most people are referred by a health or social care professional, but you can also contact us directly for an informal chat and assessment."],["Is there a cost?","Some services are funded; others may be self-funded or covered by a personal budget. We will talk you through the options."],["Do you support carers?","Yes — we run a dedicated carer support group and can signpost to further help."]] } },
+    { name:"Headway East London", type:"branch", region:"London", x:62, y:60,
+      services:["Day centre","Art studio"], meta:"Branch · award-winning services", postcodes:["e","ec"],
+      d:{ address:"Bradbury Centre, 8–14 Stratford Place, London, E10 7BF", phone:"020 7790 1765", email:"info@headwayeastlondon.org", web:"headwayeastlondon.org",
+        meet:{ day:"Monday – Friday", time:"9:30am – 4:00pm", venue:"The Bradbury Centre" },
+        activities:["Day centre","Submit to Love art studio","Therapies","Community projects","Advocacy"],
+        about:"An award-winning branch supporting survivors of brain injury across east London, known for its art studio and member-led community.",
+        further:[["Catchment area","We support people living in east London boroughs. Contact us to check eligibility."],["Referrals","By professional referral or self-referral followed by an assessment visit."]] } },
+
+    { name:"Headway Birmingham & Solihull", type:"group", region:"West Midlands", x:47, y:47,
+      services:["Day services","Cognitive rehab","Community outreach"], meta:"Large branch · wide range of services", postcodes:["b","cv","ws","dy","wv"],
+      social:{ facebook:true, x:true, instagram:true, linkedin:true, youtube:false },
+      d:{ address:"Cygnet House, Chester Street, Birmingham, B6 4AH", phone:"0121 457 7541", email:"enquiries@headwaybs.org.uk", web:"headwaybs.org.uk",
+        meetings:[
+          { name:"Birmingham day centre", day:"Monday – Friday", time:"9:00am – 4:00pm", venue:"Cygnet House, Chester Street, Birmingham" },
+          { name:"Solihull activity group", day:"Wednesdays", time:"10:00am – 2:00pm", venue:"Solihull Community Hub" },
+          { name:"Carers' support group", day:"2nd Tuesday monthly", time:"6:00pm – 8:00pm", venue:"Cygnet House (and online)" },
+          { name:"Younger survivors' social", day:"Fridays", time:"5:30pm – 7:30pm", venue:"Digbeth community space" },
+          { name:"Virtual drop-in", day:"Mondays & Thursdays", time:"11:00am – 12:30pm", venue:"Online (Teams)" }
+        ],
+        services:["Day services","Cognitive rehabilitation","Community outreach","Vocational rehabilitation","Counselling & emotional support","Welfare benefits advice","Carer support","Case management liaison"],
+        activities:["Art therapy","Music therapy","Gardening & horticulture","Cooking & nutrition","IT & digital skills","Woodwork","Photography","Mindfulness & relaxation","Gym & physiotherapy","Peer mentoring","Choir","Walking group","Social outings","Quiz & games afternoons"],
+        about:"Headway Birmingham & Solihull is one of the largest Headway branches, offering an extensive range of rehabilitation, day services and community activities for survivors and their families across the West Midlands.",
+        further:[
+          ["How do I access services?","Contact us for an informal chat and assessment. Most people are referred by health or social care professionals, but self-referrals are welcome."],
+          ["Do you charge for services?","Some services are funded; others may be covered by a personal budget or self-funded. We'll explain the options during assessment."],
+          ["Do you support carers and families?","Yes — we run a dedicated carers' support group and offer advice and respite-focused activities."],
+          ["Transport","We can advise on transport options and accessibility for all our venues."]
+        ] } },
+    { name:"Headway Birmingham", type:"group", region:"West Midlands", x:50, y:52,
+      services:["Peer support","Carer support"], meta:"Group · meets fortnightly", postcodes:["b"] },
+    { name:"Headway Glasgow", type:"branch", region:"Scotland", x:42, y:14,
+      services:["Day services","Counselling"], meta:"Branch", postcodes:["g"] },
+    { name:"Headway Cardiff", type:"group", region:"Wales", x:38, y:58,
+      services:["Drop-in","Activities"], meta:"Group · meets weekly", postcodes:["cf"] },
+
+    { name:"Oakfield Solicitors", type:"solicitor", region:"London", x:60, y:62,
+      services:["Road traffic injury","No win no fee","Home visits"], meta:"Personal injury specialists", postcodes:["w","sw"],
+      d:{ address:"120 Kingsway, London, WC2B 6NH", phone:"020 7946 0500", email:"enquiries@oakfieldsolicitors.co.uk", web:"oakfieldsolicitors.co.uk",
+        accreditations:["Headway-approved","Law Society Personal Injury panel","APIL accredited"],
+        about:"Oakfield Solicitors is a Headway-approved firm specialising in serious and catastrophic brain injury claims, with experience supporting clients and families through rehabilitation and settlement.",
+        further:[["Free initial consultation","We offer a free, no-obligation discussion about your situation and whether you may have a claim."],["No win no fee","Most serious injury cases are handled on a conditional fee (no win no fee) basis."]] } },
+    { name:"Bramley Legal", type:"solicitor", region:"Yorkshire", x:54, y:36,
+      services:["Medical negligence","Work accident"], meta:"Serious injury team", postcodes:["ls"] },
+    { name:"Carter & Voss", type:"solicitor", region:"West Midlands", x:49, y:50,
+      services:["Road traffic injury","Medical negligence","No win no fee"], meta:"Catastrophic injury", postcodes:["b"] },
+    { name:"Mercer Law", type:"solicitor", region:"Scotland", x:43, y:16,
+      services:["Work accident","Home visits"], meta:"Accident claims", postcodes:["g","eh"] },
+
+    { name:"Bridgeview Care", type:"care", region:"London", x:64, y:58,
+      services:["Residential","Neuro rehab"], meta:"Approved provider", postcodes:["n","e"],
+      level:["Residential care","Nursing care","Rehabilitation"], speciality:["Acquired brain injury","Complex needs"],
+      admission:["Aged 18–65","Self-funding","Local authority funded"], accom:["Single ensuite rooms","Wheelchair accessible"],
+      d:{ address:"Bridgeview House, 220 Lea Bridge Road, London, E10 7DX", phone:"020 8556 4400", email:"referrals@bridgeviewcare.co.uk", web:"bridgeviewcare.co.uk",
+        about:"Bridgeview Care is a Headway-approved provider offering residential and nursing care and neuro-rehabilitation for adults with acquired brain injury and complex needs.",
+        further:[["Assessments","We carry out a pre-admission assessment to ensure we can meet the person\u2019s needs."],["Funding","We accept local authority, NHS and self-funded placements."]] } },
+    { name:"Meadow House", type:"care", region:"Yorkshire", x:56, y:32,
+      services:["Supported living","Respite"], meta:"Approved provider", postcodes:["yo"],
+      level:["Supported living","Respite care"], speciality:["Acquired brain injury","Young adults"],
+      admission:["Aged 18–65","Local authority funded"], accom:["Self-contained flats","Ground floor"] },
+    { name:"Ashworth Neuro Centre", type:"care", region:"West Midlands", x:48, y:54,
+      services:["Residential","Day rehab"], meta:"Approved provider", postcodes:["b","cv"],
+      level:["Residential care","Rehabilitation","Day services"], speciality:["Neurological conditions","Behavioural support","Complex needs"],
+      admission:["Aged 18–65","Aged 65+","NHS funded","Detained under Mental Health Act"], accom:["Single ensuite rooms","Shared facilities"] },
+    { name:"Rosewood Lodge", type:"care", region:"Scotland", x:43, y:17,
+      services:["Nursing care","Respite"], meta:"Approved provider", postcodes:["g","eh"],
+      level:["Nursing care","Respite care"], speciality:["Acquired brain injury","Physical disability","Huntington's disease"],
+      admission:["Aged 65+","NHS funded","Self-funding"], accom:["Single ensuite rooms","Wheelchair accessible","Ground floor"] },
+    { name:"Hillside Rehabilitation", type:"care", region:"Wales", x:38, y:56,
+      services:["Neuro rehab","Outreach"], meta:"Approved provider", postcodes:["cf","sa"],
+      level:["Rehabilitation","Outreach / community"], speciality:["Acquired brain injury","Mental health","Young adults"],
+      admission:["Aged 18–65","Mixed","Local authority funded"], accom:["Self-contained flats","Bungalows","Wheelchair accessible"] },
+    { name:"Beechcroft Care Home", type:"care", region:"London", x:60, y:64,
+      services:["Residential","Supported living"], meta:"Approved provider", postcodes:["se","sw"],
+      level:["Residential care","Supported living","Day services"], speciality:["Neurological conditions","Physical disability","Complex needs"],
+      admission:["Aged 18–65","Aged 65+","Self-funding","Local authority funded"], accom:["Shared facilities","Ground floor"] },
+
+    { name:"Headway Charity Shop — Leeds", type:"shop", region:"Yorkshire", x:55, y:35,
+      services:["Donations welcome"], meta:"Open Mon–Sat", postcodes:["ls"],
+      d:{ address:"42 Otley Road, Headingley, Leeds, LS6 2AL", phone:"0113 274 1188", email:"", web:"",
+        hours:[["Mon – Fri","9:00am – 5:00pm"],["Saturday","9:00am – 4:30pm"],["Sunday","Closed"]],
+        accepts:["Clothing & accessories","Books, CDs & DVDs","Homeware & bric-a-brac","Toys & games"],
+        about:"Every purchase and donation at our Leeds shop helps fund Headway\u2019s support for people affected by brain injury." } },
+    { name:"Headway Charity Shop — Cardiff", type:"shop", region:"Wales", x:39, y:57,
+      services:["Donations welcome"], meta:"Open Mon–Sat", postcodes:["cf"] },
+    { name:"Headway Charity Shop — Glasgow", type:"shop", region:"Scotland", x:42, y:15,
+      services:["Donations welcome"], meta:"Open Mon–Sat", postcodes:["g"] },
+  ],
+
+  /* Training courses — drives Training filters (role, topic, level) */
+  training: [
+    { t:"Brain injury awareness", role:"Healthcare", topic:"Awareness", level:"Introductory", fmt:"Online" },
+    { t:"Cognitive effects of brain injury", role:"Healthcare", topic:"Clinical", level:"Intermediate", fmt:"In person" },
+    { t:"Brain injury and the justice system", role:"Justice", topic:"Justice", level:"Introductory", fmt:"Online" },
+    { t:"Supporting clients with brain injury", role:"Solicitor", topic:"Legal", level:"Intermediate", fmt:"Online" },
+    { t:"Behaviour that challenges", role:"Social care", topic:"Behaviour", level:"Advanced", fmt:"In person" },
+    { t:"Communication after brain injury", role:"Healthcare", topic:"Communication", level:"Intermediate", fmt:"Online" },
+    { t:"Brain injury for case managers", role:"Solicitor", topic:"Legal", level:"Advanced", fmt:"In person" },
+    { t:"Trauma-informed practice", role:"Justice", topic:"Behaviour", level:"Intermediate", fmt:"Online" },
+    { t:"Family & carer support skills", role:"Social care", topic:"Awareness", level:"Introductory", fmt:"Online" },
+  ],
+
+  /* Search index — drives SRCH-001 / predictive search on search.html */
+  search: [
+    { t:"Helpline", url:"helpline.html", type:"Support", ex:"Free, confidential support Mon–Fri 9–5." },
+    { t:"Find local support near you", url:"find-local-support.html", type:"Support", ex:"Postcode search for groups, branches and services." },
+    { t:"Brain Injury & Me stories", url:"brain-injury-and-me.html", type:"Stories", ex:"Real experiences from survivors and carers." },
+    { t:"Information library", url:"information-library.html", type:"Information", ex:"Download factsheets and guides." },
+    { t:"Coping with fatigue", url:"information-library.html", type:"Information", ex:"Everyday strategies for managing fatigue." },
+    { t:"Memory problems", url:"topic.html", type:"Information", ex:"Why memory is affected and how to help." },
+    { t:"Brain injury ID card", url:"id-card.html", type:"Support", ex:"Explain a hidden disability in everyday situations." },
+    { t:"Donate", url:"donate.html", type:"Get involved", ex:"Make a one-off or regular gift." },
+    { t:"Training courses", url:"training.html", type:"Professionals", ex:"Filter courses by role, topic and level." },
+    { t:"Anosmia", url:"glossary.html", type:"Glossary", ex:"Loss of the sense of smell." },
+    { t:"Aphasia", url:"glossary.html", type:"Glossary", ex:"Difficulty with language." },
+    { t:"Fatigue", url:"glossary.html", type:"Glossary", ex:"Overwhelming, often invisible tiredness." },
+    { t:"Find a solicitor", url:"find-local-support.html", type:"Support", ex:"Filter by case type and services." },
+    { t:"Emergency fund", url:"topic.html", type:"Support", ex:"One-off grants for essential costs." },
+    { t:"Events", url:"events.html", type:"Get involved", ex:"Find a fundraising event to take part in." },
+  ],
+
+  // DIR-011 — useful organisations directory (external orgs, by category, with contact nodes)
+  usefulOrgs: [
+    { name:"Stroke Association", cat:"Brain injury & related conditions", desc:"Support, information and research for people affected by stroke.", web:"stroke.org.uk", phone:"0303 3033 100", email:"info@stroke.org.uk" },
+    { name:"Encephalitis International", cat:"Brain injury & related conditions", desc:"Information and support for people affected by encephalitis.", web:"encephalitis.info", phone:"01653 692 583", email:"support@encephalitis.info" },
+    { name:"The Brain Charity", cat:"Brain injury & related conditions", desc:"Practical help, emotional support and social activities for all neurological conditions.", web:"thebraincharity.org.uk", phone:"0151 298 2999", email:"info@thebraincharity.org.uk" },
+    { name:"Different Strokes", cat:"Brain injury & related conditions", desc:"Support for younger stroke survivors.", web:"differentstrokes.co.uk", phone:"0345 130 7172", email:"info@differentstrokes.co.uk" },
+    { name:"Spinal Injuries Association", cat:"Brain injury & related conditions", desc:"Support for people affected by spinal cord injury.", web:"spinal.co.uk", phone:"0800 980 0501", email:"sias@spinal.co.uk" },
+
+    { name:"Child Brain Injury Trust", cat:"Children & young people", desc:"Support for children, young people and families affected by acquired brain injury.", web:"childbraininjurytrust.org.uk", phone:"0303 303 2248", email:"info@cbituk.org" },
+    { name:"Cerebra", cat:"Children & young people", desc:"Help for children with brain conditions and their families.", web:"cerebra.org.uk", phone:"0800 328 1159", email:"info@cerebra.org.uk" },
+    { name:"Contact", cat:"Children & young people", desc:"Support for families with disabled children.", web:"contact.org.uk", phone:"0808 808 3555", email:"helpline@contact.org.uk" },
+
+    { name:"Carers UK", cat:"Carers & families", desc:"Advice, information and support for unpaid carers.", web:"carersuk.org", phone:"0808 808 7777", email:"advice@carersuk.org" },
+    { name:"Carers Trust", cat:"Carers & families", desc:"Practical and financial support for carers.", web:"carers.org", phone:"0300 772 9600", email:"info@carers.org" },
+
+    { name:"Mind", cat:"Mental health & wellbeing", desc:"Information and support for mental health.", web:"mind.org.uk", phone:"0300 123 3393", email:"info@mind.org.uk" },
+    { name:"Samaritans", cat:"Mental health & wellbeing", desc:"Confidential emotional support, any time.", web:"samaritans.org", phone:"116 123", email:"jo@samaritans.org" },
+    { name:"SANE", cat:"Mental health & wellbeing", desc:"Emotional support for anyone affected by mental illness.", web:"sane.org.uk", phone:"0300 304 7000", email:"info@sane.org.uk" },
+
+    { name:"Citizens Advice", cat:"Money, benefits & legal", desc:"Free, confidential advice on benefits, debt and rights.", web:"citizensadvice.org.uk", phone:"0800 144 8848", email:"" },
+    { name:"Turn2us", cat:"Money, benefits & legal", desc:"Help accessing welfare benefits, grants and financial support.", web:"turn2us.org.uk", phone:"0808 802 2000", email:"info@turn2us.org.uk" },
+    { name:"Disability Rights UK", cat:"Money, benefits & legal", desc:"Advice and resources on disability rights and independent living.", web:"disabilityrightsuk.org", phone:"0330 995 0400", email:"enquiries@disabilityrightsuk.org" },
+
+    { name:"Motability Scheme", cat:"Mobility & independence", desc:"Lease a car, scooter or powered wheelchair using a mobility allowance.", web:"motability.co.uk", phone:"0800 093 1000", email:"" },
+    { name:"Disabled Living Foundation", cat:"Mobility & independence", desc:"Impartial advice on equipment for daily living.", web:"livingmadeeasy.org.uk", phone:"0300 999 0004", email:"" }
+  ]
+};
+
+</script>
 <script>
 /* Shared chrome for every wireframe page.
    Each page sets <body data-page="..."> to drive the active nav state.
