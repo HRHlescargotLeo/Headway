@@ -718,61 +718,64 @@ html.contrast .meet-card{background:#000;border-color:#fff;border-left-color:#ff
 /* simplified donate widget handoff note */
 .dw-handoff{font-size:.78rem;color:var(--muted);margin:8px 0 0;text-align:center}
 
-/* ---- reusable local support finder (Currys-style horizontal layout) ---- */
-.localfinder .lf-controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;background:var(--fill-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 16px;margin:0 0 12px}
-.localfinder .lf-search{flex:1;min-width:230px}
-.localfinder .lf-radius{min-width:150px}
-.localfinder .lf-region{min-width:170px}
-.localfinder label{display:block;font-size:.72rem;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
-.localfinder .lf-row{display:flex;gap:8px}
-.localfinder .lf-pc{flex:1;min-width:0;padding:.6em .7em;border:1px solid var(--line-strong);border-radius:4px;font:inherit}
-.localfinder .lf-rg,.localfinder .lf-rad{width:100%;padding:.6em .7em;border:1px solid var(--line-strong);border-radius:4px;font:inherit;background:#fff}
-.localfinder .lf-geo{margin-top:7px;background:none;border:0;padding:0;color:var(--accent);font:inherit;font-size:.82rem;cursor:pointer;text-decoration:underline}
-.localfinder .lf-or{align-self:center;padding-bottom:8px}
-.localfinder .lf-or span{display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.localfinder .lf-reset{align-self:flex-end}
-.localfinder .lf-refine{border:1px solid var(--line);border-radius:var(--r-sm);margin:0 0 12px;background:#fff}
-.localfinder .lf-refine > summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:.92rem}
-.localfinder .lf-refine-count{color:var(--muted);font-weight:400}
-.localfinder .lf-facets{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;padding:4px 16px 16px}
-.localfinder .lf-facet strong{display:block;font-size:.82rem;margin-bottom:6px}
-/* results header */
-.localfinder .lf-resulthead{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 8px}
-.localfinder .lf-meta{margin:0;font-weight:600}
-.localfinder .lf-sort{font-size:.82rem;color:var(--muted)}
-/* Currys-style: bordered container, list (scroll) beside a tall map */
-.localfinder .lf-split{display:grid;grid-template-columns:380px 1fr;border:1px solid var(--line-strong);border-radius:var(--r-sm);overflow:hidden;min-height:520px}
-.localfinder .lf-results{max-height:560px;overflow:auto;border-right:1px solid var(--line);background:#fff}
-.localfinder .lf-map{height:100%;min-height:520px;border-radius:0}
-.localfinder .lf-mapwrap{position:relative}
-.localfinder .lf-item{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-bottom:1px solid var(--line);cursor:pointer;background:#fff}
+/* ---- reusable local support finder (Currys-style: search on top, results left of map, filter overlay) ---- */
+.localfinder .lf-topsearch{max-width:640px;margin:0 auto 16px;text-align:center}
+.localfinder .lf-topsearch > label{display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:6px}
+.localfinder .lf-searchrow{display:flex;gap:8px}
+.localfinder .lf-pc{flex:1;min-width:0;padding:.7em .8em;border:1px solid var(--line-strong);border-radius:6px;font:inherit;background:var(--fill-2)}
+.localfinder .lf-searchbtn{flex:0 0 auto;padding:0 16px;border-radius:6px}
+.localfinder .lf-alt{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:center;margin-top:10px;font-size:.86rem}
+.localfinder .lf-geo{background:none;border:0;padding:0;color:var(--accent);font:inherit;font-size:.86rem;cursor:pointer;text-decoration:underline}
+.localfinder .lf-alt-or{color:var(--faint)}
+.localfinder .lf-inline{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-weight:600}
+.localfinder .lf-inline select{padding:.4em .5em;border:1px solid var(--line-strong);border-radius:5px;font:inherit;background:#fff;color:var(--ink);font-weight:400}
+.localfinder .lf-split{display:grid;grid-template-columns:380px 1fr;border:1px solid var(--line-strong);border-radius:var(--r-sm);overflow:hidden;min-height:540px}
+.localfinder .lf-panel{position:relative;border-right:1px solid var(--line);background:#fff;min-width:0}
+.localfinder .lf-results{max-height:560px;overflow:auto;height:100%}
+.localfinder .lf-resulthead{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;background:#fff;border-bottom:1px solid var(--line)}
+.localfinder .lf-meta{margin:0;font-weight:600;font-size:.9rem}
+.localfinder .lf-filterbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-strong);background:#fff;border-radius:6px;padding:6px 12px;font:inherit;font-size:.85rem;cursor:pointer;color:var(--accent);font-weight:600}
+.localfinder .lf-filterbtn:hover{border-color:var(--ink)}
+.localfinder .lf-item{display:flex;gap:12px;align-items:flex-start;padding:14px;border-bottom:1px solid var(--line);cursor:pointer}
 .localfinder .lf-item:hover{background:var(--fill-2)}
 .localfinder .lf-item.sel{background:var(--fill-2);box-shadow:inset 3px 0 0 var(--ink)}
-.localfinder .lf-num{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;margin-top:2px}
+.localfinder .lf-num{flex:0 0 auto;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--ink);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;margin-top:1px}
 .localfinder .lf-item-body{min-width:0;flex:1}
-.localfinder .lf-item-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
-.localfinder .lf-item-top h3{font-size:1rem;margin:0}
-.localfinder .lf-dist{flex:0 0 auto;font-size:.8rem;font-weight:700;color:var(--ink);white-space:nowrap}
-.localfinder .lf-addr{color:var(--muted);font-size:.85rem;margin:3px 0 6px}
-.localfinder .lf-contact{display:flex;flex-wrap:wrap;gap:6px 8px;font-size:.83rem}
+.localfinder .lf-name{font-weight:700;font-size:1rem;text-decoration:none;color:var(--accent)}
+.localfinder .lf-name:hover{text-decoration:underline}
+.localfinder .lf-addr{color:var(--muted);font-size:.85rem;margin:3px 0 0}
+.localfinder .lf-dist{color:var(--muted);font-size:.85rem;margin:3px 0 0}
+.localfinder .lf-status{font-size:.85rem;margin:3px 0 0;color:var(--ink)}
+.localfinder .lf-contact{display:flex;flex-wrap:wrap;gap:6px 8px;font-size:.82rem;margin-top:6px}
 .localfinder .lf-contact .sep{color:var(--faint)}
-.localfinder .lf-actions{display:flex;gap:8px;margin-top:10px}
-/* numbered, synced pins */
+.localfinder .lf-filterpanel{position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;z-index:3}
+.localfinder .lf-filterpanel[hidden]{display:none}
+.localfinder .lf-fp-head{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid var(--line)}
+.localfinder .lf-fp-head strong{font-size:1.05rem}
+.localfinder .lf-fp-close{background:none;border:0;color:var(--accent);font:inherit;cursor:pointer}
+.localfinder .lf-fp-body{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:16px}
+.localfinder .lf-facet strong{display:block;font-size:.85rem;margin-bottom:6px}
+.localfinder .lf-fp-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-top:1px solid var(--line)}
+.localfinder .lf-fp-clear{background:none;border:0;color:var(--accent);font:inherit;cursor:pointer;text-decoration:underline}
+.localfinder .lf-mapwrap{position:relative}
+.localfinder .lf-map{height:100%;min-height:540px;border-radius:0}
 .localfinder .lf-map .mappin{cursor:pointer}
-.localfinder .lf-map .mappin .dot{width:22px;height:22px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--ink);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center}
-
-.localfinder .lf-map .mappin .dot{color:#fff;font-size:.72rem;font-weight:700}
-.localfinder .lf-map .mappin .dot > *{transform:rotate(45deg)}
-.localfinder .lf-map .mappin.active .dot{background:#fff;color:var(--ink);border-color:var(--ink);transform:rotate(-45deg) scale(1.25);z-index:5}
+.localfinder .lf-map .mappin .dot{width:22px;height:22px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#fff;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(0,0,0,.35)}
+.localfinder .lf-map .mappin .dot span{transform:rotate(45deg);font-size:.72rem;font-weight:700;color:var(--ink)}
+.localfinder .lf-map .mappin.active .dot{background:var(--ink)}
+.localfinder .lf-map .mappin.active .dot span{color:#fff}
+.localfinder .lf-map .mappin.active{z-index:5}
+.localfinder .lf-origin{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;z-index:4}
+.localfinder .lf-origin-dot{width:14px;height:14px;border-radius:50%;background:var(--ink);border:2px solid #fff;box-shadow:0 0 0 2px var(--ink)}
+.localfinder .lf-origin-lbl{background:var(--ink);color:#fff;font-size:.7rem;font-weight:700;padding:2px 7px;border-radius:3px;margin-left:4px;white-space:nowrap}
 @media (max-width:820px){
   .localfinder .lf-split{grid-template-columns:1fr}
-  .localfinder .lf-results{max-height:none;border-right:0;order:2}
-  .localfinder .lf-mapwrap{order:1;border-bottom:1px solid var(--line)}
+  .localfinder .lf-panel{border-right:0;border-bottom:1px solid var(--line);order:2}
+  .localfinder .lf-results{max-height:420px}
+  .localfinder .lf-mapwrap{order:1}
   .localfinder .lf-map{min-height:240px}
-  .localfinder .lf-or{width:100%;padding:0}
-  .localfinder .lf-or span::before,.localfinder .lf-or span::after{content:"";flex:1;border-top:1px solid var(--line);margin:0 8px}
-  .localfinder .lf-or span{display:flex;width:100%}
 }
+html.contrast .localfinder .lf-panel,html.contrast .localfinder .lf-filterpanel,html.contrast .localfinder .lf-resulthead,html.contrast .localfinder .lf-inline select{background:#000;color:#fff}
 
 /* ---- AI assistant / chatbot embed ---- */
 .chatbot{border:1px solid var(--line-strong);border-radius:var(--r-md);overflow:hidden;background:#fff;max-width:560px}
@@ -1231,6 +1234,7 @@ html.contrast .downloads,html.contrast .dl-list a,html.contrast .dl-ic{backgroun
     const svc = Headway.SERVICE[opts.service] || Headway.SERVICE.groupbranch;
     const O = (window.HData && HData.orgs || []).filter(o => svc.types.includes(o.type));
     const regions = [...new Set(O.map(o => o.region))].sort();
+    const hasFacets = (opts.service === "care" || opts.service === "solicitor");
     const state = { pc:"", geo:"", located:false, radius:30, region:"", care:{}, cases:new Set() };
     const CAREFACETS = [
       { key:"level", field:"level", label:"Level of care" },
@@ -1240,9 +1244,9 @@ html.contrast .downloads,html.contrast .dl-list a,html.contrast .dl-ic{backgroun
     ];
     CAREFACETS.forEach(f => state.care[f.key] = new Set());
 
-    let refine = "";
+    let filterBody = "";
     if (opts.service === "care") {
-      refine = CAREFACETS.map(f => {
+      filterBody = CAREFACETS.map(f => {
         const optsv=[...new Set(O.flatMap(o=>o[f.field]||[]))].sort();
         return `<div class="lf-facet"><strong>${f.label}</strong><div class="checkset" data-facet="${f.key}">
           <label class="all-opt"><input type="checkbox" data-all checked> All</label>
@@ -1250,56 +1254,61 @@ html.contrast .downloads,html.contrast .dl-list a,html.contrast .dl-ic{backgroun
       }).join("");
     } else if (opts.service === "solicitor") {
       const cases=[...new Set(O.flatMap(o=>o.services||[]))].sort();
-      refine = `<div class="lf-facet"><strong>Case type &amp; services</strong><div class="checkset" data-facet="cases" style="flex-direction:row;flex-wrap:wrap;gap:12px">
+      filterBody = `<div class="lf-facet"><strong>Case type &amp; services</strong><div class="checkset" data-facet="cases">
         <label class="all-opt"><input type="checkbox" data-all checked> All</label>
         ${cases.map(c=>`<label><input type="checkbox" value="${c}"> ${c}</label>`).join("")}</div></div>`;
     }
-    const refineBlock = refine ? `<details class="lf-refine"><summary>Refine ${svc.label} <span class="lf-refine-count"></span></summary><div class="lf-facets">${refine}</div></details>` : "";
 
     mount.innerHTML = `
       <div class="localfinder" data-service="${opts.service}">
-        <div class="anno"><b>DIR-001 · DIR-005 · INT-001 (Salesforce) · INT-003 (Maps)</b><span>Reusable local-support finder (Currys-style) — one embeddable component per service (${svc.label}). Search by postcode/town or use your location, set a radius, and see numbered results beside the map, nearest first. Browse by region as an alternative. Results show contact details.</span></div>
-        <div class="lf-controls">
-          <div class="lf-search">
-            <label for="lf-pc-${opts.service}">Search by postcode or town</label>
-            <div class="lf-row">
-              <input id="lf-pc-${opts.service}" class="lf-pc" type="search" placeholder="e.g. LS1 or Leeds">
-              <button class="btn primary lf-go" type="button">Search</button>
-            </div>
+        <div class="anno"><b>DIR-001 · DIR-005 · INT-001 (Salesforce) · INT-003 (Maps)</b><span>Reusable local-support finder (Currys-style) — search on top, results to the left of the map. ${hasFacets?"The Filter button opens filters over the results; choose filters then Show results. ":""}Browse by region and set a distance are also available. Results show contact details.</span></div>
+
+        <div class="lf-topsearch">
+          <label for="lf-pc-${opts.service}">Enter town or postcode</label>
+          <div class="lf-searchrow">
+            <input id="lf-pc-${opts.service}" class="lf-pc" type="search" placeholder="e.g. LS1 or Leeds">
+            <button class="lf-searchbtn btn primary" type="button" aria-label="Search">&#128269;</button>
+          </div>
+          <div class="lf-alt">
             <button class="lf-geo" type="button">&#9678; Use my location</button>
+            <span class="lf-alt-or">·</span>
+            <label class="lf-inline">Region
+              <select class="lf-rg"><option value="">All regions</option>${regions.map(r=>`<option>${r}</option>`).join("")}</select>
+            </label>
+            <label class="lf-inline">Distance
+              <select class="lf-rad">
+                <option value="10">Within 10 miles</option>
+                <option value="20">Within 20 miles</option>
+                <option value="30" selected>Within 30 miles</option>
+                <option value="50">Within 50 miles</option>
+              </select>
+            </label>
           </div>
-          <div class="lf-radius">
-            <label for="lf-rad-${opts.service}">Distance</label>
-            <select id="lf-rad-${opts.service}" class="lf-rad">
-              <option value="10">Within 10 miles</option>
-              <option value="20">Within 20 miles</option>
-              <option value="30" selected>Within 30 miles</option>
-              <option value="50">Within 50 miles</option>
-            </select>
-          </div>
-          <div class="lf-or"><span>or</span></div>
-          <div class="lf-region">
-            <label for="lf-rg-${opts.service}">Browse by region</label>
-            <select id="lf-rg-${opts.service}" class="lf-rg"><option value="">All regions</option>${regions.map(r=>`<option>${r}</option>`).join("")}</select>
-          </div>
-          <button class="btn lf-reset" type="button">Reset</button>
         </div>
-        ${refineBlock}
-        <div class="lf-resulthead"><p class="lf-meta result-meta"></p><span class="lf-sort"></span></div>
+
         <div class="lf-split">
-          <div class="lf-results">
-            <div class="lf-list"></div>
-            <div class="empty lf-empty" hidden>No ${svc.label} match. <button class="btn sm lf-reset2" type="button">Reset</button></div>
+          <div class="lf-panel">
+            <div class="lf-results">
+              <div class="lf-resulthead">
+                <span class="lf-meta result-meta"></span>
+                ${hasFacets?`<button class="lf-filterbtn" type="button"><span aria-hidden="true">&#9776;</span> Filter</button>`:``}
+              </div>
+              <div class="lf-list"></div>
+              <div class="empty lf-empty" hidden>No ${svc.label} match. <button class="btn sm lf-reset2" type="button">Reset</button></div>
+            </div>
+            ${hasFacets?`
+            <div class="lf-filterpanel" hidden>
+              <div class="lf-fp-head"><strong>Filters</strong><button class="lf-fp-close" type="button">&#10005; Close</button></div>
+              <div class="lf-fp-body">${filterBody}</div>
+              <div class="lf-fp-foot"><button class="lf-fp-clear" type="button">Clear all</button><button class="lf-fp-show btn primary" type="button">Show results</button></div>
+            </div>`:``}
           </div>
           <div class="lf-mapwrap"><div class="maparea lf-map"><div class="scrim"></div><span class="lbl">Map view (schematic)</span></div></div>
         </div>
       </div>`;
 
-    const listEl = mount.querySelector(".lf-list");
-    const mapEl  = mount.querySelector(".lf-map");
-    const metaEl = mount.querySelector(".lf-meta");
-    const sortEl = mount.querySelector(".lf-sort");
-    const emptyEl= mount.querySelector(".lf-empty");
+    const listEl=mount.querySelector(".lf-list"), mapEl=mount.querySelector(".lf-map"),
+          metaEl=mount.querySelector(".lf-meta"), emptyEl=mount.querySelector(".lf-empty");
 
     function distFor(o){ const h=hashStr(o.name+"|"+(state.pc||state.geo||"x")); return +((h%285)/10 + 0.4).toFixed(1); }
     function addrOf(o){ if(o.d&&o.d.address) return o.d.address; const pc=((o.postcodes||[])[0]||"").toUpperCase(); return (pc?pc+" · ":"")+o.region; }
@@ -1317,6 +1326,7 @@ html.contrast .downloads,html.contrast .dl-list a,html.contrast .dl-ic{backgroun
       if(c.web)   bits.push(`<a href="#" onclick="return false">&#127760; ${c.web}</a>`);
       return `<div class="lf-contact">${bits.join('<span class="sep">·</span>')||'<span class="muted">Contact details on request</span>'}</div>`;
     }
+    function activeCount(){ return state.cases.size + Object.values(state.care).reduce((a,s)=>a+s.size,0); }
     function select(i){
       mount.querySelectorAll(".lf-item").forEach(el=>el.classList.toggle("sel", +el.dataset.i===i));
       mapEl.querySelectorAll(".mappin").forEach(el=>el.classList.toggle("active", +el.dataset.i===i));
@@ -1326,57 +1336,68 @@ html.contrast .downloads,html.contrast .dl-list a,html.contrast .dl-ic{backgroun
       if(state.located) list.sort((a,b)=>a._d-b._d);
       const place = state.pc ? `“${state.pc}”` : (state.geo ? "your location" : "");
       metaEl.textContent = state.located
-        ? `${list.length} ${svc.label} within ${state.radius} miles of ${place}`
+        ? `Showing closest ${list.length} ${svc.label}`
         : `${list.length} ${svc.label}`+(state.region?` in ${state.region}`:"");
-      sortEl.textContent = state.located ? "Sorted by distance" : "";
       emptyEl.hidden = list.length>0;
       listEl.innerHTML = list.map((o,idx)=>`
         <div class="lf-item" data-i="${idx}">
           <div class="lf-num">${idx+1}</div>
           <div class="lf-item-body">
-            <div class="lf-item-top">
-              <h3><a href="org-detail.html?org=${encodeURIComponent(o.name)}">${o.name}</a></h3>
-              ${state.located?`<span class="lf-dist">${o._d} mi</span>`:""}
-            </div>
-            <p class="lf-addr">${addrOf(o)}${o.meta?` · ${o.meta}`:""}</p>
+            <a class="lf-name" href="org-detail.html?org=${encodeURIComponent(o.name)}">${o.name}</a>
+            <p class="lf-addr">${addrOf(o)}</p>
+            ${state.located?`<p class="lf-dist">${o._d} miles away</p>`:""}
+            ${o.meta?`<p class="lf-status">${o.meta}</p>`:""}
             ${contactLine(o)}
-            <div class="lf-actions">
-              <a class="btn sm" href="#" onclick="return false">&#9906; Directions</a>
-              <a class="btn sm primary" href="org-detail.html?org=${encodeURIComponent(o.name)}">View details</a>
-            </div>
           </div>
         </div>`).join("");
-      // pins (numbered, synced)
-      mapEl.querySelectorAll(".mappin").forEach(p=>p.remove());
+      // pins
+      mapEl.querySelectorAll(".mappin,.lf-origin").forEach(p=>p.remove());
+      if(state.located){ const o0=document.createElement("div"); o0.className="lf-origin"; o0.style.left="49%"; o0.style.top="46%";
+        o0.innerHTML=`<span class="lf-origin-dot"></span><span class="lf-origin-lbl">${place.replace(/[“”]/g,"")||"You"}</span>`; mapEl.appendChild(o0); }
       list.forEach((o,idx)=>{ const pin=document.createElement("div"); pin.className="mappin"; pin.dataset.i=idx; pin.style.left=o.x+"%"; pin.style.top=o.y+"%";
         pin.innerHTML=`<div class="dot"><span>${idx+1}</span></div>`;
         pin.addEventListener("mouseenter",()=>select(idx));
-        pin.addEventListener("click",()=>{ select(idx); const card=listEl.querySelector(`.lf-item[data-i="${idx}"]`); if(card) card.scrollIntoView({block:"nearest",behavior:"smooth"}); });
+        pin.addEventListener("click",()=>{ select(idx); const c=listEl.querySelector(`.lf-item[data-i="${idx}"]`); if(c) c.scrollIntoView({block:"nearest",behavior:"smooth"}); });
         mapEl.appendChild(pin); });
-      // list hover/click sync
-      listEl.querySelectorAll(".lf-item").forEach(el=>{
-        const i=+el.dataset.i;
+      listEl.querySelectorAll(".lf-item").forEach(el=>{ const i=+el.dataset.i;
         el.addEventListener("mouseenter",()=>select(i));
-        el.addEventListener("click",ev=>{ if(ev.target.closest("a")) return; select(i); });
-      });
-      const rc=mount.querySelector(".lf-refine-count");
-      if(rc){ const n = state.cases.size + Object.values(state.care).reduce((a,s)=>a+s.size,0); rc.textContent = n?`(${n} applied)`:""; }
+        el.addEventListener("click",ev=>{ if(ev.target.closest("a")) return; select(i); }); });
+      updateFilterCounts(list.length);
     }
+    function updateFilterCounts(n){
+      const fb=mount.querySelector(".lf-filterbtn"); if(fb){ const a=activeCount(); fb.innerHTML=`<span aria-hidden="true">&#9776;</span> Filter${a?` (${a})`:""}`; }
+      const show=mount.querySelector(".lf-fp-show"); if(show) show.textContent=`Show results (${n})`;
+      const clr=mount.querySelector(".lf-fp-clear"); if(clr){ const a=activeCount(); clr.textContent=`Clear all${a?` (${a})`:""}`; }
+    }
+
     // controls
     const pcEl=mount.querySelector(".lf-pc"), rgEl=mount.querySelector(".lf-rg"), radEl=mount.querySelector(".lf-rad");
     function doSearch(){ state.pc=pcEl.value.trim(); state.geo=""; state.located=!!state.pc; render(); }
-    mount.querySelector(".lf-go").onclick=doSearch;
+    mount.querySelector(".lf-searchbtn").onclick=doSearch;
     pcEl.addEventListener("keydown",e=>{ if(e.key==="Enter") doSearch(); });
     mount.querySelector(".lf-geo").onclick=()=>{ state.geo="Your location"; state.pc=""; pcEl.value=""; state.located=true; render(); };
     radEl.addEventListener("change",()=>{ state.radius=+radEl.value; render(); });
     rgEl.addEventListener("change",()=>{ state.region=rgEl.value; render(); });
+
+    // filter overlay open/close
+    const panel=mount.querySelector(".lf-filterpanel");
+    function openFilter(){ if(panel){ panel.hidden=false; } }
+    function closeFilter(){ if(panel){ panel.hidden=true; } }
+    const fbtn=mount.querySelector(".lf-filterbtn"); if(fbtn) fbtn.onclick=openFilter;
+    const fclose=mount.querySelector(".lf-fp-close"); if(fclose) fclose.onclick=closeFilter;
+    const fshow=mount.querySelector(".lf-fp-show"); if(fshow) fshow.onclick=closeFilter;
+
     function resetAll(){ state.pc="";state.geo="";state.located=false;state.region="";state.radius=30;
       pcEl.value="";rgEl.value="";radEl.value="30";
       state.cases.clear(); CAREFACETS.forEach(f=>state.care[f.key].clear());
       mount.querySelectorAll('.checkset input:not([data-all])').forEach(c=>c.checked=false);
       mount.querySelectorAll('.checkset input[data-all]').forEach(c=>c.checked=true); render(); }
-    mount.querySelector(".lf-reset").onclick=resetAll;
     const r2=mount.querySelector(".lf-reset2"); if(r2) r2.onclick=resetAll;
+    const fclr=mount.querySelector(".lf-fp-clear");
+    if(fclr) fclr.onclick=()=>{ state.cases.clear(); CAREFACETS.forEach(f=>state.care[f.key].clear());
+      mount.querySelectorAll('.checkset input:not([data-all])').forEach(c=>c.checked=false);
+      mount.querySelectorAll('.checkset input[data-all]').forEach(c=>c.checked=true); render(); };
+
     mount.querySelectorAll('.checkset').forEach(group=>{
       const key=group.dataset.facet; const allcb=group.querySelector('input[data-all]');
       const store = key==="cases" ? state.cases : state.care[key];
@@ -1384,6 +1405,7 @@ html.contrast .downloads,html.contrast .dl-list a,html.contrast .dl-ic{backgroun
       group.querySelectorAll('input:not([data-all])').forEach(cb=>cb.addEventListener("change",()=>{
         cb.checked?store.add(cb.value):store.delete(cb.value); if(allcb) allcb.checked=store.size===0; render(); }));
     });
+
     const pPc=Headway.param("pc"), pRg=Headway.param("region");
     if(pPc){ state.pc=pPc; pcEl.value=pPc; state.located=true; }
     if(pRg){ state.region=pRg; rgEl.value=pRg; }
